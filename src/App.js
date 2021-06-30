@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 
 import './App.css';
 import Login from './Auth/Login'
+import Signup from "./Auth/Signup";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -19,10 +20,20 @@ function App() {
     }
   }, [])
 
+  const handleLogout = () => {
+    localStorage.clear()
+    setUser(null)
+  }
+
 
 
   return (
-    <Login setUser={setUser}/>
+    <div>
+
+      <Login setUser={setUser}/>
+      <Signup setUser={setUser}/>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
   );
 }
 

@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import React, {useEffect, useState} from "react"
+
 import './App.css';
+import Login from './Auth/Login'
 
 function App() {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt")
+    if (token) {
+        fetch("http://localhost:3000/api/v1/profile", {
+            method: "GET",
+            headers: {
+                "Content-Type": "appliction/json",
+                "Authorization": `Bearer ${token}`
+            }
+        }).then(r => r.json()).then(data => setUser(data.user))
+    }
+  }, [])
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Login setUser={setUser}/>
   );
 }
 

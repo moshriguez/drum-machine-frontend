@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect, useState} from 'react'
+import { connect } from "react-redux";
 
 import './App.css';
 import Login from './Auth/Login'
 import Signup from "./Auth/Signup";
 
-function App() {
+function App(props) {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -37,4 +38,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(App);

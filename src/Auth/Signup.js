@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "../actions/user";
 
 // import { useHistory } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 
 const userUrl = "http://localhost:3000/api/v1/users";
 
-const Signup = ({ setUser }) => {
+const Signup = () => {
   // controlled form for user details
   const [userForm, setUserForm] = useState({
     username: "",
@@ -20,6 +20,9 @@ const Signup = ({ setUser }) => {
 
   // Errors if user doesn't pass validations
   const [errors, setErrors] = useState([]);
+
+  // map dispatch to a variable
+  const dispatch = useDispatch()
 
   // sends user signup info to back end and handles validation errors
   const sendAuthInfo = () => {
@@ -43,7 +46,7 @@ const Signup = ({ setUser }) => {
             data.error.forEach(error => newErrors.push(error))
             setErrors(newErrors)
         } else {
-            setUser(data.user);
+            dispatch(setUser(data.user));
             localStorage.setItem("jwt", data.jwt);
         }
       });
@@ -132,8 +135,9 @@ const Signup = ({ setUser }) => {
   );
 };
 
-const mapDispatchToProps = {
-    setUser
-}
+// const mapDispatchToProps = {
+//     setUser
+// }
 
-export default connect(null, mapDispatchToProps)(Signup);
+// export default connect(null, mapDispatchToProps)(Signup);
+export default Signup;

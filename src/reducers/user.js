@@ -1,4 +1,4 @@
-const initialState = null
+const initialState = {id: 1, username: 'marc'}
 
 export const userReducer = (state=initialState, action) => {
     switch (action.type) {

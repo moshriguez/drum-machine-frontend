@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "../actions/user";
 
 import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 
 const loginUrl = "http://localhost:3000/api/v1/login";
 
-const Login = ({ setUser }) => {
+const Login = () => {
   // controlled form for user details
   const [userForm, setUserForm] = useState({ username: "", password: "" });
   const handleChange = (e) => {
@@ -15,6 +15,9 @@ const Login = ({ setUser }) => {
 
   // Errors if incorrect username/password
   const [error, setError] = useState(null);
+
+  // map dispatch to a variable
+  const dispatch = useDispatch()
 
   // Authenticate account
   const sendAuthInfo = (body, url) => {
@@ -32,7 +35,7 @@ const Login = ({ setUser }) => {
         if (data.error) {
           setError(data.error);
         } else {
-          setUser(data.user);
+          dispatch(setUser(data.user));
           localStorage.setItem("jwt", data.jwt);
         }
       });
@@ -93,8 +96,9 @@ const Login = ({ setUser }) => {
   );
 };
 
-const mapDispatchToProps = {
-  setUser
-}
+// const mapDispatchToProps = {
+//   setUser
+// }
 
-export default connect(null, mapDispatchToProps)(Login);
+// export default connect(null, mapDispatchToProps)(Login);
+export default Login;

@@ -1,12 +1,16 @@
 import React, {useEffect, useState} from 'react'
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { setUser } from "./actions/user";
+
 
 import './App.css';
 import Login from './Auth/Login'
 import Signup from "./Auth/Signup";
 
 function App(props) {
-  const [user, setUser] = useState(null)
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  // const [user, setUser] = useState(null)
 
   useEffect(() => {
     const token = localStorage.getItem("jwt")
@@ -17,13 +21,13 @@ function App(props) {
                 "Content-Type": "appliction/json",
                 "Authorization": `Bearer ${token}`
             }
-        }).then(r => r.json()).then(data => setUser(data.user))
+        }).then(r => r.json()).then(data => dispatch(setUser(data.user)))
     }
   }, [])
 
   const handleLogout = () => {
     localStorage.clear()
-    setUser(null)
+    dispatch(setUser(null))
   }
 
 
@@ -31,17 +35,17 @@ function App(props) {
   return (
     <div>
 
-      <Login setUser={setUser}/>
-      <Signup setUser={setUser}/>
+      <Login />
+      <Signup />
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     user: state.user
+//   }
+// }
 
-export default connect(mapStateToProps)(App);
+export default App;

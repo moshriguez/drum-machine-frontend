@@ -15,9 +15,10 @@ const Signup = ({ setUser }) => {
     setUserForm({ ...userForm, [e.target.name]: e.target.value });
   };
 
-  // Errors if doesn't pass validations
+  // Errors if user doesn't pass validations
   const [errors, setErrors] = useState([]);
 
+  // sends user signup info to back end and handles validation errors
   const sendAuthInfo = () => {
     const config = {
       method: "POST",
@@ -36,7 +37,7 @@ const Signup = ({ setUser }) => {
       .then((data) => {
         if (data.error) {
             const newErrors = [];
-            newErrors.push(data.error)
+            data.error.forEach(error => newErrors.push(error))
             setErrors(newErrors)
         } else {
             setUser(data.user);
@@ -45,15 +46,25 @@ const Signup = ({ setUser }) => {
       });
   };
 
+  // checks for errors on the front end
+  const frontendErrorCheck = () => {
+    const newErrors = [];
+    if (userForm.password !== userForm.confirm) {
+        newErrors.push('The password you have entered does not match the password confirmation')
+    }
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).+$/
+    if (!passwordRegex.test(userForm.password)) {
+        newErrors.push('Passwords must include a capital letter, a lowercase letter and a number.')
+    }
+    setErrors(newErrors)
+    //returns true for 0 errors
+    return !newErrors.length
+  }
+
+  // checks for errors on frontend, then sends info to back end
   const handleSignup = (e) => {
     e.preventDefault();
-    const newErrors = [];
-    userForm.password !== userForm.confirm
-    ? newErrors.push("The password you have entered does not match the password confirmation")
-    : console.log();
-    setErrors(newErrors)
-
-    !newErrors.length ? sendAuthInfo() : console.log();
+    frontendErrorCheck() ? sendAuthInfo() : console.log();
   };
 
   return (
@@ -102,9 +113,10 @@ const Signup = ({ setUser }) => {
           <div className="error-container">
             <h2>Errors</h2>
             <ul>
-              {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
-              ))}
+              {errors.map((error, idx) => {
+                  return <li key={idx}>{error}</li>
+              }
+              )}
             </ul>
           </div>
         ) : null}

@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { setUser } from "../actions/user";
+
 // import { useHistory } from 'react-router-dom'
 import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 
@@ -129,4 +132,8 @@ const Signup = ({ setUser }) => {
   );
 };
 
-export default Signup;
+const mapDispatchToProps = {
+    setUser
+}
+
+export default connect(null, mapDispatchToProps)(Signup);

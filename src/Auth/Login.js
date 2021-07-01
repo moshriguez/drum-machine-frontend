@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { setUser } from "../actions/user";
+
 import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 
 const loginUrl = "http://localhost:3000/api/v1/login";
@@ -90,4 +93,8 @@ const Login = ({ setUser }) => {
   );
 };
 
-export default Login;
+const mapDispatchToProps = {
+  setUser
+}
+
+export default connect(null, mapDispatchToProps)(Login);

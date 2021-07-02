@@ -1,15 +1,35 @@
 import { combineReducers } from "redux";
 import { userReducer } from "./user";
-import { selectedPadReducer } from "./selectedPad";
+import { drumMachineReducer } from "./drumMachine";
 
 const rootReducer = combineReducers({
     user: userReducer, 
-    selectedPad: selectedPadReducer
+    drumMachine: drumMachineReducer
 })
 
 export default rootReducer
 // shape of state
 // {
 //     user: {},
-//     selectedPad: ''
+//     drumMachine: {
+//       selectedPad: '',
+//       tempo: 120,
+//       isPlaying: false,
+//       pad1: {
+//          volume: 2,
+//          sequence: '0000'
+//          },
+//       pad2: {
+//          volume: 2,
+//          sequence: '0000'
+//          },
+//       pad3: {
+//          volume: 2,
+//          sequence: '0000'
+//          },
+//       pad4: {
+//          volume: 2,
+//          sequence: '0000'
+//          },
+//      }
 // }

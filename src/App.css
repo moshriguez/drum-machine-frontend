@@ -80,11 +80,34 @@ a.active {
   width: 150px;
   border-radius: 10px;
   background-color: chartreuse;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .play-btn {
   height: 50px;
   width: 100px;
   background-color: chartreuse;
+  text-align: center;
+}
 
+.play-btn:hover {
+  background-color: rgb(99, 196, 2);
+}
+
+.digital-display {
+  width: 80%;
+  height: 70%;
+  background-color: black;
+  border: 2px solid gray;
+  font-family: monospace;
+  color: #fff
+}
+
+.digital-display p {
+  margin: 0;
+  text-align: center;
+  font-size: 1.5em;
+  line-height: 1.75;
 }

@@ -85,6 +85,17 @@ a.active {
   align-items: center;
 }
 
+.volume-control, .tempo-control {
+  flex-direction: column;
+}
+
+.tempo-control > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
 .play-btn {
   height: 50px;
   width: 100px;
@@ -97,8 +108,9 @@ a.active {
 }
 
 .digital-display {
-  width: 80%;
-  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: black;
   border: 2px solid gray;
   font-family: monospace;
@@ -107,7 +119,14 @@ a.active {
 
 .digital-display p {
   margin: 0;
-  text-align: center;
+  padding: 0 5px;
   font-size: 1.5em;
-  line-height: 1.75;
 }
+
+.selected-drum-show .digital-display {
+  width: 80%;
+  height: 70%;
+}
+ .drum-pad {
+   border-radius: 50%;
+ }

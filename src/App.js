@@ -4,7 +4,7 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./actions/user";
 
-
+// LOCAL IMPORTS
 import './App.css';
 import Login from './Auth/Login'
 import Signup from "./Auth/Signup";
@@ -29,13 +29,6 @@ function App(props) {
     }
   }, [dispatch])
 
-  const handleLogout = () => {
-    localStorage.clear()
-    dispatch(setUser(null))
-  }
-
-
-
   return (
     <div>
       <Navigation />
@@ -46,7 +39,6 @@ function App(props) {
         <Route exact path='/signup' render={() => <Signup />} />
         <Redirect from="/logout" to="/drum_machine" />
       </Switch>
-      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }

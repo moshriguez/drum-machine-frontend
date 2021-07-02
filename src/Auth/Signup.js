@@ -128,16 +128,11 @@ const Signup = () => {
         ) : null}
         <div className="signup-container">
           <p>Already have an account?</p>
-          <a href="#">Login</a>
+          <a href="/login">Login</a>
         </div>
       </div>
     </div>
   );
 };
 
-// const mapDispatchToProps = {
-//     setUser
-// }
-
-// export default connect(null, mapDispatchToProps)(Signup);
 export default Signup;

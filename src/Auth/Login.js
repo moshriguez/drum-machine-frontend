@@ -89,16 +89,11 @@ const Login = () => {
         ) : null}
         <div className="signup-container">
           <p>Don't have an account?</p>
-          <a href="#">Sign up</a>
+          <a href="/signup">Sign up</a>
         </div>
       </div>
     </div>
   );
 };
 
-// const mapDispatchToProps = {
-//   setUser
-// }
-
-// export default connect(null, mapDispatchToProps)(Login);
 export default Login;

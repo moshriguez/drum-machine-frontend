@@ -1,5 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import { connect, useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react'
+import { Route, Switch, withRouter } from 'react-router-dom'
+
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./actions/user";
 
 
@@ -10,7 +12,6 @@ import Signup from "./Auth/Signup";
 function App(props) {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
-  // const [user, setUser] = useState(null)
 
   useEffect(() => {
     const token = localStorage.getItem("jwt")
@@ -23,7 +24,7 @@ function App(props) {
             }
         }).then(r => r.json()).then(data => dispatch(setUser(data.user)))
     }
-  }, [])
+  }, [dispatch])
 
   const handleLogout = () => {
     localStorage.clear()
@@ -34,18 +35,13 @@ function App(props) {
 
   return (
     <div>
-
-      <Login />
-      <Signup />
+      <Switch>
+        <Route exact path='/login' render={() => <Login />} />
+        <Route exact path='/signup' render={() => <Signup />} />
+      </Switch>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     user: state.user
-//   }
-// }
-
-export default App;
+export default withRouter(App);

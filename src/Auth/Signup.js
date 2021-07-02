@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import { setUser } from "../actions/user";
 
-// import { useHistory } from 'react-router-dom'
 import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 
 const userUrl = "http://localhost:3000/api/v1/users";
@@ -21,8 +21,11 @@ const Signup = () => {
   // Errors if user doesn't pass validations
   const [errors, setErrors] = useState([]);
 
-  // map dispatch to a variable
+  // Pass reference to useDispatch hook
   const dispatch = useDispatch()
+
+  // Pass reference to useHistory hook
+  const history = useHistory()
 
   // sends user signup info to back end and handles validation errors
   const sendAuthInfo = () => {
@@ -48,6 +51,7 @@ const Signup = () => {
         } else {
             dispatch(setUser(data.user));
             localStorage.setItem("jwt", data.jwt);
+            history.replace('/profile')
         }
       });
   };

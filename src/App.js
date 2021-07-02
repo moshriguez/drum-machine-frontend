@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom'
 
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./actions/user";
@@ -8,7 +8,9 @@ import { setUser } from "./actions/user";
 import './App.css';
 import Login from './Auth/Login'
 import Signup from "./Auth/Signup";
-import { Navigation } from "./components/Navigation";
+import Navigation from "./components/Navigation";
+import DrumContainer from './container/DrumContainer';
+import MyProfileContainer from './container/MyProfileContainer';
 
 function App(props) {
   const user = useSelector(state => state.user)
@@ -38,8 +40,11 @@ function App(props) {
     <div>
       <Navigation />
       <Switch>
+        <Route exact path='/drum_machine' render={() => <DrumContainer />} />
+        <Route exact path='/profile' render={() => <MyProfileContainer />} />
         <Route exact path='/login' render={() => <Login />} />
         <Route exact path='/signup' render={() => <Signup />} />
+        <Redirect from="/logout" to="/drum_machine" />
       </Switch>
       <button onClick={handleLogout}>Logout</button>
     </div>

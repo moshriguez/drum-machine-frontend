@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import { setUser } from "../actions/user";
 
@@ -16,8 +17,12 @@ const Login = () => {
   // Errors if incorrect username/password
   const [error, setError] = useState(null);
 
-  // map dispatch to a variable
+  // Pass reference to useDispatch hook
   const dispatch = useDispatch()
+
+  // Pass reference to useHistory hook
+  const history = useHistory()
+
 
   // Authenticate account
   const sendAuthInfo = (body, url) => {
@@ -37,6 +42,7 @@ const Login = () => {
         } else {
           dispatch(setUser(data.user));
           localStorage.setItem("jwt", data.jwt);
+          history.replace('/profile')
         }
       });
   };

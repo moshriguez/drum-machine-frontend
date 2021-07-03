@@ -11,3 +11,10 @@ export function setTempo(tempo) {
         payload: tempo
     }
 }
+
+export function playing(bool) {
+    return {
+        type: 'IS_PLAYING',
+        payload: bool
+    }
+}

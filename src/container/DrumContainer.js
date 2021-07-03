@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPad, setTempo } from "../actions/drumMachine";
+import { setPad, setTempo, playing } from "../actions/drumMachine";
 
 
 const DrumContainer = () => {
     const dispatch = useDispatch();
     const selectedPad = useSelector(state => state.drumMachine.selectedPad)
     const tempo = useSelector(state => state.drumMachine.tempo)
+    const isPlaying = useSelector(state => state.drumMachine.isPlaying)
   
 
     const bdURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/SB15_Drm_bd.wav?alt=media&token=cf875504-7d60-4ae8-88ca-13192ea16d84'
@@ -22,6 +23,10 @@ const DrumContainer = () => {
     const handleChangeTempo = (e) => {
         // console.log(e.target.value)
         dispatch(setTempo(e.target.value))
+    }
+
+    const handleChangeVolume = (e) => {
+        console.log(e.target.value)
     }
 
     return (
@@ -41,11 +46,12 @@ const DrumContainer = () => {
                         min="40" 
                         max="280" 
                         step="0.5"
+                        value={tempo}
                         onChange={(e) => handleChangeTempo(e)} 
                     />
                 </div>
-                <div className="play-btn">
-                    <p>PLAY</p>
+                <div className="play-btn" onClick={() => dispatch(playing(!isPlaying))}>
+                    {isPlaying ? <p>STOP</p> : <p>PLAY</p>}
                 </div>
             </div>
             <div className="pads-container">

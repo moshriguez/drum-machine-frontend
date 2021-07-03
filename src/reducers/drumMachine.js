@@ -25,9 +25,11 @@ export const drumMachineReducer = (state=initialState, action) => {
         case 'SET_PAD':
             return {...state, selectedPad: action.payload}
         case 'SET_TEMPO':
-            console.log(action.payload)
             return {...state, tempo: action.payload}
-            
+        case 'IS_PLAYING':
+            console.log(action.payload)
+            return {...state, isPlaying: action.payload}
+
         default:
             return state
     }

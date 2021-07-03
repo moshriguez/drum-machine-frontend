@@ -4,3 +4,10 @@ export function setPad(pad) {
         payload: pad
     }
 }
+
+export function setTempo(tempo) {
+    return {
+        type: 'SET_TEMPO',
+        payload: tempo
+    }
+}

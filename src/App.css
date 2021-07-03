@@ -127,6 +127,11 @@ a.active {
   width: 80%;
   height: 70%;
 }
- .drum-pad {
-   border-radius: 50%;
- }
+
+.tempo-control .digital-display {
+  width: 70px;
+}
+
+.drum-pad {
+  border-radius: 50%;
+}

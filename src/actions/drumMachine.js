@@ -25,3 +25,10 @@ export function setVolume(volume) {
         payload: volume
     }
 }
+
+export function loading(bool) {
+    return {
+        type: 'IS_LOADING',
+        payload: bool
+    }
+}

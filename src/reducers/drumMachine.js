@@ -1,27 +1,30 @@
 const initialState = {
+    isLoading: true,
     selectedPad: 'pad1',
     tempo: 120,
     isPlaying: false,
     pad1: {
         volume: 2,
-        sequence: '0000'
+        sequence: '1010'
     },
     pad2: {
         volume: 2,
-        sequence: '0000'
+        sequence: '0101'
     },
     pad3: {
         volume: 2,
-        sequence: '0000'
+        sequence: '1111'
     },
     pad4: {
         volume: 2,
-        sequence: '0000'
+        sequence: '0001'
     },
 }
 
 export const drumMachineReducer = (state=initialState, action) => {
     switch (action.type) {
+        case 'IS_LOADING':
+            return {...state, isLoading: action.payload}
         case 'SET_PAD':
             return {...state, selectedPad: action.payload}
         case 'SET_TEMPO':
@@ -29,8 +32,6 @@ export const drumMachineReducer = (state=initialState, action) => {
         case 'IS_PLAYING':
             return {...state, isPlaying: action.payload}
         case 'SET_VOLUME': 
-            console.log(state[state.selectedPad])
-
             return {...state, [state.selectedPad]: {...state[state.selectedPad], volume: action.payload}}
             
         default:

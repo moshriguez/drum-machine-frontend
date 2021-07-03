@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPad, setTempo, playing } from "../actions/drumMachine";
+import { setPad, setTempo, playing, setVolume } from "../actions/drumMachine";
 
 
 const DrumContainer = () => {
@@ -8,6 +8,7 @@ const DrumContainer = () => {
     const selectedPad = useSelector(state => state.drumMachine.selectedPad)
     const tempo = useSelector(state => state.drumMachine.tempo)
     const isPlaying = useSelector(state => state.drumMachine.isPlaying)
+    const volume = useSelector(state => state.drumMachine[selectedPad].volume)
   
 
     const bdURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/SB15_Drm_bd.wav?alt=media&token=cf875504-7d60-4ae8-88ca-13192ea16d84'
@@ -21,12 +22,11 @@ const DrumContainer = () => {
     }
 
     const handleChangeTempo = (e) => {
-        // console.log(e.target.value)
         dispatch(setTempo(e.target.value))
     }
 
     const handleChangeVolume = (e) => {
-        console.log(e.target.value)
+        dispatch(setVolume(e.target.value))
     }
 
     return (
@@ -76,7 +76,16 @@ const DrumContainer = () => {
                 </div>
                 <div className="volume-control">
                     <label htmlFor="volume">VOLUME</label>
-                    <input name="volume" id="volume" type="range" min="0" max="2" step="0.01" />
+                    <input 
+                        name="volume" 
+                        id="volume" 
+                        type="range" 
+                        min="0" 
+                        max="2" 
+                        step="0.01" 
+                        value={volume}
+                        onChange={(e) => handleChangeVolume(e)}
+                    />
                 </div>
             </div>
             <div className="pads-container">

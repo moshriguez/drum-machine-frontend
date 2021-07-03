@@ -18,3 +18,10 @@ export function playing(bool) {
         payload: bool
     }
 }
+
+export function setVolume(volume) {
+    return {
+        type: 'SET_VOLUME',
+        payload: volume
+    }
+}

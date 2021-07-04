@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPad, setTempo, playing, setVolume, loading } from "../actions/drumMachine";
 import { setupSample } from "../drumMachineLogic";
 
-const audioCtx = new AudioContext()
+let audioCtx = new AudioContext()
+// let audioCtx
+// let bufferLoader
 
 const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
 const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
@@ -52,27 +54,40 @@ const DrumContainer = () => {
     const hhURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/tracks_19%20%23004.wav?alt=media&token=90e8fac2-5f2a-45f5-a4e6-dc8762c0ba41'
     const hhOpenURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/tracks_61%20%23008.wav?alt=media&token=f72ab516-80e9-47f5-9a39-f2e357c5a3e6'
 
+    let bdFileName = 'SB15_Drm_bd.wav'
+    let snareFileName = 'tracks_15 #006.wav'
+    let hhFileName = 'tracks_19 #004.wav'
+    let hhOpenFileName = 'tracks_61 #008.wav'
     let bdSample
     let snareSample
     let hhSample
     let hhOpenSample
-    setupSample(audioCtx, bdURL)
-    // .then(res => console.log(res))
+    setupSample(audioCtx, bdFileName)
+    .then(res => bdSample = res)
+    setupSample(audioCtx, snareFileName)
+    .then(res => snareSample = res)
+    setupSample(audioCtx, hhFileName)
+    .then(res => hhSample = res)
+    setupSample(audioCtx, hhOpenFileName)
+    .then(res => hhOpenSample = res)
+    
 
 
-    // useEffect(()=> {
-    //     // when the sample has loaded allow play
-    //     const arrayOfSamples = [bdURL, snareURL, hhURL, hhOpenURL].map(path => {
-    //         setupSample(audioCtx, path)
-    //         .then((sample) => {
-    //             path = sample
-    //             dispatch(loading(!isLoading))
-    //         })
-    //     })
-    // }, [])
+    useEffect(()=> {
+
+        // when the sample has loaded allow play
+        // const arrayOfSamples = [bdURL, snareURL, hhURL, hhOpenURL].map(path => {
+        //     setupSample(audioCtx, path)
+        //     .then((sample) => {
+        //         path = sample
+        //         dispatch(loading(!isLoading))
+        //     })
+        // })
+    }, [])
     
     const handleDrumPadClick = (e) => {
-        e.target.firstChild.play()
+        // e.target.firstChild.play()
+        playSample(audioCtx, hhOpenSample, 0)
         dispatch(setPad(e.target.id))
     }
 
@@ -187,16 +202,12 @@ const DrumContainer = () => {
             </div>
             <div className="pads-container">
                 <div className="drum-pad" id="pad1" onClick={(e)=> handleDrumPadClick(e)}>
-                    <audio src={bdURL} ></audio>
                 </div>
                 <div className="drum-pad" id="pad2" onClick={(e)=> handleDrumPadClick(e)}>
-                    <audio src={snareURL} ></audio>
                 </div>
                 <div className="drum-pad" id="pad3" onClick={(e)=> handleDrumPadClick(e)}>
-                    <audio src={hhURL} ></audio>
                 </div>
                 <div className="drum-pad" id="pad4" onClick={(e)=> handleDrumPadClick(e)}>
-                    <audio src={hhOpenURL} ></audio>
                 </div>
             </div>
             <div className="drum-controls">

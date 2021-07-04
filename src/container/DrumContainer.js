@@ -76,7 +76,6 @@ const DrumContainer = () => {
         nextNoteTime = audioCtx.currentTime;
         scheduler(); // kick off scheduling notes
         dispatch(setTimerID(setInterval(scheduler, lookahead)))
-        // requestAnimationFrame(draw); // start the drawing loop.
     }
 
     function stopDrumMachine() {
@@ -107,13 +106,7 @@ const DrumContainer = () => {
         }
     }
 
-    // Create a queue for the notes that are to be played, with the current time that we want them to play:
-    // const notesInQueue = [];
-
     function scheduleNote(beatNumber, time) {
-        // push the note on the queue, even if we're not playing.
-        // notesInQueue.push({note: beatNumber, time: time});
-
         // console.log(beatNumber, time);
         // console.log(typeof pad1.sequence.split('')[beatNumber])
 
@@ -131,42 +124,17 @@ const DrumContainer = () => {
         }
     }
 
-    // We also need a draw function to update the UI, so we can see when the beat progresses.
-
-    let lastNoteDrawn = 3;
-    function draw() {
-    let drawNote = lastNoteDrawn;
-    const currentTime = audioCtx.currentTime;
-
-    //   while (notesInQueue.length && notesInQueue[0].time < currentTime) {
-    //     drawNote = notesInQueue[0].note;
-    //     notesInQueue.splice(0,1);   // remove note from queue
-    //   }
-
-    // We only need to draw if the note has moved.
-    //   if (lastNoteDrawn !== drawNote) {
-    //     pads.forEach(el => {
-    //       el.children[lastNoteDrawn].style.borderColor = 'hsla(0, 0%, 10%, 1)';
-    //       el.children[drawNote].style.borderColor = 'hsla(49, 99%, 50%, 1)';
-    //     });
-
-    //     lastNoteDrawn = drawNote;
-    //   }
-    // set up to draw again
-    requestAnimationFrame(draw);
-    }
-
-    // console.log(drumMachine[selectedPad].sequence.split(''))
+    // renders sequence pads and adds class based on whether pad is selected and what beat were on
     const renderSequencePads = () => {
         return drumMachine[selectedPad].sequence.split('').map((pad, i) => {
             if (pad === '0' && i === beatNumber) {
-                return <div className="sequence-pad current-note"></div>
+                return <div key={i} className="sequence-pad current-note"></div>
             } else if (pad === '0') {
-                return <div className="sequence-pad"></div>
+                return <div key={i} className="sequence-pad"></div>
             } else if (pad === '1' && i === beatNumber) {
-                return <div className="sequence-pad selected current-note"></div>
+                return <div key={i} className="sequence-pad selected current-note"></div>
             } else {
-                return <div className="sequence-pad selected "></div>
+                return <div key={i} className="sequence-pad selected "></div>
             }
         })
     }

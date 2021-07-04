@@ -16,6 +16,7 @@ function App(props) {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
+  // TODO -  need to add error handling for when the token expires
   useEffect(() => {
     const token = localStorage.getItem("jwt")
     if (token) {

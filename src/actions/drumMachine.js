@@ -32,3 +32,10 @@ export function loading(bool) {
         payload: bool
     }
 }
+
+export function setTimerID(timerID) {
+    return {
+        type: 'SET_TIMER_ID',
+        payload: timerID
+    }
+}

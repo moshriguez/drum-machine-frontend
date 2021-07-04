@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { setPad, setTempo, playing, setVolume, loading } from "../actions/drumMachine";
-import { audioCtx, bdSample, hhOpenSample, hhSample, snareSample, playSample, startStopDrumMachine } from "../drumMachineLogic";
+import { setPad, setTempo, playing, setVolume, loading, setTimerID } from "../actions/drumMachine";
+import { audioCtx, bdSample, hhOpenSample, hhSample, snareSample, playSample } from "../drumMachineLogic";
 
+const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
+const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
 
 
 const DrumContainer = () => {
     const dispatch = useDispatch();
     const isLoading = useSelector(state => state.drumMachine.isLoading)
     const selectedPad = useSelector(state => state.drumMachine.selectedPad)
-    const currentTempo = useSelector(state => state.drumMachine.tempo)
+    const tempo = useSelector(state => state.drumMachine.tempo)
     const isPlaying = useSelector(state => state.drumMachine.isPlaying)
+    const timerID = useSelector(state => state.drumMachine.timerID)
     const volume = useSelector(state => state.drumMachine[selectedPad].volume)
     const pad1 = useSelector(state => state.drumMachine.pad1)
     const pad2 = useSelector(state => state.drumMachine.pad2)
@@ -31,6 +34,7 @@ const DrumContainer = () => {
         //     })
     // }, [])
     
+    // ** EVENT HANDLERS **
     const handleDrumPadClick = (e) => {
         playSample(audioCtx, hhOpenSample, 0)
         dispatch(setPad(e.target.id))
@@ -45,12 +49,64 @@ const DrumContainer = () => {
     }
 
     const handlePlayBtnClick = (e) => {
-        startStopDrumMachine()
+        if (!isPlaying) { // if we're not currently playing, start playing...
+            startDrumMachine()
+        } else {
+            stopDrumMachine()
+        }
         dispatch(playing(!isPlaying))
     }
 
+    // ** DRUM MACHINE ENGINE **
+    let currentNote = 0; // The note we are currently playing
+    let nextNoteTime = 0.0; // when the next note is due.
+
+    // let timerID;
+    // console.log(timerID)
+    function startDrumMachine() {
+        // check if context is in suspended state (autoplay policy)
+        if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+        }
+
+        currentNote = 0;
+        nextNoteTime = audioCtx.currentTime;
+        scheduler(); // kick off scheduling notes
+        dispatch(setTimerID(setInterval(scheduler, lookahead)))
+        // requestAnimationFrame(draw); // start the drawing loop.
+    }
+
+    function stopDrumMachine() {
+        clearInterval(timerID);
+    }
+
+
+    // calculates time for next note and advances the current note
+    function nextNote() {
+        const secondsPerBeat = 60.0 / tempo;
+        nextNoteTime += secondsPerBeat; // Add beat length to last beat time
+        console.log('currentNote: ', currentNote)
+        console.log('nextNoteTime: ', nextNoteTime)
+        // Advance the beat number, wrap to zero
+        currentNote++;
+        if (currentNote === 4) {
+            currentNote = 0;
+        }
+    }
+
+    function scheduler() {
+        // while there are notes that will need to play before the next interval, schedule them and advance the pointer.
+        
+        while (nextNoteTime < audioCtx.currentTime + scheduleAheadTime ) {
+            // scheduleNote(currentNote, nextNoteTime);
+            nextNote();
+        }
+    }
+
+
+
     return (
-        // add loading element; display while samples are being buffered
+        // TODO: add loading element; display while samples are being buffered
 
         <div className="drum-container">
             <div className="global-controls">
@@ -58,7 +114,7 @@ const DrumContainer = () => {
                     <div>
                         <label htmlFor="tempo">TEMPO</label>
                         <div className="digital-display">
-                            <p>{currentTempo}</p>
+                            <p>{tempo}</p>
                         </div>
                     </div>
                     <input 
@@ -68,7 +124,7 @@ const DrumContainer = () => {
                         min="40" 
                         max="280" 
                         step="0.5"
-                        value={currentTempo}
+                        value={tempo}
                         onChange={(e) => handleChangeTempo(e)} 
                     />
                 </div>

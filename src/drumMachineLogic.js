@@ -33,27 +33,6 @@ setupSample(audioCtx, hhOpenFileName)
 .then(res => hhOpenSample = res)
 
 
-// Create a queue for the notes that are to be played, with the current time that we want them to play:
-// const notesInQueue = [];
-
-// function scheduleNote(beatNumber, time) {
-//     // push the note on the queue, even if we're not playing.
-//     notesInQueue.push({note: beatNumber, time: time});
-//     // console.log(beatNumber, time);
-
-//     if (pad1.sequence.split()[beatNumber] === '1') {
-//         playSample(audioCtx, bdSample, time);
-//     }
-//     if (pad2.sequence.split()[beatNumber] === '1') {
-//         playSample(audioCtx, snareSample, time);
-//     }
-//     if (pad3.sequence.split()[beatNumber] === '1') {
-//         playSample(audioCtx, hhSample, time);
-//     }
-//     if (pad4.sequence.split()[beatNumber] === '1') {
-//         playSample(audioCtx, hhOpenSample, time);
-//     }
-// }
 
 // creates a buffer, adds in buffered sample, connects and plays
 //! gain node and panning node will have to be added here later

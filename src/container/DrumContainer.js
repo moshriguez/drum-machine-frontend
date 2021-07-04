@@ -49,6 +49,7 @@ const DrumContainer = () => {
     }
 
     const handlePlayBtnClick = (e) => {
+        // TODO: it would be cool to trigger this with spacebar as well like other audio software
         if (!isPlaying) { // if we're not currently playing, start playing...
             startDrumMachine()
         } else {
@@ -83,10 +84,10 @@ const DrumContainer = () => {
 
     // calculates time for next note and advances the current note
     function nextNote() {
+        // console.log('currentNote: ', currentNote)
+        // console.log('nextNoteTime: ', nextNoteTime)
         const secondsPerBeat = 60.0 / tempo;
         nextNoteTime += secondsPerBeat; // Add beat length to last beat time
-        console.log('currentNote: ', currentNote)
-        console.log('nextNoteTime: ', nextNoteTime)
         // Advance the beat number, wrap to zero
         currentNote++;
         if (currentNote === 4) {
@@ -98,10 +99,34 @@ const DrumContainer = () => {
         // while there are notes that will need to play before the next interval, schedule them and advance the pointer.
         
         while (nextNoteTime < audioCtx.currentTime + scheduleAheadTime ) {
-            // scheduleNote(currentNote, nextNoteTime);
+            scheduleNote(currentNote, nextNoteTime);
             nextNote();
         }
     }
+
+    // Create a queue for the notes that are to be played, with the current time that we want them to play:
+    // const notesInQueue = [];
+
+    function scheduleNote(beatNumber, time) {
+        // push the note on the queue, even if we're not playing.
+        // notesInQueue.push({note: beatNumber, time: time});
+        console.log(beatNumber, time);
+        console.log(typeof pad1.sequence.split('')[beatNumber])
+
+        if (pad1.sequence.split('')[beatNumber] === '1') {
+            playSample(audioCtx, bdSample, time);
+        }
+        if (pad2.sequence.split('')[beatNumber] === '1') {
+            playSample(audioCtx, snareSample, time);
+        }
+        if (pad3.sequence.split('')[beatNumber] === '1') {
+            playSample(audioCtx, hhSample, time);
+        }
+        if (pad4.sequence.split('')[beatNumber] === '1') {
+            playSample(audioCtx, hhOpenSample, time);
+        }
+    }
+
 
 
 

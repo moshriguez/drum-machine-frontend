@@ -86,6 +86,7 @@ const DrumContainer = () => {
 
     // calculates time for next note and advances the current note
     function nextNote() {
+        dispatch(setBeatNumber(currentNote))
         // console.log('currentNote: ', currentNote)
         // console.log('nextNoteTime: ', nextNoteTime)
         const secondsPerBeat = 60.0 / tempo;
@@ -95,7 +96,6 @@ const DrumContainer = () => {
         if (currentNote === 4) {
             currentNote = 0;
         }
-        dispatch(setBeatNumber(currentNote))
     }
 
     function scheduler() {
@@ -156,13 +156,17 @@ const DrumContainer = () => {
     requestAnimationFrame(draw);
     }
 
-    console.log(drumMachine[selectedPad].sequence.split(''))
+    // console.log(drumMachine[selectedPad].sequence.split(''))
     const renderSequencePads = () => {
-        return drumMachine[selectedPad].sequence.split('').map(pad => {
-            if (pad === '0') {
+        return drumMachine[selectedPad].sequence.split('').map((pad, i) => {
+            if (pad === '0' && i === beatNumber) {
+                return <div className="sequence-pad current-note"></div>
+            } else if (pad === '0') {
                 return <div className="sequence-pad"></div>
+            } else if (pad === '1' && i === beatNumber) {
+                return <div className="sequence-pad selected current-note"></div>
             } else {
-                return <div className="sequence-pad selected"></div>
+                return <div className="sequence-pad selected "></div>
             }
         })
     }

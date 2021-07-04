@@ -4,6 +4,7 @@ const initialState = {
     tempo: 120,
     isPlaying: false,
     timerID: null,
+    beatNumber: 0,
     pad1: {
         volume: 2,
         sequence: '1010'
@@ -36,6 +37,8 @@ export const drumMachineReducer = (state=initialState, action) => {
             return {...state, [state.selectedPad]: {...state[state.selectedPad], volume: action.payload}}
         case 'SET_TIMER_ID':
             return {...state, timerID: action.payload}
+        case 'SET_BEAT_NUMBER':
+            return {...state, beatNumber: action.payload}
             
         default:
             return state

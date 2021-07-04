@@ -43,29 +43,3 @@ export function playSample(audioContext, audioBuffer, time) {
     sampleSource.start(time);
     return sampleSource;
 }
-
-
-// We also need a draw function to update the UI, so we can see when the beat progresses.
-
-let lastNoteDrawn = 3;
-function draw() {
-  let drawNote = lastNoteDrawn;
-  const currentTime = audioCtx.currentTime;
-
-//   while (notesInQueue.length && notesInQueue[0].time < currentTime) {
-//     drawNote = notesInQueue[0].note;
-//     notesInQueue.splice(0,1);   // remove note from queue
-//   }
-
-  // We only need to draw if the note has moved.
-//   if (lastNoteDrawn !== drawNote) {
-//     pads.forEach(el => {
-//       el.children[lastNoteDrawn].style.borderColor = 'hsla(0, 0%, 10%, 1)';
-//       el.children[drawNote].style.borderColor = 'hsla(49, 99%, 50%, 1)';
-//     });
-
-//     lastNoteDrawn = drawNote;
-//   }
-  // set up to draw again
-  requestAnimationFrame(draw);
-}

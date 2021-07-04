@@ -39,3 +39,10 @@ export function setTimerID(timerID) {
         payload: timerID
     }
 }
+
+export function setBeatNumber(beatNumber) {
+    return {
+        type: 'SET_BEAT_NUMBER',
+        payload: beatNumber
+    }
+}

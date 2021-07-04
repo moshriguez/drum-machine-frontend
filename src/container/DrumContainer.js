@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { setPad, setTempo, playing, setVolume, loading, setTimerID } from "../actions/drumMachine";
+import { setPad, setTempo, playing, setVolume, loading, setTimerID, setBeatNumber } from "../actions/drumMachine";
 import { audioCtx, bdSample, hhOpenSample, hhSample, snareSample, playSample } from "../drumMachineLogic";
 
 const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
@@ -9,11 +9,13 @@ const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
 
 const DrumContainer = () => {
     const dispatch = useDispatch();
+    const drumMachine = useSelector(state => state.drumMachine)
     const isLoading = useSelector(state => state.drumMachine.isLoading)
     const selectedPad = useSelector(state => state.drumMachine.selectedPad)
     const tempo = useSelector(state => state.drumMachine.tempo)
     const isPlaying = useSelector(state => state.drumMachine.isPlaying)
     const timerID = useSelector(state => state.drumMachine.timerID)
+    const beatNumber = useSelector(state => state.drumMachine.beatNumber)
     const volume = useSelector(state => state.drumMachine[selectedPad].volume)
     const pad1 = useSelector(state => state.drumMachine.pad1)
     const pad2 = useSelector(state => state.drumMachine.pad2)
@@ -93,6 +95,7 @@ const DrumContainer = () => {
         if (currentNote === 4) {
             currentNote = 0;
         }
+        dispatch(setBeatNumber(currentNote))
     }
 
     function scheduler() {
@@ -110,8 +113,9 @@ const DrumContainer = () => {
     function scheduleNote(beatNumber, time) {
         // push the note on the queue, even if we're not playing.
         // notesInQueue.push({note: beatNumber, time: time});
-        console.log(beatNumber, time);
-        console.log(typeof pad1.sequence.split('')[beatNumber])
+
+        // console.log(beatNumber, time);
+        // console.log(typeof pad1.sequence.split('')[beatNumber])
 
         if (pad1.sequence.split('')[beatNumber] === '1') {
             playSample(audioCtx, bdSample, time);
@@ -127,7 +131,41 @@ const DrumContainer = () => {
         }
     }
 
+    // We also need a draw function to update the UI, so we can see when the beat progresses.
 
+    let lastNoteDrawn = 3;
+    function draw() {
+    let drawNote = lastNoteDrawn;
+    const currentTime = audioCtx.currentTime;
+
+    //   while (notesInQueue.length && notesInQueue[0].time < currentTime) {
+    //     drawNote = notesInQueue[0].note;
+    //     notesInQueue.splice(0,1);   // remove note from queue
+    //   }
+
+    // We only need to draw if the note has moved.
+    //   if (lastNoteDrawn !== drawNote) {
+    //     pads.forEach(el => {
+    //       el.children[lastNoteDrawn].style.borderColor = 'hsla(0, 0%, 10%, 1)';
+    //       el.children[drawNote].style.borderColor = 'hsla(49, 99%, 50%, 1)';
+    //     });
+
+    //     lastNoteDrawn = drawNote;
+    //   }
+    // set up to draw again
+    requestAnimationFrame(draw);
+    }
+
+    console.log(drumMachine[selectedPad].sequence.split(''))
+    const renderSequencePads = () => {
+        return drumMachine[selectedPad].sequence.split('').map(pad => {
+            if (pad === '0') {
+                return <div className="sequence-pad"></div>
+            } else {
+                return <div className="sequence-pad selected"></div>
+            }
+        })
+    }
 
 
     return (
@@ -188,10 +226,7 @@ const DrumContainer = () => {
                 </div>
             </div>
             <div className="pads-container">
-                <div className="sequence-pad"></div>
-                <div className="sequence-pad"></div>
-                <div className="sequence-pad"></div>
-                <div className="sequence-pad"></div>
+                {renderSequencePads()}
             </div>
         </div>
     )

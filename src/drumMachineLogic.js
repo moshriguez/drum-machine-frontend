@@ -1,8 +1,10 @@
 import { storage } from "./firebase/firebase";
 
+export let audioCtx = new AudioContext()
+
 // LOADING SAMPLES
 // fetch the audio file and decode the data  
-export async function setupSample(audioContext, fileName) {
+async function setupSample(audioContext, fileName) {
     // const configObj = {
     //     method: 'GET',
     //     mode: 'no-cors',
@@ -10,6 +12,7 @@ export async function setupSample(audioContext, fileName) {
     //         'Content-Type': 'audio/wav'
     //     }
     // }
+    console.log('Loading sample')
     const storageRef = storage.ref()
     const filePath = await storageRef.child(fileName).getDownloadURL()
     const response = await fetch(filePath)
@@ -19,29 +22,21 @@ export async function setupSample(audioContext, fileName) {
     return audioBuffer;
 }
 
-// export async function setupSample(audioContext, fileName) {
-//     const storageRef = storage.ref()
-//     const filePath = storageRef.child(fileName).getDownloadURL()
-//     var request = new XMLHttpRequest();
-//     request.open('GET', filePath, true);
-//     request.responseType = 'arraybuffer';
-//     // Decode asynchronously
-//     request.onload = function() {
-//         console.log(request.response)
-//         audioContext.decodeAudioData(request.response)
-//         // .then((decodedData) => console.log(decodedData))
-//         // audioContext.decodeAudioData(request.response, function(theBuffer) {
-//         // buffer = theBuffer;
-//         // }, onError);
-//     }
-//     request.send();
-// }   
+let bdFileName = 'SB15_Drm_bd.wav'
+let snareFileName = 'tracks_15 #006.wav'
+let hhFileName = 'tracks_19 #004.wav'
+let hhOpenFileName = 'tracks_61 #008.wav'
+export let bdSample
+export let snareSample
+export let hhSample
+export let hhOpenSample
+setupSample(audioCtx, bdFileName)
+.then(res => bdSample = res)
+setupSample(audioCtx, snareFileName)
+.then(res => snareSample = res)
+setupSample(audioCtx, hhFileName)
+.then(res => hhSample = res)
+setupSample(audioCtx, hhOpenFileName)
+.then(res => hhOpenSample = res)
 
-    // create a buffer, plop in data, connect and play -> modify graph here if required
-    function playSample(audioContext, audioBuffer, time) {
-        const sampleSource = audioContext.createBufferSource();
-        sampleSource.buffer = audioBuffer;
-        sampleSource.connect(audioContext.destination)
-        sampleSource.start(time);
-        return sampleSource;
-    }
+

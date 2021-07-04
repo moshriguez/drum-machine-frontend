@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { setPad, setTempo, playing, setVolume, loading } from "../actions/drumMachine";
-import { setupSample } from "../drumMachineLogic";
-
-let audioCtx = new AudioContext()
-// let audioCtx
-// let bufferLoader
+import { audioCtx, bdSample, hhOpenSample, hhSample, snareSample } from "../drumMachineLogic";
 
 const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
 const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
@@ -38,10 +34,10 @@ function draw() {
 
 const DrumContainer = () => {
     const dispatch = useDispatch();
-    const selectedPad = useSelector(state => state.drumMachine.selectedPad)
-    const tempo = useSelector(state => state.drumMachine.tempo)
-    const isPlaying = useSelector(state => state.drumMachine.isPlaying)
     const isLoading = useSelector(state => state.drumMachine.isLoading)
+    const selectedPad = useSelector(state => state.drumMachine.selectedPad)
+    const currentTempo = useSelector(state => state.drumMachine.tempo)
+    const isPlaying = useSelector(state => state.drumMachine.isPlaying)
     const volume = useSelector(state => state.drumMachine[selectedPad].volume)
     const pad1 = useSelector(state => state.drumMachine.pad1)
     const pad2 = useSelector(state => state.drumMachine.pad2)
@@ -49,44 +45,31 @@ const DrumContainer = () => {
     const pad4 = useSelector(state => state.drumMachine.pad4)
   
     // drum sample URLs
-    const bdURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/SB15_Drm_bd.wav?alt=media&token=cf875504-7d60-4ae8-88ca-13192ea16d84'
-    const snareURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/tracks_15%20%23006.wav?alt=media&token=decfdcaa-0761-447e-be62-a86ea91207f5'
-    const hhURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/tracks_19%20%23004.wav?alt=media&token=90e8fac2-5f2a-45f5-a4e6-dc8762c0ba41'
-    const hhOpenURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/tracks_61%20%23008.wav?alt=media&token=f72ab516-80e9-47f5-9a39-f2e357c5a3e6'
+    // const bdURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/SB15_Drm_bd.wav?alt=media&token=cf875504-7d60-4ae8-88ca-13192ea16d84'
+    // const snareURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/tracks_15%20%23006.wav?alt=media&token=decfdcaa-0761-447e-be62-a86ea91207f5'
+    // const hhURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/tracks_19%20%23004.wav?alt=media&token=90e8fac2-5f2a-45f5-a4e6-dc8762c0ba41'
+    // const hhOpenURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/tracks_61%20%23008.wav?alt=media&token=f72ab516-80e9-47f5-9a39-f2e357c5a3e6'
 
-    let bdFileName = 'SB15_Drm_bd.wav'
-    let snareFileName = 'tracks_15 #006.wav'
-    let hhFileName = 'tracks_19 #004.wav'
-    let hhOpenFileName = 'tracks_61 #008.wav'
-    let bdSample
-    let snareSample
-    let hhSample
-    let hhOpenSample
-    setupSample(audioCtx, bdFileName)
-    .then(res => bdSample = res)
-    setupSample(audioCtx, snareFileName)
-    .then(res => snareSample = res)
-    setupSample(audioCtx, hhFileName)
-    .then(res => hhSample = res)
-    setupSample(audioCtx, hhOpenFileName)
-    .then(res => hhOpenSample = res)
+
     
 
 
     useEffect(()=> {
-
         // when the sample has loaded allow play
-        // const arrayOfSamples = [bdURL, snareURL, hhURL, hhOpenURL].map(path => {
-        //     setupSample(audioCtx, path)
-        //     .then((sample) => {
-        //         path = sample
+        // setupSample(audioCtx, bdFileName)
+        // .then(res => bdSample = res)
+        // setupSample(audioCtx, snareFileName)
+        // .then(res => snareSample = res)
+        // setupSample(audioCtx, hhFileName)
+        // .then(res => hhSample = res)
+        // setupSample(audioCtx, hhOpenFileName)
+        // .then(res => hhOpenSample = res)
+        //     .then(() => {
         //         dispatch(loading(!isLoading))
         //     })
-        // })
     }, [])
     
     const handleDrumPadClick = (e) => {
-        // e.target.firstChild.play()
         playSample(audioCtx, hhOpenSample, 0)
         dispatch(setPad(e.target.id))
     }
@@ -106,7 +89,7 @@ const DrumContainer = () => {
             if (audioCtx.state === 'suspended') {
               audioCtx.resume();
             }
-    
+
             currentNote = 0;
             nextNoteTime = audioCtx.currentTime;
             scheduler(); // kick off scheduling notes
@@ -116,15 +99,15 @@ const DrumContainer = () => {
         }
         dispatch(playing(!isPlaying))
     }
-
+    
     let currentNote = 0; // The note we are currently playing
     let nextNoteTime = 0.0; // when the next note is due.
-
+    
     // calculates time for next note and advances the current note
-    function nextNote() {
+    function nextNote(tempo) {
         const secondsPerBeat = 60.0 / tempo;
         nextNoteTime += secondsPerBeat; // Add beat length to last beat time
-      
+        
         // Advance the beat number, wrap to zero
         currentNote++;
         if (currentNote === 4) {
@@ -134,12 +117,14 @@ const DrumContainer = () => {
 
     let timerID;
     function scheduler() {
-    // while there are notes that will need to play before the next interval, schedule them and advance the pointer.
-    while (nextNoteTime < audioCtx.currentTime + scheduleAheadTime ) {
-      scheduleNote(currentNote, nextNoteTime);
-      nextNote();
-    }
-    timerID = window.setTimeout(scheduler, lookahead);
+        // while there are notes that will need to play before the next interval, schedule them and advance the pointer.
+        
+        while (nextNoteTime < audioCtx.currentTime + scheduleAheadTime ) {
+            scheduleNote(currentNote, nextNoteTime);
+            nextNote(currentTempo);
+        }
+        timerID = window.setTimeout(scheduler, lookahead);
+        console.log(timerID)
     }
 
     // Create a queue for the notes that are to be played, with the current time that we want them to play:
@@ -150,18 +135,18 @@ const DrumContainer = () => {
         notesInQueue.push({note: beatNumber, time: time});
         // console.log(beatNumber, time);
 
-        // if (pad1.sequence.split()[beatNumber] === '1') {
-        //     playSample(audioCtx, arrayOfSamples[0], time);
-        // }
-        // if (pad2.sequence.split()[beatNumber] === '1') {
-        //     playSample(audioCtx, arrayOfSamples[1], time);
-        // }
-        // if (pad3.sequence.split()[beatNumber] === '1') {
-        //     playSample(audioCtx, arrayOfSamples[2], time);
-        // }
-        // if (pad4.sequence.split()[beatNumber] === '1') {
-        //     playSample(audioCtx, arrayOfSamples[3], time);
-        // }
+        if (pad1.sequence.split()[beatNumber] === '1') {
+            playSample(audioCtx, bdSample, time);
+        }
+        if (pad2.sequence.split()[beatNumber] === '1') {
+            playSample(audioCtx, snareSample, time);
+        }
+        if (pad3.sequence.split()[beatNumber] === '1') {
+            playSample(audioCtx, hhSample, time);
+        }
+        if (pad4.sequence.split()[beatNumber] === '1') {
+            playSample(audioCtx, hhOpenSample, time);
+        }
     }
 
     // create a buffer, plop in data, connect and play -> modify graph here if required
@@ -182,7 +167,7 @@ const DrumContainer = () => {
                     <div>
                         <label htmlFor="tempo">TEMPO</label>
                         <div className="digital-display">
-                            <p>{tempo}</p>
+                            <p>{currentTempo}</p>
                         </div>
                     </div>
                     <input 
@@ -192,7 +177,7 @@ const DrumContainer = () => {
                         min="40" 
                         max="280" 
                         step="0.5"
-                        value={tempo}
+                        value={currentTempo}
                         onChange={(e) => handleChangeTempo(e)} 
                     />
                 </div>

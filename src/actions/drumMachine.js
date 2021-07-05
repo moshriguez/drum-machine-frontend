@@ -46,3 +46,10 @@ export function setBeatNumber(beatNumber) {
         payload: beatNumber
     }
 }
+
+export function setSequence(i) {
+    return {
+        type: 'SET_SEQUENCE',
+        payload: i
+    }
+}

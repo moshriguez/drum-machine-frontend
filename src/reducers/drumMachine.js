@@ -39,6 +39,16 @@ export const drumMachineReducer = (state=initialState, action) => {
             return {...state, timerID: action.payload}
         case 'SET_BEAT_NUMBER':
             return {...state, beatNumber: action.payload}
+        case 'SET_SEQUENCE':
+            let updatedSequence = state[state.selectedPad].sequence
+            if (updatedSequence[action.payload] === '0') {
+                updatedSequence = updatedSequence.slice(0, action.payload) + '1' + updatedSequence.slice(parseInt(action.payload, 10) + 1)
+                console.log(updatedSequence)
+            } else {
+                updatedSequence = updatedSequence.slice(0, action.payload) + '0' + updatedSequence.slice(parseInt(action.payload, 10) + 1)
+                console.log(updatedSequence)
+            }
+            return {...state, [state.selectedPad]: {...state[state.selectedPad], sequence: updatedSequence}}
             
         default:
             return state

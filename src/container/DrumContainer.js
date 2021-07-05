@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { setPad, setTempo, playing, setVolume, loading, setTimerID, setBeatNumber } from "../actions/drumMachine";
+import { setPad, setTempo, playing, setVolume, loading, setTimerID, setBeatNumber, setSequence } from "../actions/drumMachine";
 import { audioCtx, bdSample, hhOpenSample, hhSample, snareSample, playSample } from "../drumMachineLogic";
 
 const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
@@ -40,6 +40,10 @@ const DrumContainer = () => {
     const handleDrumPadClick = (e) => {
         playSample(audioCtx, hhOpenSample, 0)
         dispatch(setPad(e.target.id))
+    }
+
+    const handleSequencePadClick = (i) => {
+        dispatch(setSequence(i))
     }
 
     const handleChangeTempo = (e) => {
@@ -128,13 +132,13 @@ const DrumContainer = () => {
     const renderSequencePads = () => {
         return drumMachine[selectedPad].sequence.split('').map((pad, i) => {
             if (pad === '0' && i === beatNumber) {
-                return <div key={i} className="sequence-pad current-note"></div>
+                return <div key={i} className="sequence-pad current-note" onClick={(e) => handleSequencePadClick(i)}></div>
             } else if (pad === '0') {
-                return <div key={i} className="sequence-pad"></div>
+                return <div key={i} className="sequence-pad" onClick={(e) => handleSequencePadClick(i)}></div>
             } else if (pad === '1' && i === beatNumber) {
-                return <div key={i} className="sequence-pad selected current-note"></div>
+                return <div key={i} className="sequence-pad selected current-note" onClick={(e) => handleSequencePadClick(i)}></div>
             } else {
-                return <div key={i} className="sequence-pad selected "></div>
+                return <div key={i} className="sequence-pad selected " onClick={(e) => handleSequencePadClick(i)}></div>
             }
         })
     }

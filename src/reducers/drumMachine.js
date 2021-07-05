@@ -6,19 +6,19 @@ const initialState = {
     timerID: null,
     beatNumber: 0,
     pad1: {
-        volume: 2,
+        volume: 1,
         sequence: '1010'
     },
     pad2: {
-        volume: 2,
+        volume: 1,
         sequence: '0101'
     },
     pad3: {
-        volume: 2,
+        volume: 1,
         sequence: '1111'
     },
     pad4: {
-        volume: 2,
+        volume: 1,
         sequence: '0001'
     },
 }

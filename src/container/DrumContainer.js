@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { setPad, setTempo, playing, setVolume, loading, setTimerID, setBeatNumber, setSequence } from "../actions/drumMachine";
-import { audioCtx, bdSample, hhOpenSample, hhSample, snareSample, playSample } from "../drumMachineLogic";
+import { audioCtx, bdSample, hhOpenSample, hhSample, snareSample } from "../drumMachineLogic";
 
 const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
 const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
@@ -38,7 +38,6 @@ const DrumContainer = () => {
     
     // ** EVENT HANDLERS **
     const handleDrumPadClick = (e) => {
-        playSample(audioCtx, hhOpenSample, 0)
         dispatch(setPad(e.target.id))
     }
 
@@ -115,17 +114,29 @@ const DrumContainer = () => {
         // console.log(typeof pad1.sequence.split('')[beatNumber])
 
         if (pad1.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, bdSample, time);
+            playSample(audioCtx, bdSample, time, pad1.volume);
         }
         if (pad2.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, snareSample, time);
+            playSample(audioCtx, snareSample, time, pad2.volume);
         }
         if (pad3.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, hhSample, time);
+            playSample(audioCtx, hhSample, time, pad3.volume);
         }
         if (pad4.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, hhOpenSample, time);
+            playSample(audioCtx, hhOpenSample, time, pad4.volume);
         }
+    }
+
+    // creates a buffer, adds in buffered sample, connects and plays
+    //! panning node will have to be added here later
+    function playSample(audioContext, audioBuffer, time, volume) {
+        const sampleSource = audioContext.createBufferSource();
+        sampleSource.buffer = audioBuffer;
+        const gainNode = audioContext.createGain()
+        gainNode.gain.value = volume
+        sampleSource.connect(gainNode).connect(audioContext.destination)
+        sampleSource.start(time);
+        return sampleSource;
     }
 
     // renders sequence pads and adds class based on whether pad is selected and what beat were on
@@ -194,7 +205,7 @@ const DrumContainer = () => {
                         id="volume" 
                         type="range" 
                         min="0" 
-                        max="2" 
+                        max="1.5" 
                         step="0.01" 
                         value={volume}
                         onChange={(e) => handleChangeVolume(e)}

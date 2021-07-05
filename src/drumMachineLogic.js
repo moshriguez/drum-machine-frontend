@@ -34,12 +34,3 @@ setupSample(audioCtx, hhOpenFileName)
 
 
 
-// creates a buffer, adds in buffered sample, connects and plays
-//! gain node and panning node will have to be added here later
-export function playSample(audioContext, audioBuffer, time) {
-    const sampleSource = audioContext.createBufferSource();
-    sampleSource.buffer = audioBuffer;
-    sampleSource.connect(audioContext.destination)
-    sampleSource.start(time);
-    return sampleSource;
-}

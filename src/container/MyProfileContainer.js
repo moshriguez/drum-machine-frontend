@@ -1,6 +1,7 @@
 import React from "react";
 
 const MyProfileContainer = () => {
+    const user = useSelector(state => state.user)
 
     return (
         <div className="my-profile-container">

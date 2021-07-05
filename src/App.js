@@ -16,7 +16,11 @@ function App(props) {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
+  // Pass reference to useHistory hook
+  const history = useHistory()
+
   // TODO -  need to add error handling for when the token expires
+  //? maybe fixed??? --- we'll have to wait to see
   useEffect(() => {
     const token = localStorage.getItem("jwt")
     if (token) {
@@ -26,7 +30,16 @@ function App(props) {
                 "Content-Type": "appliction/json",
                 "Authorization": `Bearer ${token}`
             }
-        }).then(r => r.json()).then(data => dispatch(setUser(data.user)))
+        })
+        .then(r => r.json())
+        .then(data => {
+          if (data.error) {
+            console.log(data.user)
+            history.replace('/login')
+          } else {
+            dispatch(setUser(data.user))
+          }
+        })
     }
   }, [dispatch])
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { setPad, setTempo, playing, setVolume, loading, setTimerID, setBeatNumber, setSequence } from "../actions/drumMachine";
-import { audioCtx, bdSample, hhOpenSample, hhSample, snareSample } from "../drumMachineLogic";
+import { audioCtx, bdSample, hhOpenSample, hhSample, snareSample } from "../loadSamples";
 
 const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
 const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)

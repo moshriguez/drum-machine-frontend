@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom'
 
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../actions/user";
@@ -13,6 +14,9 @@ const userURL = 'http://localhost:3000/api/v1/users/'
 
 const MyProfileContainer = () => {
     const token = localStorage.getItem("jwt")
+    // Pass reference to useHistory hook
+    const history = useHistory()
+
 
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
@@ -27,6 +31,7 @@ const MyProfileContainer = () => {
         })
     }
 
+    // Update account information
     const editAccount = (userBio) => {
 		const config = {
 			method: "PATCH",
@@ -42,6 +47,22 @@ const MyProfileContainer = () => {
 			const user = data.user
 			dispatch(setUser(user))
 			setShowEdit(false)
+		})
+	};
+
+    // Delete an account
+	const deleteAccount = () => {
+		const config = {
+			method: "DELETE",
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		}
+		fetch(userURL + user.id, config).then(() => {
+			handleShowDelete()
+			history.replace("/")
+			dispatch(setUser(null))
+			localStorage.clear()
 		})
 	};
 
@@ -75,7 +96,7 @@ const MyProfileContainer = () => {
             null}
             {showDelete ? 
             <Modal>
-                <DeleteConfirm close={handleShowDelete} />
+                <DeleteConfirm close={handleShowDelete} deleteAccount={deleteAccount}/>
             </Modal> :
             null}
 

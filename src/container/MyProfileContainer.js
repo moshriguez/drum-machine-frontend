@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../actions/user";
 
 import BeatCard from "../components/BeatCard";
 import DeleteConfirm from "../components/DeleteConfirm";
@@ -8,8 +9,12 @@ import EditUserForm from "../components/EditUserForm";
 import Feed from "../components/Feed";
 import Modal from './Modal'
 
+const userURL = 'http://localhost:3000/api/v1/users/'
 
 const MyProfileContainer = () => {
+    const token = localStorage.getItem("jwt")
+
+    const dispatch = useDispatch()
     const user = useSelector(state => state.user)
     const [showEdit, setShowEdit] = useState(false)
     const [showDelete, setShowDelete] = useState(false)
@@ -21,6 +26,25 @@ const MyProfileContainer = () => {
             return <BeatCard key={beat.id} beat={beat}/>
         })
     }
+
+    const editAccount = (userBio) => {
+		const config = {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				Authorization: `Bearer ${token}`
+			},
+			body: JSON.stringify({bio: userBio})
+		}
+
+		fetch(userURL + user.id, config).then(r => r.json()).then(data => {
+			const user = data.user
+			dispatch(setUser(user))
+			setShowEdit(false)
+		})
+	};
+
     return (
         <div className="my-profile-container">
             <div className="profile-section">
@@ -46,7 +70,7 @@ const MyProfileContainer = () => {
             </div>
             {showEdit ? 
             <Modal>
-                <EditUserForm />
+                <EditUserForm editAccount={editAccount}/>
             </Modal> :
             null}
             {showDelete ? 

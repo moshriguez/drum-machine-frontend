@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-const EditUserForm = () => {
+const EditUserForm = (props) => {
     const user = useSelector(state => state.user)
     // Controlled form for edit user
     const [userBio, setUserBio] = useState("")
@@ -9,11 +9,15 @@ const EditUserForm = () => {
     const handleChangeBio = (e) => {
         setUserBio(e.target.value)
     }
-    
-    // Changes edit fields when user is updated
+
+    // Adds user's current info to edit form
 	useEffect(() => {
 		setUserBio(user.bio)
 	}, [user])
+
+    const handleSubmit = () => {
+        props.editAccount(userBio)
+    }
 
     return (
         <div>
@@ -23,7 +27,7 @@ const EditUserForm = () => {
             value={userBio}
             onChange={handleChangeBio}
             ></textarea>
-            <button className="btn update">Update</button>
+            <button className="btn update" onClick={handleSubmit} >Update</button>
         </div>
     )
 }

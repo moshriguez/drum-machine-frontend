@@ -60,3 +60,10 @@ export function loadBeat(beat) {
         payload: beat
     }
 }
+
+export function addCommentRedux(comment) {
+    return {
+        type: 'ADD_COMMENT',
+        payload: comment
+    }
+}

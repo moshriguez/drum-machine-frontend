@@ -54,7 +54,6 @@ export const drumMachineReducer = (state=initialState, action) => {
             }
             return {...state, [state.selectedPad]: {...state[state.selectedPad], sequence: updatedSequence}}
         case 'LOAD_BEAT':
-
             return {
                 ...state, 
                 tempo: action.payload.tempo, 
@@ -79,6 +78,11 @@ export const drumMachineReducer = (state=initialState, action) => {
                     sequence: action.payload.beat_pads[3].sequence
                 }
             }
+        case 'ADD_COMMENT':
+            const updatedComments = state.comments
+            updatedComments.push(action.payload)
+            // console.log(updatedComments)
+            return {...state, comments: updatedComments}
             
         default:
             return state

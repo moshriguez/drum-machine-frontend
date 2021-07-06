@@ -17,7 +17,7 @@ const CommentsContainer = (props) => {
     return (
         <div className="comments-container" >
             <h3>Comments:</h3>
-            <button>Add Comment</button>
+            <button onClick={props.handleShowComment}>Add Comment</button>
             {renderComments()}
         </div>
     )

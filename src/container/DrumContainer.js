@@ -47,7 +47,7 @@ const MyProfileContainer = () => {
             <p>by: {creator.username}</p>
             <p>{description}</p>
             <DrumMachine />
-            <CommentsContainer />
+            <CommentsContainer handleShowComment={handleShowComment}/>
             {/* Comment Form Modal */}
             {showComment ? 
             <Modal>

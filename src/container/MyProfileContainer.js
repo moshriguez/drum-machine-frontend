@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import BeatCard from "../components/BeatCard";
+import Feed from "../components/Feed";
 
 
 const MyProfileContainer = () => {
@@ -22,6 +23,7 @@ const MyProfileContainer = () => {
             </div>
             <div className="feed-section">
                 <h2>Feed:</h2>
+                <Feed />
             </div>
             <div className="beats-section">
                 <h2>Beats:</h2>

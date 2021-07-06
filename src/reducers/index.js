@@ -1,16 +1,19 @@
 import { combineReducers } from "redux";
 import { userReducer } from "./user";
+import { feedReducer } from "./feed";
 import { drumMachineReducer } from "./drumMachine";
 
 const rootReducer = combineReducers({
     user: userReducer, 
-    drumMachine: drumMachineReducer
+    drumMachine: drumMachineReducer,
+    feed: feedReducer
 })
 
 export default rootReducer
 // shape of state
 // {
 //     user: {},
+//     feed: [],
 //     drumMachine: {
 //       selectedPad: '',
 //       tempo: 120,

@@ -176,5 +176,42 @@ a.active {
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 4;
-  background-color: lightgreen;
+}
+
+.beat-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr 96px;
+  grid-template-rows: 30px 1fr;
+  border: 1px solid gray;
+  margin-bottom: 7px;
+  box-shadow: 0 0 15px 2px rgba(63,227,63,0.7),inset 0 0 25px 2px rgba(0,0,0,0.5);
+}
+
+.beat-card h4 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: 0;
+  padding: 3px;
+  background-color: pink;
+}
+.beat-card p {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin: 0;
+  padding: 3px;
+  border-top: 1px solid lightgray;
+  background-color: lightpink;
+}
+.beat-card span {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  padding: 3px;
+  background-color: pink;
+
 }

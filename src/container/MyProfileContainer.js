@@ -2,10 +2,17 @@ import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
+import BeatCard from "../components/BeatCard";
+
 
 const MyProfileContainer = () => {
     const user = useSelector(state => state.user)
 
+    const renderBeats = () => {
+        return user.beats.map(beat => {
+            return <BeatCard key={beat.id} beat={beat}/>
+        })
+    }
     return (
         <div className="my-profile-container">
             <div className="profile-section">
@@ -18,6 +25,7 @@ const MyProfileContainer = () => {
             </div>
             <div className="beats-section">
                 <h2>Beats:</h2>
+                <ul>{renderBeats()}</ul>
             </div>
         </div>
     )

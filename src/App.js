@@ -9,7 +9,7 @@ import './App.css';
 import Login from './Auth/Login'
 import Signup from "./Auth/Signup";
 import Navigation from "./components/Navigation";
-import DrumContainer from './container/DrumContainer';
+import DrumMachine from './components/DrumMachine';
 import MyProfileContainer from './container/MyProfileContainer';
 
 function App(props) {
@@ -54,7 +54,7 @@ function App(props) {
         DrumContainer will have beat name, desc, and comments and ability to leave a comment
         path should be have /:id to load user created beats and allow for direct access
         */}
-        <Route exact path='/drum_machine' render={() => <DrumContainer />} />
+        <Route exact path='/drum_machine' render={() => <DrumMachine />} />
         <Route exact path='/profile' render={() => <MyProfileContainer />} />
         <Route exact path='/login' render={() => <Login />} />
         <Route exact path='/signup' render={() => <Signup />} />

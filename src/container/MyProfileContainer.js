@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import BeatCard from "../components/BeatCard";
 import DeleteConfirm from "../components/DeleteConfirm";
+import EditUserForm from "../components/EditUserForm";
 import Feed from "../components/Feed";
 import Modal from './Modal'
 
@@ -45,7 +46,7 @@ const MyProfileContainer = () => {
             </div>
             {showEdit ? 
             <Modal>
-                <Feed />
+                <EditUserForm />
             </Modal> :
             null}
             {showDelete ? 

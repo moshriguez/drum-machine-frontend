@@ -158,7 +158,7 @@ const DrumContainer = () => {
     return (
         // TODO: add loading element; display while samples are being buffered
 
-        <div className="drum-container">
+        <div className="drum-machine">
             <div className="global-controls">
                 <div className="tempo-control">
                     <div>

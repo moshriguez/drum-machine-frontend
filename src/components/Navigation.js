@@ -15,7 +15,7 @@ const Navigation = () => {
   return (
       <ul className="menu">
           <li><NavLink to="/drum_machine">Make a Beat</NavLink></li>
-          <li><NavLink to="/profile">Profile</NavLink></li>
+          {user.username !== 'defaultUser' ? <li><NavLink to="/profile">Profile</NavLink></li> : null}
           <li>{user.username !== 'defaultUser' ? <NavLink to="/logout" onClick={handleLogout}>Logout</NavLink> : <NavLink to="/login">Login/Signup</NavLink> }</li>
       </ul>
     

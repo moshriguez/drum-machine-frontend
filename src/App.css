@@ -155,12 +155,20 @@ a.active {
   margin: 0 5%;
 }
 
+.my-profile-container > div {
+  padding: 15px;
+}
+
 .profile-section {
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
   background-color: rgb(170, 108, 170);
+}
+
+.my-profile-container h2, .profile-section h3 {
+  margin: 0
 }
 
 .feed-section {

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import BeatCard from "../components/BeatCard";
 import Feed from "../components/Feed";
+import Modal from '../components/Modal'
 
 
 const MyProfileContainer = () => {
@@ -29,6 +30,9 @@ const MyProfileContainer = () => {
                 <h2>Beats:</h2>
                 <ul>{renderBeats()}</ul>
             </div>
+            <Modal>
+                <Feed />
+            </Modal>
         </div>
     )
 }

@@ -6,6 +6,7 @@ import { loadBeat } from "../actions/drumMachine";
 
 import Modal from './Modal'
 import DrumMachine from '../components/DrumMachine';
+import CommentsContainer from "./CommentsContainer";
 
 
 const beatURL = 'http://localhost:3000/api/v1/beats/'
@@ -18,7 +19,8 @@ const MyProfileContainer = () => {
     // console.log(id)
 
     const dispatch = useDispatch()
-    const user = useSelector(state => state.user)
+    const { name, description } = useSelector(state => state.drumMachine)
+    const creator = useSelector(state => state.drumMachine.user)
 
     //** MODAL CONTROL **
     const [showComment, setShowComment] = useState(false)
@@ -41,7 +43,11 @@ const MyProfileContainer = () => {
 
     return (
         <div className="drum-container">
+            <h2>{name}</h2>
+            <p>by: {creator.username}</p>
+            <p>{description}</p>
             <DrumMachine />
+            <CommentsContainer />
             {/* Comment Form Modal */}
             {showComment ? 
             <Modal>

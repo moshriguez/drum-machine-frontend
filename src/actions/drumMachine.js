@@ -53,3 +53,10 @@ export function setSequence(i) {
         payload: i
     }
 }
+
+export function loadBeat(beat) {
+    return {
+        type: 'LOAD_BEAT',
+        payload: beat
+    }
+}

@@ -5,6 +5,10 @@ const initialState = {
     isPlaying: false,
     timerID: null,
     beatNumber: 0,
+    name: '',
+    description: '',
+    user: {},
+    comments: [],
     pad1: {
         volume: 1,
         sequence: '1010'
@@ -49,6 +53,32 @@ export const drumMachineReducer = (state=initialState, action) => {
                 console.log(updatedSequence)
             }
             return {...state, [state.selectedPad]: {...state[state.selectedPad], sequence: updatedSequence}}
+        case 'LOAD_BEAT':
+
+            return {
+                ...state, 
+                tempo: action.payload.tempo, 
+                name: action.payload.name, 
+                description: action.payload.description,
+                user: action.payload.user,
+                comments: action.payload.comments,
+                pad1: {
+                    volume: action.payload.beat_pads[0].volume,
+                    sequence: action.payload.beat_pads[0].sequence
+                },
+                pad2: {
+                    volume: action.payload.beat_pads[1].volume,
+                    sequence: action.payload.beat_pads[1].sequence
+                },
+                pad3: {
+                    volume: action.payload.beat_pads[2].volume,
+                    sequence: action.payload.beat_pads[2].sequence
+                },
+                pad4: {
+                    volume: action.payload.beat_pads[3].volume,
+                    sequence: action.payload.beat_pads[3].sequence
+                }
+            }
             
         default:
             return state

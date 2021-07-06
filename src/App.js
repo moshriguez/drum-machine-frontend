@@ -11,6 +11,7 @@ import Signup from "./Auth/Signup";
 import Navigation from "./components/Navigation";
 import DrumMachine from './components/DrumMachine';
 import MyProfileContainer from './container/MyProfileContainer';
+import DrumContainer from './container/DrumContainer';
 
 function App(props) {
   const user = useSelector(state => state.user)
@@ -33,7 +34,7 @@ function App(props) {
         })
         .then(r => r.json())
         .then(data => {
-          console.log(data)
+          // console.log(data)
           if (data.message === 'Please log in') {
             history.replace('/login')
           } else {
@@ -53,6 +54,7 @@ function App(props) {
         DrumContainer will have beat name, desc, and comments and ability to leave a comment
         path should be have /:id to load user created beats and allow for direct access
         */}
+        <Route exact path='/drum_machine/:id' render={() => <DrumContainer />} />
         <Route exact path='/drum_machine' render={() => <DrumMachine />} />
         <Redirect exact from="/" to="/drum_machine" />
         {user.username === 'defaultUser' ? <Redirect exact from="/profile" to="/login" /> : null}

@@ -29,7 +29,7 @@ const Feed = () => {
             }
         }).then(r => r.json())
         .then(data => dispatch(setFeed(data.feed)))
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="feed">

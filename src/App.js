@@ -33,20 +33,27 @@ function App(props) {
         })
         .then(r => r.json())
         .then(data => {
-          if (data.error) {
-            console.log(data.user)
+          console.log(data)
+          if (data.message === 'Please log in') {
             history.replace('/login')
           } else {
             dispatch(setUser(data.user))
           }
         })
     }
-  }, [dispatch])
+  }, [dispatch, history])
 
   return (
     <div>
       <Navigation />
       <Switch>
+        {/* 
+        rename DrumContainer DrumMachine; 
+        keep DrumMachine as home page;
+        create new DrumContainer for when viewing user created beats
+        DrumContainer will have beat name, desc, and comments and ability to leave a comment
+        path should be have /:id to load user created beats and allow for direct access
+        */}
         <Route exact path='/drum_machine' render={() => <DrumContainer />} />
         <Route exact path='/profile' render={() => <MyProfileContainer />} />
         <Route exact path='/login' render={() => <Login />} />

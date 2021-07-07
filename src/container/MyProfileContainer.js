@@ -82,7 +82,7 @@ const MyProfileContainer = () => {
                 >Delete Account</button>
             </div>
             <div className="feed-section">
-                <h2>Feed:</h2>
+                <h2>Most Recent Rhythms:</h2>
                 <Feed />
             </div>
             <div className="beats-section">

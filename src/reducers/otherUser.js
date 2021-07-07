@@ -1,7 +1,9 @@
 const initialState = {
     username: 'defaultUser',
     bio: 'default',
-    beats: []
+    beats: [],
+    comments: [],
+    commented_beats: []
 }
 
 export const otherUserReducer = (state=initialState, action) => {

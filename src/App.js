@@ -49,12 +49,7 @@ function App(props) {
     <div>
       <Navigation />
       <Switch>
-        {/* 
-        keep DrumMachine as home page;
-        create new DrumContainer for when viewing user created beats
-        DrumContainer will have beat name, desc, and comments and ability to leave a comment
-        path should be have /:id to load user created beats and allow for direct access
-        */}
+        
         <Route exact path='/drum_machine/:id' render={() => <DrumContainer />} />
         <Route exact path='/drum_machine' render={() => <DrumContainer />} />
         <Route exact path='/' render={() => <DrumMachine />} />

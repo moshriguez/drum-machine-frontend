@@ -5,25 +5,25 @@ const initialState = {
     isPlaying: false,
     timerID: null,
     beatNumber: 0,
-    name: '',
-    description: '',
+    name: 'untitled',
+    description: 'undescribed',
     user: {},
     comments: [],
     pad1: {
         volume: 1,
-        sequence: '1010'
+        sequence: '0000'
     },
     pad2: {
         volume: 1,
-        sequence: '0101'
+        sequence: '0000'
     },
     pad3: {
         volume: 1,
-        sequence: '1111'
+        sequence: '0000'
     },
     pad4: {
         volume: 1,
-        sequence: '0001'
+        sequence: '0000'
     },
 }
 

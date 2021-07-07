@@ -27,7 +27,7 @@ const MyProfileContainer = () => {
 
     const renderBeats = () => {
         return user.beats.map(beat => {
-            return <BeatCard key={beat.id} beat={beat}/>
+            return <BeatCard key={beat.id} beat={beat} showUsername={false} />
         })
     }
 

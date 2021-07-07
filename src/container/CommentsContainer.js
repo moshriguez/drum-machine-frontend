@@ -10,7 +10,7 @@ const CommentsContainer = (props) => {
 
     const renderComments = () => {
         return comments.map(comment => {
-            return <CommentCard key={comment.id} comment={comment}/>
+            return <CommentCard key={comment.id} comment={comment} showUsername={true}/>
         })
     }
 

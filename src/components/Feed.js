@@ -15,7 +15,7 @@ const Feed = () => {
 
     const renderBeats = () => {
         return feed.map(beat => {
-            return <BeatCard key={beat.id} beat={beat}/>
+            return <BeatCard key={beat.id} beat={beat} showUsername={true} />
         })
     }
 

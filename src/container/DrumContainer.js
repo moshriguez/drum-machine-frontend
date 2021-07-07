@@ -41,7 +41,7 @@ const MyProfileContainer = () => {
         .then(data => dispatch(loadBeat(data.beat)))
     }, [id])
 
-    // Update account information
+    // Add new comment
     const addComment = (comment) => {
         const bodyObj = {
             content: comment,
@@ -57,9 +57,7 @@ const MyProfileContainer = () => {
             },
             body: JSON.stringify(bodyObj)
         }
-        // console.log(config.body)
         fetch(commentURL, config).then(r => r.json()).then(data => {
-            console.log(data)
             dispatch(addCommentRedux(data.comment))
             setShowComment(false)
         })

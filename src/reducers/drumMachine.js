@@ -81,7 +81,6 @@ export const drumMachineReducer = (state=initialState, action) => {
         case 'ADD_COMMENT':
             const updatedComments = state.comments
             updatedComments.push(action.payload)
-            // console.log(updatedComments)
             return {...state, comments: updatedComments}
             
         default:

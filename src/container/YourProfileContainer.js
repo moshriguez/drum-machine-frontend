@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useParams } from 'react-router-dom'
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setOtherUser } from "../actions/otherUser";
 
 import BeatCard from "../components/BeatCard";
+import CommentedBeatsContainer from "./CommentedBeatsContainer";
 
 const userURL = 'http://localhost:3000/api/v1/users/'
 
@@ -12,6 +13,7 @@ const MyProfileContainer = () => {
     
     const { id } = useParams();
 
+    const dispatch = useDispatch();
     const { username, bio, beats } = useSelector(state => state.otherUser)
 
     const renderBeats = () => {
@@ -29,7 +31,7 @@ const MyProfileContainer = () => {
                 "Authorization": `Bearer ${token}`
             }
         }).then(r => r.json())
-        .then(data => console.log(data))
+        .then(data => dispatch(setOtherUser(data.user)))
     }, [id])
 
 
@@ -41,7 +43,7 @@ const MyProfileContainer = () => {
                 <p>{bio}</p>
             </div>
             <div className="feed-section">
-                <h2>{username}'s Comments:</h2>
+                <CommentedBeatsContainer />
             </div>
             <div className="beats-section">
                 <h2>Beats:</h2>

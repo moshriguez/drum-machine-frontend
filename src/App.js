@@ -11,6 +11,7 @@ import Signup from "./Auth/Signup";
 import Navigation from "./components/Navigation";
 import DrumMachine from './components/DrumMachine';
 import MyProfileContainer from './container/MyProfileContainer';
+import YourProfileContainer from './container/YourProfileContainer';
 import DrumContainer from './container/DrumContainer';
 
 function App(props) {

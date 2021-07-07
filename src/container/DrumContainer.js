@@ -7,6 +7,7 @@ import { addCommentRedux, loadBeat } from "../actions/drumMachine";
 import Modal from './Modal'
 import DrumMachine from '../components/DrumMachine';
 import CommentForm from '../components/CommentForm';
+import BeatSaveForm from '../components/BeatSaveForm';
 import CommentsContainer from "./CommentsContainer";
 
 
@@ -73,7 +74,7 @@ const MyProfileContainer = () => {
             <h2>{name}</h2>
             {id ? <p>by: {creator.username}</p> : null}
             <p>{description}</p>
-            <button className="btn save">Save Beat</button>
+            <button className="btn save" onClick={handleShowSaveBeat} >Save Beat</button>
             <DrumMachine />
             {id ? <CommentsContainer handleShowComment={handleShowComment}/> : null}
             {/* Comment Form Modal */}
@@ -85,6 +86,7 @@ const MyProfileContainer = () => {
             {/* Save Beat Modal */}
             {showSaveBeat ? 
             <Modal>
+                <BeatSaveForm handleShowSaveBeat={handleShowSaveBeat} />
             </Modal> :
             null}
 

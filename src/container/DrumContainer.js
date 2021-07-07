@@ -30,15 +30,19 @@ const MyProfileContainer = () => {
     const handleShowSaveBeat = () => setShowSaveBeat(!showSaveBeat)
 
     useEffect(() => {
-        const token = localStorage.getItem("jwt")
-        fetch(beatURL + id, {
-            method: "GET",
-            headers: {
-                "Content-Type": "appliction/json",
-                "Authorization": `Bearer ${token}`
-            }
-        }).then(r => r.json())
-        .then(data => dispatch(loadBeat(data.beat)))
+        if (id) {
+            const token = localStorage.getItem("jwt")
+            fetch(beatURL + id, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "appliction/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(r => r.json())
+            .then(data => dispatch(loadBeat(data.beat)))
+        } else {
+            dispatch({type: 'RESET'})
+        }
     }, [id])
 
     // Add new comment
@@ -67,10 +71,11 @@ const MyProfileContainer = () => {
     return (
         <div className="drum-container">
             <h2>{name}</h2>
-            <p>by: {creator.username}</p>
+            {id ? <p>by: {creator.username}</p> : null}
             <p>{description}</p>
+            <button className="btn save">Save Beat</button>
             <DrumMachine />
-            <CommentsContainer handleShowComment={handleShowComment}/>
+            {id ? <CommentsContainer handleShowComment={handleShowComment}/> : null}
             {/* Comment Form Modal */}
             {showComment ? 
             <Modal>

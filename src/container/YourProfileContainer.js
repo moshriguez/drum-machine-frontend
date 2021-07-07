@@ -10,7 +10,6 @@ const userURL = 'http://localhost:3000/api/v1/users/'
 
 const MyProfileContainer = () => {
     
-    const token = localStorage.getItem("jwt")
     const { id } = useParams();
 
     const { username, bio, beats } = useSelector(state => state.otherUser)

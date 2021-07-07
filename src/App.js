@@ -55,13 +55,14 @@ function App(props) {
         path should be have /:id to load user created beats and allow for direct access
         */}
         <Route exact path='/drum_machine/:id' render={() => <DrumContainer />} />
-        <Route exact path='/drum_machine' render={() => <DrumMachine />} />
-        <Redirect exact from="/" to="/drum_machine" />
+        <Route exact path='/drum_machine' render={() => <DrumContainer />} />
+        <Route exact path='/' render={() => <DrumMachine />} />
         {user.username === 'defaultUser' ? <Redirect exact from="/profile" to="/login" /> : null}
+        <Route exact path='/profile/:id' render={() => <YourProfileContainer />} />
         <Route exact path='/profile' render={() => <MyProfileContainer />} />
         <Route exact path='/login' render={() => <Login />} />
         <Route exact path='/signup' render={() => <Signup />} />
-        <Redirect from="/logout" to="/drum_machine" />
+        <Redirect from="/logout" to="/" />
       </Switch>
     </div>
   );

@@ -17,6 +17,7 @@ import DrumContainer from './container/DrumContainer';
 function App(props) {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
+  const token = localStorage.getItem("jwt")
 
   // Pass reference to useHistory hook
   const history = useHistory()
@@ -24,7 +25,6 @@ function App(props) {
   // TODO -  need to add error handling for when the token expires
   //? maybe fixed??? --- we'll have to wait to see
   useEffect(() => {
-    const token = localStorage.getItem("jwt")
     if (token) {
         fetch("http://localhost:3000/api/v1/profile", {
             method: "GET",
@@ -53,7 +53,7 @@ function App(props) {
         <Route exact path='/drum_machine/:id' render={() => <DrumContainer />} />
         <Route exact path='/drum_machine' render={() => <DrumContainer />} />
         <Route exact path='/' render={() => <DrumMachine />} />
-        {user.username === 'defaultUser' ? <Redirect exact from="/profile" to="/login" /> : null}
+        {token ? null : <Redirect exact from="/profile" to="/login" />}
         <Route exact path='/profile/:id' render={() => <YourProfileContainer />} />
         <Route exact path='/profile' render={() => <MyProfileContainer />} />
         <Route exact path='/login' render={() => <Login />} />

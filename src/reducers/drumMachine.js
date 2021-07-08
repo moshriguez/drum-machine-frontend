@@ -11,19 +11,23 @@ const initialState = {
     comments: [],
     pad1: {
         volume: 1,
-        sequence: '0000'
+        sequence: '0000',
+        name: 'Kick'
     },
     pad2: {
         volume: 1,
-        sequence: '0000'
+        sequence: '0000',
+        name: 'Snare'
     },
     pad3: {
         volume: 1,
-        sequence: '0000'
+        sequence: '0000',
+        name: 'Closed Hi-Hats'
     },
     pad4: {
         volume: 1,
-        sequence: '0000'
+        sequence: '0000',
+        name: 'Open Hi-Hats'
     },
 }
 
@@ -63,19 +67,23 @@ export const drumMachineReducer = (state=initialState, action) => {
                 comments: action.payload.comments,
                 pad1: {
                     volume: action.payload.beat_pads[0].volume,
-                    sequence: action.payload.beat_pads[0].sequence
+                    sequence: action.payload.beat_pads[0].sequence,
+                    name: action.payload.beat_pads[0].sample_name
                 },
                 pad2: {
                     volume: action.payload.beat_pads[1].volume,
-                    sequence: action.payload.beat_pads[1].sequence
+                    sequence: action.payload.beat_pads[1].sequence,
+                    name: action.payload.beat_pads[1].sample_name
                 },
                 pad3: {
                     volume: action.payload.beat_pads[2].volume,
-                    sequence: action.payload.beat_pads[2].sequence
+                    sequence: action.payload.beat_pads[2].sequence,
+                    name: action.payload.beat_pads[2].sample_name
                 },
                 pad4: {
                     volume: action.payload.beat_pads[3].volume,
-                    sequence: action.payload.beat_pads[3].sequence
+                    sequence: action.payload.beat_pads[3].sequence,
+                    name: action.payload.beat_pads[3].sample_name
                 }
             }
         case 'ADD_COMMENT':

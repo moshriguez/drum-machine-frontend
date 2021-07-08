@@ -199,7 +199,7 @@ const DrumContainer = () => {
             <div className="drum-controls">
                 <div className="selected-drum-show">
                     <div className="digital-display">
-                        <p>{selectedPad}</p>
+                        <p>{drumMachine[selectedPad].name}</p>
                     </div>
                 </div>
                 <div className="volume-control">

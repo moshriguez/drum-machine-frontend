@@ -10,24 +10,8 @@ const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
 const DrumContainer = () => {
     const dispatch = useDispatch();
     const drumMachine = useSelector(state => state.drumMachine)
-    const isLoading = useSelector(state => state.drumMachine.isLoading)
-    const selectedPad = useSelector(state => state.drumMachine.selectedPad)
-    const tempo = useSelector(state => state.drumMachine.tempo)
-    const isPlaying = useSelector(state => state.drumMachine.isPlaying)
-    const timerID = useSelector(state => state.drumMachine.timerID)
-    const beatNumber = useSelector(state => state.drumMachine.beatNumber)
+    const { isLoading, selectedPad, tempo, isPlaying, timerID, beatNumber, pad1, pad2, pad3, pad4 } = useSelector(state => state.drumMachine)
     const volume = useSelector(state => state.drumMachine[selectedPad].volume)
-    const pad1 = useSelector(state => state.drumMachine.pad1)
-    const pad2 = useSelector(state => state.drumMachine.pad2)
-    const pad3 = useSelector(state => state.drumMachine.pad3)
-    const pad4 = useSelector(state => state.drumMachine.pad4)
-  
-    // drum sample URLs
-    // const bdURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/SB15_Drm_bd.wav?alt=media&token=cf875504-7d60-4ae8-88ca-13192ea16d84'
-    // const snareURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/tracks_15%20%23006.wav?alt=media&token=decfdcaa-0761-447e-be62-a86ea91207f5'
-    // const hhURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/tracks_19%20%23004.wav?alt=media&token=90e8fac2-5f2a-45f5-a4e6-dc8762c0ba41'
-    // const hhOpenURL = 'https://firebasestorage.googleapis.com/v0/b/drum-machine-27.appspot.com/o/tracks_61%20%23008.wav?alt=media&token=f72ab516-80e9-47f5-9a39-f2e357c5a3e6'
-
 
     // useEffect(()=> {
         // stopDrumMachine()
@@ -70,8 +54,6 @@ const DrumContainer = () => {
     let currentNote = 0; // The note we are currently playing
     let nextNoteTime = 0.0; // when the next note is due.
 
-    // let timerID;
-    // console.log(timerID)
     function startDrumMachine() {
         // check if context is in suspended state (autoplay policy)
         if (audioCtx.state === 'suspended') {
@@ -95,7 +77,7 @@ const DrumContainer = () => {
         // console.log('currentNote: ', currentNote)
         // console.log('nextNoteTime: ', nextNoteTime)
         const secondsPerBeat = 60.0 / tempo / 4;
-        console.log(tempo)
+        // console.log(tempo)
         nextNoteTime += secondsPerBeat; // Add beat length to last beat time
         // Advance the beat number, wrap to zero
         currentNote++;

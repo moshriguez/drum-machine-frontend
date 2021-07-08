@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { setPad, setTempo, playing, setVolume, loading, setTimerID, setBeatNumber, setSequence } from "../actions/drumMachine";
-import { audioCtx, bdSample, hhOpenSample, hhSample, snareSample } from "../loadSamples";
+import { audioCtx, kick1Sample, kick2Sample, snareSample, clapSample, rimSample, hhOpenSample, hh1Sample, hh2Sample, rideSample, shakerSample } from "../loadSamples";
 
 const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
 const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
@@ -100,13 +100,13 @@ const DrumContainer = () => {
         // console.log(typeof pad1.sequence.split('')[beatNumber])
 
         if (pad1.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, bdSample, time, pad1.volume);
+            playSample(audioCtx, kick1Sample, time, pad1.volume);
         }
         if (pad2.sequence.split('')[beatNumber] === '1') {
             playSample(audioCtx, snareSample, time, pad2.volume);
         }
         if (pad3.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, hhSample, time, pad3.volume);
+            playSample(audioCtx, hh1Sample, time, pad3.volume);
         }
         if (pad4.sequence.split('')[beatNumber] === '1') {
             playSample(audioCtx, hhOpenSample, time, pad4.volume);

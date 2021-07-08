@@ -10,7 +10,7 @@ const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
 const DrumContainer = () => {
     const dispatch = useDispatch();
     const drumMachine = useSelector(state => state.drumMachine)
-    const { isLoading, selectedPad, tempo, isPlaying, timerID, beatNumber, pad1, pad2, pad3, pad4 } = useSelector(state => state.drumMachine)
+    const { isLoading, selectedPad, tempo, isPlaying, timerID, beatNumber, pad1, pad2, pad3, pad4, pad5, pad6, pad7, pad8, pad9, pad10 } = useSelector(state => state.drumMachine)
     const volume = useSelector(state => state.drumMachine[selectedPad].volume)
 
     // useEffect(()=> {
@@ -103,13 +103,31 @@ const DrumContainer = () => {
             playSample(audioCtx, kick1Sample, time, pad1.volume);
         }
         if (pad2.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, snareSample, time, pad2.volume);
+            playSample(audioCtx, kick2Sample, time, pad2.volume);
         }
         if (pad3.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, hh1Sample, time, pad3.volume);
+            playSample(audioCtx, snareSample, time, pad3.volume);
         }
         if (pad4.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, hhOpenSample, time, pad4.volume);
+            playSample(audioCtx, clapSample, time, pad4.volume);
+        }
+        if (pad5.sequence.split('')[beatNumber] === '1') {
+            playSample(audioCtx, rimSample, time, pad5.volume);
+        }
+        if (pad6.sequence.split('')[beatNumber] === '1') {
+            playSample(audioCtx, hh1Sample, time, pad6.volume);
+        }
+        if (pad7.sequence.split('')[beatNumber] === '1') {
+            playSample(audioCtx, hh2Sample, time, pad7.volume);
+        }
+        if (pad8.sequence.split('')[beatNumber] === '1') {
+            playSample(audioCtx, hhOpenSample, time, pad8.volume);
+        }
+        if (pad9.sequence.split('')[beatNumber] === '1') {
+            playSample(audioCtx, rideSample, time, pad9.volume);
+        }
+        if (pad10.sequence.split('')[beatNumber] === '1') {
+            playSample(audioCtx, shakerSample, time, pad10.volume);
         }
     }
 
@@ -176,6 +194,18 @@ const DrumContainer = () => {
                 <div className="drum-pad" id="pad3" onClick={(e)=> handleDrumPadClick(e)}>
                 </div>
                 <div className="drum-pad" id="pad4" onClick={(e)=> handleDrumPadClick(e)}>
+                </div>
+                <div className="drum-pad" id="pad5" onClick={(e)=> handleDrumPadClick(e)}>
+                </div>
+                <div className="drum-pad" id="pad6" onClick={(e)=> handleDrumPadClick(e)}>
+                </div>
+                <div className="drum-pad" id="pad7" onClick={(e)=> handleDrumPadClick(e)}>
+                </div>
+                <div className="drum-pad" id="pad8" onClick={(e)=> handleDrumPadClick(e)}>
+                </div>
+                <div className="drum-pad" id="pad9" onClick={(e)=> handleDrumPadClick(e)}>
+                </div>
+                <div className="drum-pad" id="pad10" onClick={(e)=> handleDrumPadClick(e)}>
                 </div>
             </div>
             <div className="drum-controls">

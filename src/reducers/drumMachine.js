@@ -11,23 +11,53 @@ const initialState = {
     comments: [],
     pad1: {
         volume: 1,
-        sequence: '1000100010001000',
-        name: 'Kick'
+        sequence: '0000100000001000',
+        name: 'Kick1'
     },
     pad2: {
         volume: 1,
         sequence: '0000100000001000',
-        name: 'Snare'
+        name: 'Kick2'
     },
     pad3: {
         volume: 1,
-        sequence: '1000100010001000',
-        name: 'Closed Hi-Hats'
+        sequence: '0000001001000000',
+        name: 'Snare'
     },
     pad4: {
         volume: 1,
+        sequence: '0000100000001000',
+        name: 'Clap'
+    },
+    pad5: {
+        volume: 1,
+        sequence: '0001100000011000',
+        name: 'Rim'
+    },
+    pad6: {
+        volume: 1,
+        sequence: '1000100010001000',
+        name: 'HH1'
+    },
+    pad7: {
+        volume: 1,
+        sequence: '0010001000100010',
+        name: 'HH2'
+    },
+    pad8: {
+        volume: 1,
         sequence: '0000000000001000',
-        name: 'Open Hi-Hats'
+        name: 'HH Open'
+    },
+    pad9: {
+        volume: 1,
+        sequence: '0100010001000100',
+        name: 'Ride'
+    },
+    pad10: {
+        volume: 1,
+        sequence: '0001000100010001',
+        name: 'Shaker'
     },
 }
 
@@ -51,10 +81,8 @@ export const drumMachineReducer = (state=initialState, action) => {
             let updatedSequence = state[state.selectedPad].sequence
             if (updatedSequence[action.payload] === '0') {
                 updatedSequence = updatedSequence.slice(0, action.payload) + '1' + updatedSequence.slice(parseInt(action.payload, 10) + 1)
-                console.log(updatedSequence)
             } else {
                 updatedSequence = updatedSequence.slice(0, action.payload) + '0' + updatedSequence.slice(parseInt(action.payload, 10) + 1)
-                console.log(updatedSequence)
             }
             return {...state, [state.selectedPad]: {...state[state.selectedPad], sequence: updatedSequence}}
         case 'LOAD_BEAT':
@@ -84,6 +112,36 @@ export const drumMachineReducer = (state=initialState, action) => {
                     volume: action.payload.beat_pads[3].volume,
                     sequence: action.payload.beat_pads[3].sequence,
                     name: action.payload.beat_pads[3].sample_name
+                },
+                pad5: {
+                    volume: action.payload.beat_pads[4].volume,
+                    sequence: action.payload.beat_pads[4].sequence,
+                    name: action.payload.beat_pads[4].sample_name
+                },
+                pad6: {
+                    volume: action.payload.beat_pads[5].volume,
+                    sequence: action.payload.beat_pads[5].sequence,
+                    name: action.payload.beat_pads[5].sample_name
+                },
+                pad7: {
+                    volume: action.payload.beat_pads[6].volume,
+                    sequence: action.payload.beat_pads[6].sequence,
+                    name: action.payload.beat_pads[6].sample_name
+                },
+                pad8: {
+                    volume: action.payload.beat_pads[7].volume,
+                    sequence: action.payload.beat_pads[7].sequence,
+                    name: action.payload.beat_pads[7].sample_name
+                },
+                pad9: {
+                    volume: action.payload.beat_pads[8].volume,
+                    sequence: action.payload.beat_pads[8].sequence,
+                    name: action.payload.beat_pads[8].sample_name
+                },
+                pad10: {
+                    volume: action.payload.beat_pads[9].volume,
+                    sequence: action.payload.beat_pads[9].sequence,
+                    name: action.payload.beat_pads[9].sample_name
                 }
             }
         case 'ADD_COMMENT':

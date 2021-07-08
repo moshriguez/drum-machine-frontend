@@ -80,7 +80,7 @@ const BeatSaveForm = (props) => {
     }
 
     return (
-        <div>
+        <>
             {message.length ? (
                 <div>
                     <p>{message}</p>
@@ -97,14 +97,16 @@ const BeatSaveForm = (props) => {
                         onChange={handleChange}
                     ></input>
                     <label>Description</label>
-                    <input
+                    <textarea
                         name="description"
                         placeholder="Description"
                         value={beatForm.description}
                         onChange={handleChange}
-                    ></input>
-                    <button className="btn cancel" onClick={props.handleShowSaveBeat} >Cancel</button>
-                    <button className="btn submit" onClick={handleSubmit} >Submit</button>
+                    ></textarea>
+                    <div className="btn-group" >
+                        <button className="btn submit" onClick={handleSubmit} >Submit</button>
+                        <button className="btn cancel" onClick={props.handleShowSaveBeat} >Cancel</button>
+                    </div>
                     {errors.length ? (
                     <div className="error-container">
                         <h2>Errors</h2>
@@ -118,7 +120,7 @@ const BeatSaveForm = (props) => {
                     ) : null}
                 </>
             )}
-        </div>
+        </>
     )
 }
 

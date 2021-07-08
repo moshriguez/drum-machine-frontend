@@ -91,7 +91,7 @@ const MyProfileContainer = () => {
             </div>
             {showEdit ? 
             <Modal>
-                <EditUserForm editAccount={editAccount}/>
+                <EditUserForm editAccount={editAccount} close={handleShowEdit}/>
             </Modal> :
             null}
             {showDelete ? 

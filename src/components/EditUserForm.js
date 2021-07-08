@@ -20,15 +20,18 @@ const EditUserForm = (props) => {
     }
 
     return (
-        <div>
+        <>
             <label>Edit User Bio</label>
             <textarea
             placeholder="Tell us about yourself..."
             value={userBio}
             onChange={handleChangeBio}
             ></textarea>
-            <button className="btn update" onClick={handleSubmit} >Update</button>
-        </div>
+            <div className="btn-group">
+                <button className="btn update" onClick={handleSubmit} >Update</button>
+                <button className="btn update" onClick={props.close} >Cancel</button>
+            </div>
+        </>
     )
 }
 

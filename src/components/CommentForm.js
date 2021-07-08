@@ -13,15 +13,19 @@ const CommentForm = (props) => {
     }
 
     return (
-        <div>
+        <>
             <label>Enter New Comment</label>
             <textarea
             placeholder="What do you think about this beat..."
             value={newComment}
             onChange={handleChange}
             ></textarea>
-            <button className="btn submit" onClick={handleSubmit} >Submit</button>
-        </div>
+            <div className="btn-group">
+                <button className="btn submit" onClick={handleSubmit} >Submit</button>
+                
+                <button className="btn update" onClick={props.close} >Cancel</button>
+            </div>
+        </>
     )
 }
 

@@ -4,7 +4,7 @@ const Modal = (props) => {
 
     return (
         <div className="modal-background">
-            <div className="modal-content">
+            <div className="lcd-display modal-content">
                 {props.children}
             </div>
         </div>

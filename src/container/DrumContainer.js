@@ -80,7 +80,7 @@ const MyProfileContainer = () => {
             {/* Comment Form Modal */}
             {showComment ? 
             <Modal>
-                <CommentForm addComment={addComment}/>
+                <CommentForm addComment={addComment} close={handleShowComment} />
             </Modal> :
             null}
             {/* Save Beat Modal */}

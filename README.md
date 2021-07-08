@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# drum-machine-frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Models:
+User -------------< Beat --< Beat-Pad >-- Pad
+   |                |
+   ---< Comments >---
 
-## Available Scripts
+User:
+    Username
+    Password_digest
+    Bio
+Beat:
+    Name
+    Description
+    tempo
+    User_id
+Comment:
+    User_id
+    Beat_id
+    Content
+Pad:
+    Name
+    Sample_file
+Beat-Pad:
+    Beat_id
+    Pad_id
+    Sequence
+    Volume
 
-In the project directory, you can run:
+## User Stories:
+Users will be able to:
+[x] Create a new user
+[x] Username will have uniqueness and length validations
+    [x] Password will have a length requirement and require an upper case, a lower case and a number
+    [x] Login as an existing user with username and password
+[x] See a drum machine user interface with 4 different instruments and a 4 pad sequencer dividing one measure into 4 quarter notes in 4/4 time
+[x] Press play to hear the drum loop
+[x] Click on a button to select an individual drum
+[x] Drum machine user interface will have an options section that will be reused for each drum
+[x] Using the options section, users will be able to:
+    [x] Change the pattern for each instrument
+    [x] Change the volume for each instrument
+    [x] Change the tempo for the drum loop
+    [x] Play button becomes the stop button during playback and stops the loop when clicked
+    [x] Click save to give the beat a name, description and persist the data to the DB
+[x] Beat will have presence and uniqueness validation for a given user
+[x] Each instrument will have its own save button to save the beat-pad
+[x]  Comments on a beat
+[x]  View all comments on a beat
+[x] View their personal profile page
+    [x] Contains bio
+    [x] Saved beats and links to them
+    [x] Feed with most recently saved beats and links to view beats
+[x] Edit bio from personal profile page
+[x] Delete account
+[x] View another user’s page to view their bio, list of user’s beats and list of most recent comments the user made
 
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Stretch Goals:
+[] Add up to 10 instruments
+[x] Add up to 16 pads to create one measure that is subdivided into 16th notes in 4/4 time
+[] Ability to program beats longer than one measure
+[] Ability to program beats in other time signatures
+[] Add panning for each instrument
+[] Add pitch for each instrument
+[] User is warned before navigating away from an unsaved beat
+[] Users can upload their own sample for each instrument
+[] Add reverb or delay to each instrument
+[] Users can follow other users
+[] User’s profile will display a list of user’s followers and the users they follow
+[] Users have an avatar or profile pic
+[] User’s feed includes commenting activity
+[] User’s feed includes following activity
+[] Responsive to different screen sizes
+[x] Change to one save button to save whole beat
+[]  Add musical influences to User model/profile

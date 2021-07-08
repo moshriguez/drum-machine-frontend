@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import { useDispatch, useSelector } from "react-redux";
 import { saveBeat, updateBeat } from "../actions/user";
+import { loadBeat } from "../actions/drumMachine";
 
 const BeatSaveForm = (props) => {
     const dispatch = useDispatch();
@@ -74,6 +75,7 @@ const BeatSaveForm = (props) => {
               console.log(data)
               setMessages(data.message)
               {id ? dispatch(updateBeat(data.beat)) : dispatch(saveBeat(data.beat))}
+              dispatch(loadBeat(data.beat))
               setTimeout(() => props.handleShowSaveBeat(), 1000)
           }
         });

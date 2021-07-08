@@ -30,11 +30,13 @@ const DrumContainer = () => {
 
 
     // useEffect(()=> {
+        // stopDrumMachine()
+        // startDrumMachine()
         // when the sample has loaded allow play
-        //     .then(() => {
-        //         dispatch(loading(!isLoading))
-        //     })
-    // }, [])
+            // .then(() => {
+            //     dispatch(loading(!isLoading))
+            // })
+    // }, [tempo])
     
     // ** EVENT HANDLERS **
     const handleDrumPadClick = (e) => {
@@ -47,6 +49,7 @@ const DrumContainer = () => {
 
     const handleChangeTempo = (e) => {
         dispatch(setTempo(e.target.value))
+        // console.log(tempo)
     }
 
     const handleChangeVolume = (e) => {
@@ -78,7 +81,7 @@ const DrumContainer = () => {
         currentNote = 0;
         nextNoteTime = audioCtx.currentTime;
         scheduler(); // kick off scheduling notes
-        dispatch(setTimerID(setInterval(scheduler, lookahead)))
+        dispatch(setTimerID(setInterval(() => scheduler(), lookahead)))
     }
 
     function stopDrumMachine() {
@@ -92,6 +95,7 @@ const DrumContainer = () => {
         // console.log('currentNote: ', currentNote)
         // console.log('nextNoteTime: ', nextNoteTime)
         const secondsPerBeat = 60.0 / tempo;
+        console.log(tempo)
         nextNoteTime += secondsPerBeat; // Add beat length to last beat time
         // Advance the beat number, wrap to zero
         currentNote++;

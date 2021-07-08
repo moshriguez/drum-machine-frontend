@@ -44,7 +44,7 @@ const MyProfileContainer = () => {
         } else {
             dispatch({type: 'RESET'})
         }
-    }, [id])
+    }, [id, dispatch])
 
     // Add new comment
     const addComment = (comment) => {

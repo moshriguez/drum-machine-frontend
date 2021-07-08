@@ -27,7 +27,7 @@ const BeatSaveForm = (props) => {
             name: name,
             description: description
         })
-	}, [])
+	}, [name, description])
 
     // Errors if user doesn't pass validations
     const [errors, setErrors] = useState([]);

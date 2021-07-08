@@ -32,7 +32,7 @@ const MyProfileContainer = () => {
             }
         }).then(r => r.json())
         .then(data => dispatch(setOtherUser(data.user)))
-    }, [id])
+    }, [id, dispatch])
 
 
     return (

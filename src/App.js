@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Redirect, Route, Switch, useHistory, withRouter } from 'react-router-dom'
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "./actions/user";
 
 // LOCAL IMPORTS
@@ -15,7 +15,6 @@ import YourProfileContainer from './container/YourProfileContainer';
 import DrumContainer from './container/DrumContainer';
 
 function App(props) {
-  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   const token = localStorage.getItem("jwt")
 
@@ -43,7 +42,7 @@ function App(props) {
           }
         })
     }
-  }, [dispatch, history])
+  }, [dispatch, history, token])
 
   return (
     <div>

@@ -3,8 +3,6 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import { setUser } from "../actions/user";
 
-import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
-
 const loginUrl = "http://localhost:3000/api/v1/login";
 
 const Login = () => {

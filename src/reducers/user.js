@@ -12,6 +12,12 @@ export const userReducer = (state=initialState, action) => {
             } else {
                 return action.payload
             }
+        case 'SAVE_BEAT':
+            return {...state, beats: [...state.beats, action.payload]}
+        case 'UPDATE_BEAT':
+            const updatedBeatArray = state.beats.filter(beat => beat.id !== action.payload.id)
+            updatedBeatArray.push(action.payload)
+            return {...state, beats: updatedBeatArray}
         default:
             return state
     }

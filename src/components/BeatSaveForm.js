@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom'
 
-import { useSelector } from "react-redux";
-
-const beatURL = 'http://localhost:3000/api/v1/beats/'
+import { useDispatch, useSelector } from "react-redux";
+import { saveBeat, updateBeat } from "../actions/user";
 
 const BeatSaveForm = (props) => {
+    const dispatch = useDispatch();
     const { name, description, tempo, pad1, pad2, pad3, pad4 } = useSelector(state => state.drumMachine)
+    const otherUser = useSelector(state => state.drumMachine.user)
     const user = useSelector(state => state.user)
 
     // Controlled form
@@ -32,8 +34,17 @@ const BeatSaveForm = (props) => {
     const [message, setMessages] = useState('');
 
 
+    const { id } = useParams();
     const handleSubmit = () => {
         const token = localStorage.getItem("jwt")
+        let method, beatURL
+        if (id && user.id === otherUser.id) {
+            method = 'PATCH'
+            beatURL = 'http://localhost:3000/api/v1/beats/' + id 
+        } else {
+            method = 'POST'
+            beatURL = 'http://localhost:3000/api/v1/beats/'
+        }
         const bodyObj = {
             ...beatForm,
             tempo: tempo,
@@ -44,7 +55,7 @@ const BeatSaveForm = (props) => {
             pad4: pad4,
         }
         const config = {
-            method: 'POST',
+            method: method,
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -62,6 +73,7 @@ const BeatSaveForm = (props) => {
           } else if (data.message) {
               console.log(data)
               setMessages(data.message)
+              {id ? dispatch(updateBeat(data.beat)) : dispatch(saveBeat(data.beat))}
               setTimeout(() => props.handleShowSaveBeat(), 1000)
           }
         });

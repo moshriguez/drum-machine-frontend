@@ -123,6 +123,20 @@ a.active {
   background-color: rgb(99, 196, 2);
 }
 
+.form-container {
+  width: 80%;
+  margin: auto
+}
+
+.lcd-display form {
+  margin: 20px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: flex-start;
+}
 
 .lcd-display {
   display: flex;
@@ -312,7 +326,7 @@ a.active {
 
 .modal-content {
   position: relative;
-  margin: 20% auto;
+  margin: 10% auto;
   padding: 0 20px;
   width: 80%;
   animation-name: animatetop;

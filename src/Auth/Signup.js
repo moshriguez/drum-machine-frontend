@@ -79,24 +79,19 @@ const Signup = () => {
 
   return (
     <div className="form-container">
-      <div className="user-form">
+      <div className="lcd-display user-form">
         <form onSubmit={(e) => handleSignup(e)}>
           <h1>Sign Up</h1>
           <label>Create a username</label>
-          <div className="info-container">
-            <AiOutlineUser size={23} />
-            <input
+          <input
               onChange={(e) => handleChange(e)}
               value={userForm.username}
               name="username"
               placeholder="Enter your username..."
               required
             />
-          </div>
           <label>Create a password</label>
-          <div className="info-container">
-            <AiOutlineLock size={23} />
-            <input
+          <input
               onChange={(e) => handleChange(e)}
               value={userForm.password}
               name="password"
@@ -104,10 +99,7 @@ const Signup = () => {
               type="password"
               required
             />
-          </div>
           <label>Confirm your password</label>
-          <div className="info-container">
-            <AiOutlineLock size={23} />
             <input
               onChange={(e) => handleChange(e)}
               value={userForm.confirm}
@@ -116,8 +108,7 @@ const Signup = () => {
               type="password"
               required
             />
-          </div>
-          <button type="submit">Create account</button>
+          <button className="btn" type="submit">Create account</button>
         </form>
         {errors.length ? (
           <div className="error-container">

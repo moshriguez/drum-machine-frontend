@@ -56,7 +56,7 @@ Users will be able to:
 [x] View another user’s page to view their bio, list of user’s beats and list of most recent comments the user made
 
 ## Stretch Goals:
-[] Add up to 10 instruments
+[x] Add up to 10 instruments
 [x] Add up to 16 pads to create one measure that is subdivided into 16th notes in 4/4 time
 [] Ability to program beats longer than one measure
 [] Ability to program beats in other time signatures

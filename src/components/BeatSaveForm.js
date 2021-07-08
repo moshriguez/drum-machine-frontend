@@ -7,7 +7,7 @@ import { loadBeat } from "../actions/drumMachine";
 
 const BeatSaveForm = (props) => {
     const dispatch = useDispatch();
-    const { name, description, tempo, pad1, pad2, pad3, pad4 } = useSelector(state => state.drumMachine)
+    const { name, description, tempo, pad1, pad2, pad3, pad4, pad5, pad6, pad7, pad8, pad9, pad10 } = useSelector(state => state.drumMachine)
     const otherUser = useSelector(state => state.drumMachine.user)
     const user = useSelector(state => state.user)
 
@@ -54,6 +54,12 @@ const BeatSaveForm = (props) => {
             pad2: pad2,
             pad3: pad3,
             pad4: pad4,
+            pad5: pad5,
+            pad6: pad6,
+            pad7: pad7,
+            pad8: pad8,
+            pad9: pad9,
+            pad10: pad10,
         }
         const config = {
             method: method,

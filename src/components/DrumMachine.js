@@ -94,12 +94,12 @@ const DrumContainer = () => {
         dispatch(setBeatNumber(currentNote))
         // console.log('currentNote: ', currentNote)
         // console.log('nextNoteTime: ', nextNoteTime)
-        const secondsPerBeat = 60.0 / tempo;
+        const secondsPerBeat = 60.0 / tempo / 4;
         console.log(tempo)
         nextNoteTime += secondsPerBeat; // Add beat length to last beat time
         // Advance the beat number, wrap to zero
         currentNote++;
-        if (currentNote === 4) {
+        if (currentNote === 16) {
             currentNote = 0;
         }
     }

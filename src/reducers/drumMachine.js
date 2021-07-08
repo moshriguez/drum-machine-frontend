@@ -11,22 +11,22 @@ const initialState = {
     comments: [],
     pad1: {
         volume: 1,
-        sequence: '0000',
+        sequence: '1000100010001000',
         name: 'Kick'
     },
     pad2: {
         volume: 1,
-        sequence: '0000',
+        sequence: '0000100000001000',
         name: 'Snare'
     },
     pad3: {
         volume: 1,
-        sequence: '0000',
+        sequence: '1000100010001000',
         name: 'Closed Hi-Hats'
     },
     pad4: {
         volume: 1,
-        sequence: '0000',
+        sequence: '0000000000001000',
         name: 'Open Hi-Hats'
     },
 }

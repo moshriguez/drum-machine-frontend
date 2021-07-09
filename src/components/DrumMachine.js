@@ -149,25 +149,29 @@ const DrumContainer = () => {
         return drumMachine[selectedPad].sequence.split('').map((pad, i) => {
             if (pad === '0' && i === beatNumber) {
                 return <div key={i} className="sequence-pad" >
-                    <button className="current-note" onClick={(e) => handleSequencePadClick(i)}></button>
+                    <div className="not-selected current-note">
+                        <button onClick={(e) => handleSequencePadClick(i)}></button>
+                    </div>
                     <span>{musicalCounting[i]}</span>
                 </div>
             } else if (pad === '0') {
                 return <div key={i} className="sequence-pad" >
-                    <button onClick={(e) => handleSequencePadClick(i)}></button>
+                    <div className="not-selected">
+                        <button onClick={(e) => handleSequencePadClick(i)}></button>
+                    </div>
                     <span>{musicalCounting[i]}</span>
                 </div>
             } else if (pad === '1' && i === beatNumber) {
                 return <div key={i} className="sequence-pad" >
                     <div className="selected current-note">
-                        <button className="selected current-note" onClick={(e) => handleSequencePadClick(i)}></button>
+                        <button onClick={(e) => handleSequencePadClick(i)}></button>
                     </div>
                     <span>{musicalCounting[i]}</span>
                 </div>
             } else {
                 return <div key={i} className="sequence-pad" >
-                    <div className="selected"><
-                        button onClick={(e) => handleSequencePadClick(i)}></button>
+                    <div className="selected">
+                        <button onClick={(e) => handleSequencePadClick(i)}></button>
                     </div>
                     <span>{musicalCounting[i]}</span>
                 </div>
@@ -204,26 +208,37 @@ const DrumContainer = () => {
                 </div>
             </div>
             <div className="pads-container">
-                <div className="drum-pad" id="pad1" onClick={(e)=> handleDrumPadClick(e)}>
+                <div className="drum-pad" >
+                    <button className="retro-button blue-button" id="pad1" onClick={(e)=> handleDrumPadClick(e)} ></button>
                 </div>
-                <div className="drum-pad" id="pad2" onClick={(e)=> handleDrumPadClick(e)}>
+                <div className="drum-pad" >
+                    <button className="retro-button blue-button" id="pad2" onClick={(e)=> handleDrumPadClick(e)} ></button>
                 </div>
-                <div className="drum-pad" id="pad3" onClick={(e)=> handleDrumPadClick(e)}>
+                <div className="drum-pad" >
+                    <button className="retro-button blue-button" id="pad3" onClick={(e)=> handleDrumPadClick(e)} ></button>
                 </div>
-                <div className="drum-pad" id="pad4" onClick={(e)=> handleDrumPadClick(e)}>
+                <div className="drum-pad" >
+                    <button className="retro-button blue-button" id="pad4" onClick={(e)=> handleDrumPadClick(e)} ></button>
                 </div>
-                <div className="drum-pad" id="pad5" onClick={(e)=> handleDrumPadClick(e)}>
+                <div className="drum-pad" >
+                    <button className="retro-button blue-button" id="pad5" onClick={(e)=> handleDrumPadClick(e)} ></button>
                 </div>
-                <div className="drum-pad" id="pad6" onClick={(e)=> handleDrumPadClick(e)}>
+                <div className="drum-pad" >
+                    <button className="retro-button blue-button" id="pad6" onClick={(e)=> handleDrumPadClick(e)} ></button>
                 </div>
-                <div className="drum-pad" id="pad7" onClick={(e)=> handleDrumPadClick(e)}>
+                <div className="drum-pad" >
+                    <button className="retro-button blue-button" id="pad7" onClick={(e)=> handleDrumPadClick(e)} ></button>
                 </div>
-                <div className="drum-pad" id="pad8" onClick={(e)=> handleDrumPadClick(e)}>
+                <div className="drum-pad" >
+                    <button className="retro-button blue-button" id="pad8" onClick={(e)=> handleDrumPadClick(e)} ></button>
                 </div>
-                <div className="drum-pad" id="pad9" onClick={(e)=> handleDrumPadClick(e)}>
+                <div className="drum-pad" >
+                    <button className="retro-button blue-button" id="pad9" onClick={(e)=> handleDrumPadClick(e)} ></button>
                 </div>
-                <div className="drum-pad" id="pad10" onClick={(e)=> handleDrumPadClick(e)}>
+                <div className="drum-pad" >
+                    <button className="retro-button blue-button" id="pad10" onClick={(e)=> handleDrumPadClick(e)} ></button>
                 </div>
+                
             </div>
             <div className="drum-controls">
                 <div className="selected-drum-show">

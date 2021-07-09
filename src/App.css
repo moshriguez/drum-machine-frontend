@@ -47,7 +47,7 @@ a.active {
 .drum-machine {
   width: 80%;
   height: 250px;
-  background-color: #e74c3c;
+  background-color: #857978;
   margin: 20px auto;
   padding: 10px;
   display: flex;
@@ -62,7 +62,6 @@ a.active {
 
 .pads-container, .global-controls, .drum-controls {
   height: 25%;
-  align-items: center;
 }
 
 .global-controls {
@@ -77,10 +76,84 @@ a.active {
   padding: 0 10px;
 }
 
-.drum-pad {
-  width: 50px;
-  height: 50px;
-  background-color: chartreuse;
+/* Retro Button Styles */
+:root{
+  --button-height: 3rem;
+  --color-page-bg:#B9B5AA;
+  --color-overlay-light: rgba(255,255,255,.2);
+  --color-overlay-medium: rgba(0,0,0,.1);
+  --color-overlay-dark: rgba(0,0,0,.2);
+  --color-tab-focus: rgba(255,255,255,.15);
+}
+
+.red-button{
+  --color-bg:#E44E55;
+  --color-bg-light:#E47479;
+  --color-bg-dark:#D13239;
+}
+
+.green-button{
+  --color-bg:#00A07D;
+  --color-bg-light:#00AF8A;
+  --color-bg-dark:#008F70;
+}
+
+.blue-button{
+  --color-bg:#0066B4;
+  --color-bg-light:#3981CA;
+  --color-bg-dark:#004EAD;
+}
+
+.yellow-button{
+  --color-bg:#FFC054;
+  --color-bg-light:#FFD996;
+  --color-bg-dark:#F2AA30;
+}
+
+.retro-button{
+  appearance:none;
+  box-sizing:border-box;
+  background: var(--color-bg);
+  height:var(--button-height);
+  min-width:var(--button-height);
+  border-radius:calc( var(--button-height) / 2);
+  border:0;
+  cursor:pointer;
+  transition: all 200ms ease;
+  box-shadow:
+    -1px  -1px 1px var(--color-bg), 
+    0 0 0 4px var(--color-overlay-medium),
+    1px  1px 1px var(--color-bg-dark), 
+    inset .0 .0 .0 var(--color-overlay-dark), 
+    inset .5rem .5rem .25rem var(--color-bg-light);
+}
+
+.retro-button:focus{
+  outline:none;
+  box-shadow:
+    -1px -1px 1px var(--color-bg-dark), 
+    0 0 0 4px var(--color-tab-focus), 
+    1px  1px 1px var(--color-bg-dark), 
+    inset 0 0 0 var(--color-overlay-dark), 
+    inset .5rem .5rem .25rem var(--color-bg-light);
+}
+
+.retro-button:hover{
+  box-shadow:
+    -1px -1px 1px var(--color-bg-dark), 
+    0 0 0 4px var(--color-overlay-dark), 
+    1px  1px 1px var(--color-bg-dark), 
+    inset 0 0 0 var(--color-overlay-dark), 
+    inset .5rem .5rem .25rem var(--color-bg-light);
+}
+
+.retro-button:active{
+  box-shadow:
+    inset 1px 1px 1px var(--color-bg), 
+    0 0 0 4px var(--color-overlay-dark), 
+    inset -1px -1px 1px var(--color-bg-light), 
+    inset .5rem .5rem .75rem var(--color-bg-dark), 
+    inset .5rem .5rem .5rem var(--color-bg-light);
 }
 
 .sequence-pad {
@@ -93,16 +166,28 @@ a.active {
   width: 50px;
   height: 50px;
   border-radius: 10px;
-  background-color: rgba(223, 223, 223, 0.95);
+  background-color: transparent;
+  border: none;
+  box-shadow: inset 0 0 15px 2px rgba(0,0,0,0.5);
+  cursor:pointer;
+  transition: all 200ms ease;
 }
+
+.selected, .not-selected {
+  border-radius: 10px;  
+  background-color:#a1a1a1;
+}
+
+/* .not-selected {
+} */
 
 .selected {
-  background-color: orange;
-  box-shadow: 0 0 15px 2px rgba(63,227,63,0.7),inset 0 0 25px 2px rgba(0,0,0,0.5);
+  box-shadow: 0 0 15px #EE4352;
+  background: radial-gradient(#ffffff, #ff726f);
 }
 
-.current-note {
-  border: 5px solid white;
+.sequence-pad .current-note {
+  border: 2px solid yellowgreen;
 }
 
 .tempo-control, .volume-control, .selected-drum-show {
@@ -232,10 +317,6 @@ a.active {
   font-size: 1.35rem;
 }
 
-.lcd-display input:-webkit-autofill, .lcd-display input:-webkit-autofill:focus {
-  background-color: black;
-}
-
 .error-container ul {
   list-style: none;
   padding: 0;
@@ -249,10 +330,10 @@ a.active {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: var(--lcd-bg-color);
   border: 2px solid gray;
   font-family: monospace;
-  color: #fff;
+  color: var(--lcd-text-color);
 }
 
 .digital-display p {

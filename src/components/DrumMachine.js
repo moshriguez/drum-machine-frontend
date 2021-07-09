@@ -133,6 +133,9 @@ const DrumContainer = () => {
 
     // creates a buffer, adds in buffered sample, connects and plays
     //! panning node will have to be added here later
+    // panning values = -1 to 1; 0 is center
+    // pitch control via playbackRate - sampleSource.playbackRate.value
+    // what's actually happening is we're changing the playback rate, but due to time's relationship with frequencies and the shortness of the samples, we percieve the result as higher or lower in pitch
     function playSample(audioContext, audioBuffer, time, volume) {
         const sampleSource = audioContext.createBufferSource();
         sampleSource.buffer = audioBuffer;

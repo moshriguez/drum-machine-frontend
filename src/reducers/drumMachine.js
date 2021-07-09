@@ -14,70 +14,90 @@ const initialState = {
         sequence: '0000100000001000',
         name: 'Kick1',
         id: 0,
-        pad_id: 5
+        pad_id: 5,
+        panning: 0,
+        pitch: 1
     },
     pad2: {
         volume: 1,
         sequence: '0000100000001000',
         name: 'Kick2',
         id: 0,
-        pad_id: 6
+        pad_id: 6,
+        panning: 0,
+        pitch: 1
     },
     pad3: {
         volume: 1,
         sequence: '0000001001000000',
         name: 'Snare',
         id: 0,
-        pad_id: 7
+        pad_id: 7,
+        panning: 0,
+        pitch: 1
     },
     pad4: {
         volume: 1,
         sequence: '0000100000001000',
         name: 'Clap',
         id: 0,
-        pad_id: 8
+        pad_id: 8,
+        panning: 0,
+        pitch: 1
     },
     pad5: {
         volume: 1,
         sequence: '0001100000011000',
         name: 'Rim',
         id: 0,
-        pad_id: 9
+        pad_id: 9,
+        panning: 0,
+        pitch: 1
     },
     pad6: {
         volume: 1,
         sequence: '1000100010001000',
         name: 'HH1',
         id: 0,
-        pad_id: 10
+        pad_id: 10,
+        panning: 0,
+        pitch: 1
     },
     pad7: {
         volume: 1,
         sequence: '0010001000100010',
         name: 'HH2',
         id: 0,
-        pad_id: 11
+        pad_id: 11,
+        panning: 0,
+        pitch: 1
     },
     pad8: {
         volume: 1,
         sequence: '0000000000001000',
         name: 'HH Open',
         id: 0,
-        pad_id: 12
+        pad_id: 12,
+        panning: 0,
+        pitch: 1
     },
     pad9: {
         volume: 1,
         sequence: '0100010001000100',
         name: 'Ride',
         id: 0,
-        pad_id: 13
+        pad_id: 13,
+        panning: 0,
+        pitch: 1
     },
     pad10: {
         volume: 1,
         sequence: '0001000100010001',
         name: 'Shaker',
         id: 0,
-        pad_id: 14
+        pad_id: 14,
+        panning: 0,
+        pitch: 1
     },
 }
 

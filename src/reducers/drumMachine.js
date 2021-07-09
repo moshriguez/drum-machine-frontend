@@ -12,52 +12,72 @@ const initialState = {
     pad1: {
         volume: 1,
         sequence: '0000100000001000',
-        name: 'Kick1'
+        name: 'Kick1',
+        id: 0,
+        pad_id: 5
     },
     pad2: {
         volume: 1,
         sequence: '0000100000001000',
-        name: 'Kick2'
+        name: 'Kick2',
+        id: 0,
+        pad_id: 6
     },
     pad3: {
         volume: 1,
         sequence: '0000001001000000',
-        name: 'Snare'
+        name: 'Snare',
+        id: 0,
+        pad_id: 7
     },
     pad4: {
         volume: 1,
         sequence: '0000100000001000',
-        name: 'Clap'
+        name: 'Clap',
+        id: 0,
+        pad_id: 8
     },
     pad5: {
         volume: 1,
         sequence: '0001100000011000',
-        name: 'Rim'
+        name: 'Rim',
+        id: 0,
+        pad_id: 9
     },
     pad6: {
         volume: 1,
         sequence: '1000100010001000',
-        name: 'HH1'
+        name: 'HH1',
+        id: 0,
+        pad_id: 10
     },
     pad7: {
         volume: 1,
         sequence: '0010001000100010',
-        name: 'HH2'
+        name: 'HH2',
+        id: 0,
+        pad_id: 11
     },
     pad8: {
         volume: 1,
         sequence: '0000000000001000',
-        name: 'HH Open'
+        name: 'HH Open',
+        id: 0,
+        pad_id: 12
     },
     pad9: {
         volume: 1,
         sequence: '0100010001000100',
-        name: 'Ride'
+        name: 'Ride',
+        id: 0,
+        pad_id: 13
     },
     pad10: {
         volume: 1,
         sequence: '0001000100010001',
-        name: 'Shaker'
+        name: 'Shaker',
+        id: 0,
+        pad_id: 14
     },
 }
 
@@ -96,52 +116,72 @@ export const drumMachineReducer = (state=initialState, action) => {
                 pad1: {
                     volume: action.payload.beat_pads[0].volume,
                     sequence: action.payload.beat_pads[0].sequence,
-                    name: action.payload.beat_pads[0].sample_name
+                    name: action.payload.beat_pads[0].sample_name,
+                    id: action.payload.beat_pads[0].id,
+                    pad_id: action.payload.beat_pads[0].pad_id
                 },
                 pad2: {
                     volume: action.payload.beat_pads[1].volume,
                     sequence: action.payload.beat_pads[1].sequence,
-                    name: action.payload.beat_pads[1].sample_name
+                    name: action.payload.beat_pads[1].sample_name,
+                    id: action.payload.beat_pads[1].id,
+                    pad_id: action.payload.beat_pads[1].pad_id
                 },
                 pad3: {
                     volume: action.payload.beat_pads[2].volume,
                     sequence: action.payload.beat_pads[2].sequence,
-                    name: action.payload.beat_pads[2].sample_name
+                    name: action.payload.beat_pads[2].sample_name,
+                    id: action.payload.beat_pads[2].id,
+                    pad_id: action.payload.beat_pads[2].pad_id
                 },
                 pad4: {
                     volume: action.payload.beat_pads[3].volume,
                     sequence: action.payload.beat_pads[3].sequence,
-                    name: action.payload.beat_pads[3].sample_name
+                    name: action.payload.beat_pads[3].sample_name,
+                    id: action.payload.beat_pads[3].id,
+                    pad_id: action.payload.beat_pads[3].pad_id
                 },
                 pad5: {
                     volume: action.payload.beat_pads[4].volume,
                     sequence: action.payload.beat_pads[4].sequence,
-                    name: action.payload.beat_pads[4].sample_name
+                    name: action.payload.beat_pads[4].sample_name,
+                    id: action.payload.beat_pads[4].id,
+                    pad_id: action.payload.beat_pads[4].pad_id
                 },
                 pad6: {
                     volume: action.payload.beat_pads[5].volume,
                     sequence: action.payload.beat_pads[5].sequence,
-                    name: action.payload.beat_pads[5].sample_name
+                    name: action.payload.beat_pads[5].sample_name,
+                    id: action.payload.beat_pads[5].id,
+                    pad_id: action.payload.beat_pads[5].pad_id
                 },
                 pad7: {
                     volume: action.payload.beat_pads[6].volume,
                     sequence: action.payload.beat_pads[6].sequence,
-                    name: action.payload.beat_pads[6].sample_name
+                    name: action.payload.beat_pads[6].sample_name,
+                    id: action.payload.beat_pads[6].id,
+                    pad_id: action.payload.beat_pads[6].pad_id
                 },
                 pad8: {
                     volume: action.payload.beat_pads[7].volume,
                     sequence: action.payload.beat_pads[7].sequence,
-                    name: action.payload.beat_pads[7].sample_name
+                    name: action.payload.beat_pads[7].sample_name,
+                    id: action.payload.beat_pads[7].id,
+                    pad_id: action.payload.beat_pads[7].pad_id
                 },
                 pad9: {
                     volume: action.payload.beat_pads[8].volume,
                     sequence: action.payload.beat_pads[8].sequence,
-                    name: action.payload.beat_pads[8].sample_name
+                    name: action.payload.beat_pads[8].sample_name,
+                    id: action.payload.beat_pads[8].id,
+                    pad_id: action.payload.beat_pads[8].pad_id
                 },
                 pad10: {
                     volume: action.payload.beat_pads[9].volume,
                     sequence: action.payload.beat_pads[9].sequence,
-                    name: action.payload.beat_pads[9].sample_name
+                    name: action.payload.beat_pads[9].sample_name,
+                    id: action.payload.beat_pads[9].id,
+                    pad_id: action.payload.beat_pads[9].pad_id
                 }
             }
         case 'ADD_COMMENT':

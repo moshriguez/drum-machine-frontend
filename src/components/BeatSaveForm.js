@@ -70,6 +70,7 @@ const BeatSaveForm = (props) => {
             },
             body: JSON.stringify(bodyObj)
         }
+        console.log(config.body)
         fetch(beatURL, config)
         .then((r) => r.json())
         .then((data) => {

@@ -10,22 +10,22 @@
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 120px;
+  height: 100px;
   margin: auto;
   position: relative;
   background-color: #2c3e50;
   z-index: 7;
 }
 
-li {
-  float: left;
+.menu li {
+  float: right;
   width: 25%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-li a {
+.menu li a {
   display: flex;
   width: 100%;
   height: 100%;
@@ -77,13 +77,27 @@ a.active {
   padding: 0 10px;
 }
 
-.drum-pad, .sequence-pad {
+.drum-pad {
   width: 50px;
   height: 50px;
   background-color: chartreuse;
 }
 
+.sequence-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sequence-pad button {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: rgba(223, 223, 223, 0.95);
+}
+
 .selected {
+  background-color: orange;
   box-shadow: 0 0 15px 2px rgba(63,227,63,0.7),inset 0 0 25px 2px rgba(0,0,0,0.5);
 }
 
@@ -123,23 +137,30 @@ a.active {
   background-color: rgb(99, 196, 2);
 }
 
+/* LCD Forms  */
 .form-container {
-  width: 80%;
+  width: 60%;
   margin: auto
 }
 
 .lcd-display form {
-  margin: 20px;
-  width: 80%;
+  margin: 20px auto;
+  /* width: 80%; */
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: flex-start;
+}
+
+.lcd-display h1, .lcd-display h2 {
+  margin: 0 0 20px;
+}
+
+.lcd-display.user-form p {
+  margin: 0;
 }
 
 .lcd-display {
   display: flex;
+  padding: 10px;
   background-color: var(--lcd-bg-color);
   border: 2px solid gray;
   font-family: monospace;
@@ -170,6 +191,8 @@ a.active {
   text-shadow: 0 0 4px var(--lcd-text-color);
   box-shadow: 0 0 3px 1px var(--lcd-text-color), inset 0 0 3px 1px var(--lcd-text-color);
   border-style: solid;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .lcd-display .btn:hover {
@@ -193,14 +216,33 @@ a.active {
   box-shadow: 0 0 3px 1px var(--lcd-text-color), inset 0 0 3px 1px var(--lcd-text-color);
 }
 
+.lcd-display textarea:focus, .lcd-display input:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px var(--lcd-text-color), inset 0 0 5px 2px var(--lcd-text-color);
+
+}
+
 .lcd-display textarea {
   font-size: 1.2rem;
   height: 300px;
-    /* border-image  ; */
+  resize: none;
 }
 
 .lcd-display input {
   font-size: 1.35rem;
+}
+
+.lcd-display input:-webkit-autofill, .lcd-display input:-webkit-autofill:focus {
+  background-color: black;
+}
+
+.error-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.error-container li {
+  font-size: 1.5rem;
 }
 
 .digital-display {

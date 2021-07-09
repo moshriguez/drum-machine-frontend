@@ -85,7 +85,6 @@ const Signup = () => {
               onChange={(e) => handleChange(e)}
               value={userForm.username}
               name="username"
-              placeholder="Enter your username..."
               required
             />
           <label>Create a password</label>
@@ -93,7 +92,6 @@ const Signup = () => {
               onChange={(e) => handleChange(e)}
               value={userForm.password}
               name="password"
-              placeholder="Enter your password..."
               type="password"
               required
             />
@@ -102,7 +100,6 @@ const Signup = () => {
               onChange={(e) => handleChange(e)}
               value={userForm.confirm}
               name="confirm"
-              placeholder="Enter your password..."
               type="password"
               required
             />
@@ -119,10 +116,9 @@ const Signup = () => {
             </ul>
           </div>
         ) : null}
-        <div className="signup-container">
           <p>Already have an account?</p>
-          <a href="/login">Login</a>
-        </div>
+          <a href="/login" className="btn" >Login</a>
+
       </div>
     </div>
   );

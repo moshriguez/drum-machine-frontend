@@ -16,7 +16,6 @@ const CommentForm = (props) => {
         <>
             <label>Enter New Comment</label>
             <textarea
-            placeholder="What do you think about this beat..."
             value={newComment}
             onChange={handleChange}
             ></textarea>

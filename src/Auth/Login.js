@@ -63,7 +63,6 @@ const Login = () => {
               onChange={(e) => handleChange(e)}
               value={userForm.username}
               name="username"
-              placeholder="Enter your username..."
               required
             />
 
@@ -72,7 +71,6 @@ const Login = () => {
               onChange={(e) => handleChange(e)}
               value={userForm.password}
               name="password"
-              placeholder="Enter your password..."
               type="password"
               required
             />
@@ -86,10 +84,10 @@ const Login = () => {
             </ul>
           </div>
         ) : null}
-        <div className="signup-container">
+
           <p>Don't have an account?</p>
-          <a href="/signup">Sign up</a>
-        </div>
+          <a href="/signup" className="btn" >Sign up</a>
+
       </div>
     </div>
   );

@@ -145,15 +145,32 @@ const DrumContainer = () => {
 
     // renders sequence pads and adds class based on whether pad is selected and what beat were on
     const renderSequencePads = () => {
+        const musicalCounting = '1e&a2e&a3e&a4e&a'.split('')
         return drumMachine[selectedPad].sequence.split('').map((pad, i) => {
             if (pad === '0' && i === beatNumber) {
-                return <div key={i} className="sequence-pad current-note" onClick={(e) => handleSequencePadClick(i)}></div>
+                return <div key={i} className="sequence-pad" >
+                    <button className="current-note" onClick={(e) => handleSequencePadClick(i)}></button>
+                    <span>{musicalCounting[i]}</span>
+                </div>
             } else if (pad === '0') {
-                return <div key={i} className="sequence-pad" onClick={(e) => handleSequencePadClick(i)}></div>
+                return <div key={i} className="sequence-pad" >
+                    <button onClick={(e) => handleSequencePadClick(i)}></button>
+                    <span>{musicalCounting[i]}</span>
+                </div>
             } else if (pad === '1' && i === beatNumber) {
-                return <div key={i} className="sequence-pad selected current-note" onClick={(e) => handleSequencePadClick(i)}></div>
+                return <div key={i} className="sequence-pad" >
+                    <div className="selected current-note">
+                        <button className="selected current-note" onClick={(e) => handleSequencePadClick(i)}></button>
+                    </div>
+                    <span>{musicalCounting[i]}</span>
+                </div>
             } else {
-                return <div key={i} className="sequence-pad selected " onClick={(e) => handleSequencePadClick(i)}></div>
+                return <div key={i} className="sequence-pad" >
+                    <div className="selected"><
+                        button onClick={(e) => handleSequencePadClick(i)}></button>
+                    </div>
+                    <span>{musicalCounting[i]}</span>
+                </div>
             }
         })
     }

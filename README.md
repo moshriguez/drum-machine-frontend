@@ -72,4 +72,8 @@ Users will be able to:
 [] User’s feed includes following activity
 [] Responsive to different screen sizes
 [x] Change to one save button to save whole beat
-[]  Add musical influences to User model/profile
+[] Add musical influences to User model/profile
+[] Add a short recording of the beat to sample in feed
+    [] Make recording of beat and save in firebase
+    [] Add reference to recording in beat model
+[] Ability to make changes to beat while it plays and beat is updated in real time

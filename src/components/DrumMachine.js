@@ -110,34 +110,34 @@ const DrumContainer = () => {
         // console.log(typeof pad1.sequence.split('')[beatNumber])
 
         if (pad1.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, kick1Sample, time, pad1.volume);
+            playSample(audioCtx, kick1Sample, time, pad1);
         }
         if (pad2.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, kick2Sample, time, pad2.volume);
+            playSample(audioCtx, kick2Sample, time, pad2);
         }
         if (pad3.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, snareSample, time, pad3.volume);
+            playSample(audioCtx, snareSample, time, pad3);
         }
         if (pad4.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, clapSample, time, pad4.volume);
+            playSample(audioCtx, clapSample, time, pad4);
         }
         if (pad5.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, rimSample, time, pad5.volume);
+            playSample(audioCtx, rimSample, time, pad5);
         }
         if (pad6.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, hh1Sample, time, pad6.volume);
+            playSample(audioCtx, hh1Sample, time, pad6);
         }
         if (pad7.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, hh2Sample, time, pad7.volume);
+            playSample(audioCtx, hh2Sample, time, pad7);
         }
         if (pad8.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, hhOpenSample, time, pad8.volume);
+            playSample(audioCtx, hhOpenSample, time, pad8);
         }
         if (pad9.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, rideSample, time, pad9.volume);
+            playSample(audioCtx, rideSample, time, pad9);
         }
         if (pad10.sequence.split('')[beatNumber] === '1') {
-            playSample(audioCtx, shakerSample, time, pad10.volume);
+            playSample(audioCtx, shakerSample, time, pad10);
         }
     }
 
@@ -146,12 +146,14 @@ const DrumContainer = () => {
     // panning values = -1 to 1; 0 is center
     // pitch control via playbackRate - sampleSource.playbackRate.value
     // what's actually happening is we're changing the playback rate, but due to time's relationship with frequencies and the shortness of the samples, we percieve the result as higher or lower in pitch
-    function playSample(audioContext, audioBuffer, time, volume) {
+    function playSample(audioContext, audioBuffer, time, { volume, panning }) {
         const sampleSource = audioContext.createBufferSource();
         sampleSource.buffer = audioBuffer;
         const gainNode = audioContext.createGain()
         gainNode.gain.value = volume
-        sampleSource.connect(gainNode).connect(audioContext.destination)
+        const panNode = audioContext.createStereoPanner()
+        panNode.pan.value = panning
+        sampleSource.connect(gainNode).connect(panNode).connect(audioContext.destination)
         sampleSource.start(time);
         return sampleSource;
     }

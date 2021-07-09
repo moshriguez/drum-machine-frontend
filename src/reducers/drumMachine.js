@@ -113,6 +113,10 @@ export const drumMachineReducer = (state=initialState, action) => {
             return {...state, isPlaying: action.payload}
         case 'SET_VOLUME': 
             return {...state, [state.selectedPad]: {...state[state.selectedPad], volume: action.payload}}
+        case 'SET_PANNING':
+            return {...state, [state.selectedPad]: {...state[state.selectedPad], panning: action.payload}}
+        case 'SET_PITCH':
+            return {...state, [state.selectedPad]: {...state[state.selectedPad], pitch: action.payload}}
         case 'SET_TIMER_ID':
             return {...state, timerID: action.payload}
         case 'SET_BEAT_NUMBER':
@@ -138,70 +142,90 @@ export const drumMachineReducer = (state=initialState, action) => {
                     sequence: action.payload.beat_pads[0].sequence,
                     name: action.payload.beat_pads[0].sample_name,
                     id: action.payload.beat_pads[0].id,
-                    pad_id: action.payload.beat_pads[0].pad_id
+                    pad_id: action.payload.beat_pads[0].pad_id,
+                    panning: action.payload.beat_pads[0].panning,
+                    pitch: action.payload.beat_pads[0].pitch
                 },
                 pad2: {
                     volume: action.payload.beat_pads[1].volume,
                     sequence: action.payload.beat_pads[1].sequence,
                     name: action.payload.beat_pads[1].sample_name,
                     id: action.payload.beat_pads[1].id,
-                    pad_id: action.payload.beat_pads[1].pad_id
+                    pad_id: action.payload.beat_pads[1].pad_id,
+                    panning: action.payload.beat_pads[1].panning,
+                    pitch: action.payload.beat_pads[1].pitch
                 },
                 pad3: {
                     volume: action.payload.beat_pads[2].volume,
                     sequence: action.payload.beat_pads[2].sequence,
                     name: action.payload.beat_pads[2].sample_name,
                     id: action.payload.beat_pads[2].id,
-                    pad_id: action.payload.beat_pads[2].pad_id
+                    pad_id: action.payload.beat_pads[2].pad_id,
+                    panning: action.payload.beat_pads[2].panning,
+                    pitch: action.payload.beat_pads[2].pitch
                 },
                 pad4: {
                     volume: action.payload.beat_pads[3].volume,
                     sequence: action.payload.beat_pads[3].sequence,
                     name: action.payload.beat_pads[3].sample_name,
                     id: action.payload.beat_pads[3].id,
-                    pad_id: action.payload.beat_pads[3].pad_id
+                    pad_id: action.payload.beat_pads[3].pad_id,
+                    panning: action.payload.beat_pads[3].panning,
+                    pitch: action.payload.beat_pads[3].pitch
                 },
                 pad5: {
                     volume: action.payload.beat_pads[4].volume,
                     sequence: action.payload.beat_pads[4].sequence,
                     name: action.payload.beat_pads[4].sample_name,
                     id: action.payload.beat_pads[4].id,
-                    pad_id: action.payload.beat_pads[4].pad_id
+                    pad_id: action.payload.beat_pads[4].pad_id,
+                    panning: action.payload.beat_pads[4].panning,
+                    pitch: action.payload.beat_pads[4].pitch
                 },
                 pad6: {
                     volume: action.payload.beat_pads[5].volume,
                     sequence: action.payload.beat_pads[5].sequence,
                     name: action.payload.beat_pads[5].sample_name,
                     id: action.payload.beat_pads[5].id,
-                    pad_id: action.payload.beat_pads[5].pad_id
+                    pad_id: action.payload.beat_pads[5].pad_id,
+                    panning: action.payload.beat_pads[5].panning,
+                    pitch: action.payload.beat_pads[5].pitch
                 },
                 pad7: {
                     volume: action.payload.beat_pads[6].volume,
                     sequence: action.payload.beat_pads[6].sequence,
                     name: action.payload.beat_pads[6].sample_name,
                     id: action.payload.beat_pads[6].id,
-                    pad_id: action.payload.beat_pads[6].pad_id
+                    pad_id: action.payload.beat_pads[6].pad_id,
+                    panning: action.payload.beat_pads[6].panning,
+                    pitch: action.payload.beat_pads[6].pitch
                 },
                 pad8: {
                     volume: action.payload.beat_pads[7].volume,
                     sequence: action.payload.beat_pads[7].sequence,
                     name: action.payload.beat_pads[7].sample_name,
                     id: action.payload.beat_pads[7].id,
-                    pad_id: action.payload.beat_pads[7].pad_id
+                    pad_id: action.payload.beat_pads[7].pad_id,
+                    panning: action.payload.beat_pads[7].panning,
+                    pitch: action.payload.beat_pads[7].pitch
                 },
                 pad9: {
                     volume: action.payload.beat_pads[8].volume,
                     sequence: action.payload.beat_pads[8].sequence,
                     name: action.payload.beat_pads[8].sample_name,
                     id: action.payload.beat_pads[8].id,
-                    pad_id: action.payload.beat_pads[8].pad_id
+                    pad_id: action.payload.beat_pads[8].pad_id,
+                    panning: action.payload.beat_pads[8].panning,
+                    pitch: action.payload.beat_pads[8].pitch
                 },
                 pad10: {
                     volume: action.payload.beat_pads[9].volume,
                     sequence: action.payload.beat_pads[9].sequence,
                     name: action.payload.beat_pads[9].sample_name,
                     id: action.payload.beat_pads[9].id,
-                    pad_id: action.payload.beat_pads[9].pad_id
+                    pad_id: action.payload.beat_pads[9].pad_id,
+                    panning: action.payload.beat_pads[9].panning,
+                    pitch: action.payload.beat_pads[9].pitch
                 }
             }
         case 'ADD_COMMENT':

@@ -26,6 +26,20 @@ export function setVolume(volume) {
     }
 }
 
+export function setPanning(panning) {
+    return {
+        type: 'SET_PANNING',
+        payload: panning
+    }
+}
+
+export function setPitch(pitch) {
+    return {
+        type: 'SET_PITCH',
+        payload: pitch
+    }
+}
+
 export function loading(bool) {
     return {
         type: 'IS_LOADING',

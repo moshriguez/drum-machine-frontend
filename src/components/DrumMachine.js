@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { setPad, setTempo, playing, setVolume, loading, setTimerID, setBeatNumber, setSequence } from "../actions/drumMachine";
+import { setPad, setTempo, playing, setVolume, setPitch, setPanning, loading, setTimerID, setBeatNumber, setSequence } from "../actions/drumMachine";
 import { audioCtx, kick1Sample, kick2Sample, snareSample, clapSample, rimSample, hhOpenSample, hh1Sample, hh2Sample, rideSample, shakerSample } from "../loadSamples";
 
 const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
@@ -12,6 +12,8 @@ const DrumContainer = () => {
     const drumMachine = useSelector(state => state.drumMachine)
     const { isLoading, selectedPad, tempo, isPlaying, timerID, beatNumber, pad1, pad2, pad3, pad4, pad5, pad6, pad7, pad8, pad9, pad10 } = useSelector(state => state.drumMachine)
     const volume = useSelector(state => state.drumMachine[selectedPad].volume)
+    const pitch = useSelector(state => state.drumMachine[selectedPad].pitch)
+    const panning = useSelector(state => state.drumMachine[selectedPad].panning)
 
     // useEffect(()=> {
         // stopDrumMachine()
@@ -38,6 +40,14 @@ const DrumContainer = () => {
 
     const handleChangeVolume = (e) => {
         dispatch(setVolume(e.target.value))
+    }
+
+    const handleChangePanning = (e) => {
+        dispatch(setPanning(e.target.value))
+    }
+
+    const handleChangePitch = (e) => {
+        dispatch(setPitch(e.target.value))
     }
 
     const handlePlayBtnClick = (e) => {
@@ -248,6 +258,32 @@ const DrumContainer = () => {
                     <div className="digital-display">
                         <p>{drumMachine[selectedPad].name}</p>
                     </div>
+                </div>
+                <div className="pitch-control">
+                    <label htmlFor="pitch">PITCH</label>
+                    <input 
+                        name="pitch" 
+                        id="pitch" 
+                        type="range" 
+                        min="0" 
+                        max="2.0" 
+                        step="0.01" 
+                        value={pitch}
+                        onChange={(e) => handleChangePitch(e)}
+                    />
+                </div>
+                <div className="panning-control">
+                    <label htmlFor="panning">PANNING</label>
+                    <input 
+                        name="panning" 
+                        id="panning" 
+                        type="range" 
+                        min="-1.0" 
+                        max="1.0" 
+                        step="0.01" 
+                        value={panning}
+                        onChange={(e) => handleChangePanning(e)}
+                    />
                 </div>
                 <div className="volume-control">
                     <label htmlFor="volume">VOLUME</label>

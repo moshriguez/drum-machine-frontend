@@ -190,7 +190,7 @@ a.active {
   border: 2px solid yellowgreen;
 }
 
-.tempo-control, .volume-control, .selected-drum-show {
+.tempo-control, .volume-control, .selected-drum-show, .panning-control, .pitch-control {
   height: 50px;
   width: 150px;
   border-radius: 10px;
@@ -200,7 +200,7 @@ a.active {
   align-items: center;
 }
 
-.volume-control, .tempo-control {
+.volume-control, .tempo-control, .panning-control, .pitch-control  {
   flex-direction: column;
 }
 

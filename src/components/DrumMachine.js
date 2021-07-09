@@ -146,9 +146,10 @@ const DrumContainer = () => {
     // panning values = -1 to 1; 0 is center
     // pitch control via playbackRate - sampleSource.playbackRate.value
     // what's actually happening is we're changing the playback rate, but due to time's relationship with frequencies and the shortness of the samples, we percieve the result as higher or lower in pitch
-    function playSample(audioContext, audioBuffer, time, { volume, panning }) {
+    function playSample(audioContext, audioBuffer, time, { volume, panning, pitch }) {
         const sampleSource = audioContext.createBufferSource();
         sampleSource.buffer = audioBuffer;
+        sampleSource.playbackRate.value = pitch
         const gainNode = audioContext.createGain()
         gainNode.gain.value = volume
         const panNode = audioContext.createStereoPanner()
@@ -267,7 +268,7 @@ const DrumContainer = () => {
                         name="pitch" 
                         id="pitch" 
                         type="range" 
-                        min="0" 
+                        min="0.25" 
                         max="2.0" 
                         step="0.01" 
                         value={pitch}

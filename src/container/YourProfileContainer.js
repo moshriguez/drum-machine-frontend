@@ -14,7 +14,7 @@ const MyProfileContainer = () => {
     const { id } = useParams();
 
     const dispatch = useDispatch();
-    const { username, bio, beats } = useSelector(state => state.otherUser)
+    const { username, bio, beats, musical_influences } = useSelector(state => state.otherUser)
 
     const renderBeats = () => {
         return beats.map(beat => {
@@ -41,6 +41,8 @@ const MyProfileContainer = () => {
                 <h2>User: {username}</h2>
                 <h3>Bio:</h3>
                 <p>{bio}</p>
+                <h3>Musical Influences:</h3>
+                <p>{musical_influences}</p>
             </div>
             <div className="feed-section">
                 <CommentedBeatsContainer />

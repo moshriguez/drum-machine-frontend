@@ -1,6 +1,7 @@
 const initialState = {
     username: 'defaultUser',
     bio: 'default',
+    musical_influences: '',
     beats: []
 }
 

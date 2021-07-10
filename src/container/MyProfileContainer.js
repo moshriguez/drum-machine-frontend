@@ -72,6 +72,8 @@ const MyProfileContainer = () => {
                 <h2>User: {user.username}</h2>
                 <h3>Bio:</h3>
                 <p>{user.bio}</p>
+                <h3>Musical Influences:</h3>
+                <p>{user.musical_influences}</p>
                 <button 
                 className="btn edit"
                 onClick={handleShowEdit}

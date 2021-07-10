@@ -12,7 +12,8 @@ const initialState = {
     pad1: {
         volume: 1,
         sequence: '0000100000001000',
-        name: 'Kick1',
+        sample_name: 'Kick1',
+        sample_file: 'SB15_Drm_bd.wav',
         id: 0,
         pad_id: 5,
         panning: 0,
@@ -21,7 +22,8 @@ const initialState = {
     pad2: {
         volume: 1,
         sequence: '0000100000001000',
-        name: 'Kick2',
+        sample_name: 'Kick2',
+        sample_file: 'kick13.wav',
         id: 0,
         pad_id: 6,
         panning: 0,
@@ -30,7 +32,8 @@ const initialState = {
     pad3: {
         volume: 1,
         sequence: '0000001001000000',
-        name: 'Snare',
+        sample_name: 'Snare',
+        sample_file: 'tracks_15 #006.wav',
         id: 0,
         pad_id: 7,
         panning: 0,
@@ -39,7 +42,8 @@ const initialState = {
     pad4: {
         volume: 1,
         sequence: '0000100000001000',
-        name: 'Clap',
+        sample_name: 'Clap',
+        sample_file: 'lil j clap 6.wav',
         id: 0,
         pad_id: 8,
         panning: 0,
@@ -48,7 +52,8 @@ const initialState = {
     pad5: {
         volume: 1,
         sequence: '0001100000011000',
-        name: 'Rim',
+        sample_name: 'Rim',
+        sample_file: 'mobb-snare1-qbh.wav',
         id: 0,
         pad_id: 9,
         panning: 0,
@@ -57,7 +62,8 @@ const initialState = {
     pad6: {
         volume: 1,
         sequence: '1000100010001000',
-        name: 'HH1',
+        sample_name: 'HH1',
+        sample_file: 'tracks_19 #004.wav',
         id: 0,
         pad_id: 10,
         panning: 0,
@@ -66,7 +72,8 @@ const initialState = {
     pad7: {
         volume: 1,
         sequence: '0010001000100010',
-        name: 'HH2',
+        sample_name: 'HH2',
+        sample_file: 'tight ass hat 3.wav',
         id: 0,
         pad_id: 11,
         panning: 0,
@@ -75,7 +82,8 @@ const initialState = {
     pad8: {
         volume: 1,
         sequence: '0000000000001000',
-        name: 'HH Open',
+        sample_name: 'HH Open',
+        sample_file: 'tracks_61 #008.wav',
         id: 0,
         pad_id: 12,
         panning: 0,
@@ -84,7 +92,8 @@ const initialState = {
     pad9: {
         volume: 1,
         sequence: '0100010001000100',
-        name: 'Ride',
+        sample_name: 'Ride',
+        sample_file: 'c22 CshRd R02   x.wav',
         id: 0,
         pad_id: 13,
         panning: 0,
@@ -93,7 +102,8 @@ const initialState = {
     pad10: {
         volume: 1,
         sequence: '0001000100010001',
-        name: 'Shaker',
+        sample_name: 'Shaker',
+        sample_file: 'JBlaze_shaker5.wav',
         id: 0,
         pad_id: 14,
         panning: 0,
@@ -140,7 +150,8 @@ export const drumMachineReducer = (state=initialState, action) => {
                 pad1: {
                     volume: action.payload.beat_pads[0].volume,
                     sequence: action.payload.beat_pads[0].sequence,
-                    name: action.payload.beat_pads[0].sample_name,
+                    sample_name: action.payload.beat_pads[0].sample_name,
+                    sample_file: action.payload.beat_pads[0].sample_file,
                     id: action.payload.beat_pads[0].id,
                     pad_id: action.payload.beat_pads[0].pad_id,
                     panning: action.payload.beat_pads[0].panning,
@@ -149,7 +160,8 @@ export const drumMachineReducer = (state=initialState, action) => {
                 pad2: {
                     volume: action.payload.beat_pads[1].volume,
                     sequence: action.payload.beat_pads[1].sequence,
-                    name: action.payload.beat_pads[1].sample_name,
+                    sample_name: action.payload.beat_pads[1].sample_name,
+                    sample_file: action.payload.beat_pads[1].sample_file,
                     id: action.payload.beat_pads[1].id,
                     pad_id: action.payload.beat_pads[1].pad_id,
                     panning: action.payload.beat_pads[1].panning,
@@ -158,7 +170,8 @@ export const drumMachineReducer = (state=initialState, action) => {
                 pad3: {
                     volume: action.payload.beat_pads[2].volume,
                     sequence: action.payload.beat_pads[2].sequence,
-                    name: action.payload.beat_pads[2].sample_name,
+                    sample_name: action.payload.beat_pads[2].sample_name,
+                    sample_file: action.payload.beat_pads[2].sample_file,
                     id: action.payload.beat_pads[2].id,
                     pad_id: action.payload.beat_pads[2].pad_id,
                     panning: action.payload.beat_pads[2].panning,
@@ -167,7 +180,8 @@ export const drumMachineReducer = (state=initialState, action) => {
                 pad4: {
                     volume: action.payload.beat_pads[3].volume,
                     sequence: action.payload.beat_pads[3].sequence,
-                    name: action.payload.beat_pads[3].sample_name,
+                    sample_name: action.payload.beat_pads[3].sample_name,
+                    sample_file: action.payload.beat_pads[3].sample_file,
                     id: action.payload.beat_pads[3].id,
                     pad_id: action.payload.beat_pads[3].pad_id,
                     panning: action.payload.beat_pads[3].panning,
@@ -176,7 +190,8 @@ export const drumMachineReducer = (state=initialState, action) => {
                 pad5: {
                     volume: action.payload.beat_pads[4].volume,
                     sequence: action.payload.beat_pads[4].sequence,
-                    name: action.payload.beat_pads[4].sample_name,
+                    sample_name: action.payload.beat_pads[4].sample_name,
+                    sample_file: action.payload.beat_pads[4].sample_file,
                     id: action.payload.beat_pads[4].id,
                     pad_id: action.payload.beat_pads[4].pad_id,
                     panning: action.payload.beat_pads[4].panning,
@@ -185,7 +200,8 @@ export const drumMachineReducer = (state=initialState, action) => {
                 pad6: {
                     volume: action.payload.beat_pads[5].volume,
                     sequence: action.payload.beat_pads[5].sequence,
-                    name: action.payload.beat_pads[5].sample_name,
+                    sample_name: action.payload.beat_pads[5].sample_name,
+                    sample_file: action.payload.beat_pads[5].sample_file,
                     id: action.payload.beat_pads[5].id,
                     pad_id: action.payload.beat_pads[5].pad_id,
                     panning: action.payload.beat_pads[5].panning,
@@ -194,7 +210,8 @@ export const drumMachineReducer = (state=initialState, action) => {
                 pad7: {
                     volume: action.payload.beat_pads[6].volume,
                     sequence: action.payload.beat_pads[6].sequence,
-                    name: action.payload.beat_pads[6].sample_name,
+                    sample_name: action.payload.beat_pads[6].sample_name,
+                    sample_file: action.payload.beat_pads[6].sample_file,
                     id: action.payload.beat_pads[6].id,
                     pad_id: action.payload.beat_pads[6].pad_id,
                     panning: action.payload.beat_pads[6].panning,
@@ -203,7 +220,8 @@ export const drumMachineReducer = (state=initialState, action) => {
                 pad8: {
                     volume: action.payload.beat_pads[7].volume,
                     sequence: action.payload.beat_pads[7].sequence,
-                    name: action.payload.beat_pads[7].sample_name,
+                    sample_name: action.payload.beat_pads[7].sample_name,
+                    sample_file: action.payload.beat_pads[7].sample_file,
                     id: action.payload.beat_pads[7].id,
                     pad_id: action.payload.beat_pads[7].pad_id,
                     panning: action.payload.beat_pads[7].panning,
@@ -212,7 +230,8 @@ export const drumMachineReducer = (state=initialState, action) => {
                 pad9: {
                     volume: action.payload.beat_pads[8].volume,
                     sequence: action.payload.beat_pads[8].sequence,
-                    name: action.payload.beat_pads[8].sample_name,
+                    sample_name: action.payload.beat_pads[8].sample_name,
+                    sample_file: action.payload.beat_pads[8].sample_file,
                     id: action.payload.beat_pads[8].id,
                     pad_id: action.payload.beat_pads[8].pad_id,
                     panning: action.payload.beat_pads[8].panning,
@@ -221,7 +240,8 @@ export const drumMachineReducer = (state=initialState, action) => {
                 pad10: {
                     volume: action.payload.beat_pads[9].volume,
                     sequence: action.payload.beat_pads[9].sequence,
-                    name: action.payload.beat_pads[9].sample_name,
+                    sample_name: action.payload.beat_pads[9].sample_name,
+                    sample_file: action.payload.beat_pads[9].sample_file,
                     id: action.payload.beat_pads[9].id,
                     pad_id: action.payload.beat_pads[9].pad_id,
                     panning: action.payload.beat_pads[9].panning,

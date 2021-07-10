@@ -56,23 +56,23 @@ Users will be able to:
 [x] View another user’s page to view their bio, list of user’s beats and list of most recent comments the user made
 
 ## Stretch Goals:
-[x] Add up to 10 instruments
+[x] Change to one save button to save whole beat
 [x] Add up to 16 pads to create one measure that is subdivided into 16th notes in 4/4 time
+[x] Add up to 10 instruments
+[x] Add panning for each instrument
+[x] Add pitch for each instrument
+[x] Add musical influences to User model/profile
+[] Users can upload their own sample for each instrument
 [] Ability to program beats longer than one measure
 [] Ability to program beats in other time signatures
-[] Add panning for each instrument
-[] Add pitch for each instrument
 [] User is warned before navigating away from an unsaved beat
-[] Users can upload their own sample for each instrument
 [] Add reverb or delay to each instrument
-[] Users can follow other users
-[] User’s profile will display a list of user’s followers and the users they follow
-[] Users have an avatar or profile pic
 [] User’s feed includes commenting activity
-[] User’s feed includes following activity
+[] Users can follow other users
+    [] User’s profile will display a list of user’s followers and the users they follow
+    [] User’s feed includes following activity
+[] Users have an avatar or profile pic
 [] Responsive to different screen sizes
-[x] Change to one save button to save whole beat
-[] Add musical influences to User model/profile
 [] Add a short recording of the beat to sample in feed
     [] Make recording of beat and save in firebase
     [] Add reference to recording in beat model

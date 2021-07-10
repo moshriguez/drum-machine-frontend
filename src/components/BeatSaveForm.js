@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 import { useDispatch, useSelector } from "react-redux";
 import { saveBeat, updateBeat } from "../actions/user";
-import { loadBeat } from "../actions/drumMachine";
 
 const BeatSaveForm = (props) => {
     const dispatch = useDispatch();
@@ -34,7 +33,7 @@ const BeatSaveForm = (props) => {
     // Catches success message from backend and renders on page before model unmounts
     const [message, setMessages] = useState('');
 
-
+    const history = useHistory()
     const { id } = useParams();
     const handleSubmit = () => {
         const token = localStorage.getItem("jwt")
@@ -70,7 +69,7 @@ const BeatSaveForm = (props) => {
             },
             body: JSON.stringify(bodyObj)
         }
-        console.log(config.body)
+        // console.log(config.body)
         fetch(beatURL, config)
         .then((r) => r.json())
         .then((data) => {
@@ -82,7 +81,8 @@ const BeatSaveForm = (props) => {
               console.log(data)
               setMessages(data.message)
               {id ? dispatch(updateBeat(data.beat)) : dispatch(saveBeat(data.beat))}
-              dispatch(loadBeat(data.beat))
+            history.replace('/drum_machine/' + data.beat.id)
+
               setTimeout(() => props.handleShowSaveBeat(), 1000)
           }
         });

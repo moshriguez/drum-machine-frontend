@@ -6,7 +6,7 @@ export let audioCtx = new AudioContext()
 // ** LOADING SAMPLES **
 // fetch the audio file and decode the data  
 async function setupSample(audioContext, fileName) {
-    console.log('Loading sample')
+    console.log('Loading sample: ', fileName)
     const storageRef = storage.ref()
     const filePath = await storageRef.child(fileName).getDownloadURL()
     const response = await fetch(filePath)
@@ -25,36 +25,37 @@ let hh2FileName = 'tight ass hat 3.wav'
 let hhOpenFileName = 'tracks_61 #008.wav'
 let rideFileName = 'c22 CshRd R02   x.wav' 
 let shakerFileName = 'JBlaze_shaker5.wav'
-export let kick1Sample
-export let kick2Sample
-export let snareSample
-export let clapSample
-export let rimSample
-export let hh1Sample
-export let hh2Sample
-export let hhOpenSample
-export let rideSample
-export let shakerSample
+export let pad1Sample
+export let pad2Sample
+export let pad3Sample
+export let pad4Sample
+export let pad5Sample
+export let pad6Sample
+export let pad7Sample
+export let pad8Sample
+export let pad9Sample
+export let pad10Sample
+
 setupSample(audioCtx, kick1FileName)
-.then(res => kick1Sample = res)
+.then(res => pad1Sample = res)
 setupSample(audioCtx, kick2FileName)
-.then(res => kick2Sample = res)
+.then(res => pad2Sample = res)
 setupSample(audioCtx, snareFileName)
-.then(res => snareSample = res)
+.then(res => pad3Sample = res)
 setupSample(audioCtx, clapFileName)
-.then(res => clapSample = res)
+.then(res => pad4Sample = res)
 setupSample(audioCtx, rimFileName)
-.then(res => rimSample = res)
+.then(res => pad5Sample = res)
 setupSample(audioCtx, hh1FileName)
-.then(res => hh1Sample = res)
+.then(res => pad6Sample = res)
 setupSample(audioCtx, hh2FileName)
-.then(res => hh2Sample = res)
+.then(res => pad7Sample = res)
 setupSample(audioCtx, hhOpenFileName)
-.then(res => hhOpenSample = res)
+.then(res => pad8Sample = res)
 setupSample(audioCtx, rideFileName)
-.then(res => rideSample = res)
+.then(res => pad9Sample = res)
 setupSample(audioCtx, shakerFileName)
-.then(res => shakerSample = res)
+.then(res => pad10Sample = res)
 
 
 

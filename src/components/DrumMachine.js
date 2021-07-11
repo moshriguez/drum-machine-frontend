@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { setPad, setTempo, playing, setVolume, setPitch, setPanning, loading, setTimerID, setBeatNumber, setSequence } from "../actions/drumMachine";
-import { audioCtx, pad1Sample, pad2Sample, pad3Sample, pad4Sample, pad5Sample, pad6Sample, pad7Sample, pad8Sample, pad9Sample, pad10Sample } from "../loadSamples";
+import { audioCtx, pad1Sample, pad2Sample, pad3Sample, pad4Sample, pad5Sample, pad6Sample, pad7Sample, pad8Sample, pad9Sample, pad10Sample, loadSamples } from "../loadSamples";
 
 const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
 const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
@@ -15,14 +15,14 @@ const DrumContainer = () => {
     const pitch = useSelector(state => state.drumMachine[selectedPad].pitch)
     const panning = useSelector(state => state.drumMachine[selectedPad].panning)
 
-    // useEffect(()=> {
-        // stopDrumMachine()
-        // startDrumMachine()
-        // when the sample has loaded allow play
-            // .then(() => {
-            //     dispatch(loading(!isLoading))
-            // })
-    // }, [tempo])
+    useEffect(()=> {
+        // when the samples have loaded allow play
+        const fileNameArray = [pad1.sample_file, pad2.sample_file, pad3.sample_file, pad4.sample_file, pad5.sample_file, pad6.sample_file, pad7.sample_file, pad8.sample_file, pad9.sample_file, pad10.sample_file]
+        loadSamples(fileNameArray)
+        .then(() => {
+            dispatch(loading(!isLoading))
+        })
+    }, [])
     
     // ** EVENT HANDLERS **
     const handleDrumPadClick = (e) => {

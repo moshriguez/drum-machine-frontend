@@ -15,16 +15,6 @@ async function setupSample(audioContext, fileName) {
     return audioBuffer;
 }
 
-let kick1FileName = 'SB15_Drm_bd.wav'
-let kick2FileName = 'kick13.wav'
-let snareFileName = 'tracks_15 #006.wav'
-let clapFileName = 'lil j clap 6.wav'
-let rimFileName = 'mobb-snare1-qbh.wav'
-let hh1FileName = 'tracks_19 #004.wav'
-let hh2FileName = 'tight ass hat 3.wav'
-let hhOpenFileName = 'tracks_61 #008.wav'
-let rideFileName = 'c22 CshRd R02   x.wav' 
-let shakerFileName = 'JBlaze_shaker5.wav'
 export let pad1Sample
 export let pad2Sample
 export let pad3Sample
@@ -36,26 +26,28 @@ export let pad8Sample
 export let pad9Sample
 export let pad10Sample
 
-setupSample(audioCtx, kick1FileName)
-.then(res => pad1Sample = res)
-setupSample(audioCtx, kick2FileName)
-.then(res => pad2Sample = res)
-setupSample(audioCtx, snareFileName)
-.then(res => pad3Sample = res)
-setupSample(audioCtx, clapFileName)
-.then(res => pad4Sample = res)
-setupSample(audioCtx, rimFileName)
-.then(res => pad5Sample = res)
-setupSample(audioCtx, hh1FileName)
-.then(res => pad6Sample = res)
-setupSample(audioCtx, hh2FileName)
-.then(res => pad7Sample = res)
-setupSample(audioCtx, hhOpenFileName)
-.then(res => pad8Sample = res)
-setupSample(audioCtx, rideFileName)
-.then(res => pad9Sample = res)
-setupSample(audioCtx, shakerFileName)
-.then(res => pad10Sample = res)
+export async function loadSamples(fileNameArray) {
+    setupSample(audioCtx, fileNameArray[0])
+    .then(res => pad1Sample = res)
+    setupSample(audioCtx, fileNameArray[1])
+    .then(res => pad2Sample = res)
+    setupSample(audioCtx, fileNameArray[2])
+    .then(res => pad3Sample = res)
+    setupSample(audioCtx, fileNameArray[3])
+    .then(res => pad4Sample = res)
+    setupSample(audioCtx, fileNameArray[4])
+    .then(res => pad5Sample = res)
+    setupSample(audioCtx, fileNameArray[5])
+    .then(res => pad6Sample = res)
+    setupSample(audioCtx, fileNameArray[6])
+    .then(res => pad7Sample = res)
+    setupSample(audioCtx, fileNameArray[7])
+    .then(res => pad8Sample = res)
+    setupSample(audioCtx, fileNameArray[8])
+    .then(res => pad9Sample = res)
+    setupSample(audioCtx, fileNameArray[9])
+    .then(res => pad10Sample = res)
+}
 
 
 

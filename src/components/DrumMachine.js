@@ -24,10 +24,14 @@ const DrumContainer = () => {
         .then(() => {
             dispatch(loading(!isLoading))
         })
+    }, [pad1.sample_file, pad2.sample_file, pad3.sample_file, pad4.sample_file, pad5.sample_file, pad6.sample_file, pad7.sample_file, pad8.sample_file, pad9.sample_file, pad10.sample_file])
+
+    useEffect(() => {
+        // load all available samples to store
         fetch(sampleURL)
         .then(r => r.json())
         .then(data => dispatch(grabSamples(data.samples)))
-    }, [pad1.sample_file, pad2.sample_file, pad3.sample_file, pad4.sample_file, pad5.sample_file, pad6.sample_file, pad7.sample_file, pad8.sample_file, pad9.sample_file, pad10.sample_file])
+    }, [])
     
     // ** EVENT HANDLERS **
     const handleDrumPadClick = (e) => {
@@ -147,7 +151,6 @@ const DrumContainer = () => {
     }
 
     // creates a buffer, adds in buffered sample, connects and plays
-    //! panning node will have to be added here later
     // panning values = -1 to 1; 0 is center
     // pitch control via playbackRate - sampleSource.playbackRate.value
     // what's actually happening is we're changing the playback rate, but due to time's relationship with frequencies and the shortness of the samples, we percieve the result as higher or lower in pitch

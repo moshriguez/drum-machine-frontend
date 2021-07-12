@@ -81,3 +81,10 @@ export function addCommentRedux(comment) {
         payload: comment
     }
 }
+
+export function setSample(sampleObj) {
+    return {
+        type: 'SET_SAMPLE',
+        payload: sampleObj
+    }
+}

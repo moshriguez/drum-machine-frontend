@@ -127,6 +127,9 @@ export const drumMachineReducer = (state=initialState, action) => {
             return {...state, [state.selectedPad]: {...state[state.selectedPad], panning: action.payload}}
         case 'SET_PITCH':
             return {...state, [state.selectedPad]: {...state[state.selectedPad], pitch: action.payload}}
+        case 'SET_SAMPLE':
+            console.log(action.payload)
+            return {...state, [state.selectedPad]: {...state[state.selectedPad], pad_id: action.payload.id, sample_name: action.payload.name, sample_file: action.payload.sample_file}}
         case 'SET_TIMER_ID':
             return {...state, timerID: action.payload}
         case 'SET_BEAT_NUMBER':

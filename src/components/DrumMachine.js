@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { setPad, setTempo, playing, setVolume, setPitch, setPanning, loading, setTimerID, setBeatNumber, setSequence } from "../actions/drumMachine";
+import { setPad, setTempo, playing, setVolume, setPitch, setPanning, loading, setTimerID, setBeatNumber, setSequence, setSample } from "../actions/drumMachine";
 import { grabSamples } from "../actions/samples";
 import { audioCtx, pad1Sample, pad2Sample, pad3Sample, pad4Sample, pad5Sample, pad6Sample, pad7Sample, pad8Sample, pad9Sample, pad10Sample, loadSamples } from "../loadSamples";
 
@@ -11,11 +11,13 @@ const sampleURL = 'http://localhost:3000/api/v1/pads'
 
 const DrumContainer = () => {
     const dispatch = useDispatch();
+    const samples = useSelector(state => state.samples)
     const drumMachine = useSelector(state => state.drumMachine)
     const { isLoading, selectedPad, tempo, isPlaying, timerID, beatNumber, pad1, pad2, pad3, pad4, pad5, pad6, pad7, pad8, pad9, pad10 } = useSelector(state => state.drumMachine)
     const volume = useSelector(state => state.drumMachine[selectedPad].volume)
     const pitch = useSelector(state => state.drumMachine[selectedPad].pitch)
     const panning = useSelector(state => state.drumMachine[selectedPad].panning)
+    const sampleID = useSelector(state => state.drumMachine[selectedPad].pad_id)
 
     useEffect(()=> {
         // when the samples have loaded allow play
@@ -57,6 +59,11 @@ const DrumContainer = () => {
 
     const handleChangePitch = (e) => {
         dispatch(setPitch(e.target.value))
+    }
+
+    const handleChangeSample = (e) => {
+        const selectedSample = samples.find(sample => sample.id === parseInt(e.target.value, 10))
+        dispatch(setSample(selectedSample))
     }
 
     const handlePlayBtnClick = (e) => {
@@ -203,6 +210,11 @@ const DrumContainer = () => {
         })
     }
 
+    const renderSampleDropdown = () => {
+        return samples.map(sample => {
+            return <option key={sample.id} value={sample.id}>{sample.name}</option>
+        })
+    }
 
     return (
         // TODO: add loading element; display while samples are being buffered
@@ -265,6 +277,11 @@ const DrumContainer = () => {
                 
             </div>
             <div className="drum-controls">
+                <div className="sample-selector">
+                    <select name="samples" id="samples" value={sampleID} onChange={(e) => handleChangeSample(e)}>
+                        {renderSampleDropdown()}
+                    </select>
+                </div>
                 <div className="selected-drum-show">
                     <div className="digital-display">
                         <p>{drumMachine[selectedPad].sample_name}</p>

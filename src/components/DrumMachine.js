@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { setPad, setTempo, playing, setVolume, setPitch, setPanning, loading, setTimerID, setBeatNumber, setSequence } from "../actions/drumMachine";
+import { grabSamples } from "../actions/samples";
 import { audioCtx, pad1Sample, pad2Sample, pad3Sample, pad4Sample, pad5Sample, pad6Sample, pad7Sample, pad8Sample, pad9Sample, pad10Sample, loadSamples } from "../loadSamples";
 
 const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
 const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
 
+const sampleURL = 'http://localhost:3000/api/v1/pads'
 
 const DrumContainer = () => {
     const dispatch = useDispatch();
@@ -22,7 +24,10 @@ const DrumContainer = () => {
         .then(() => {
             dispatch(loading(!isLoading))
         })
-    }, [])
+        fetch(sampleURL)
+        .then(r => r.json())
+        .then(data => dispatch(grabSamples(data.samples)))
+    }, [pad1.sample_file, pad2.sample_file, pad3.sample_file, pad4.sample_file, pad5.sample_file, pad6.sample_file, pad7.sample_file, pad8.sample_file, pad9.sample_file, pad10.sample_file])
     
     // ** EVENT HANDLERS **
     const handleDrumPadClick = (e) => {

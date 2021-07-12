@@ -3,10 +3,12 @@ import { userReducer } from "./user";
 import { otherUserReducer } from "./otherUser";
 import { feedReducer } from "./feed";
 import { drumMachineReducer } from "./drumMachine";
+import { sampleReducer } from "./samples";
 
 const rootReducer = combineReducers({
     user: userReducer, 
     drumMachine: drumMachineReducer,
+    samples: sampleReducer,
     feed: feedReducer,
     otherUser: otherUserReducer
 })
@@ -17,6 +19,7 @@ export default rootReducer
 //     user: {},
 //     feed: [],
 //     otherUser: {},
+//     samples: [],
 //     drumMachine: {
 //       selectedPad: '',
 //       tempo: 120,

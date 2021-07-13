@@ -9,7 +9,7 @@ import './App.css';
 import Login from './Auth/Login'
 import Signup from "./Auth/Signup";
 import Navigation from "./components/Navigation";
-import DrumMachine from './components/DrumMachine';
+import Home from './container/Home';
 import MyProfileContainer from './container/MyProfileContainer';
 import YourProfileContainer from './container/YourProfileContainer';
 import DrumContainer from './container/DrumContainer';
@@ -51,7 +51,7 @@ function App(props) {
         
         <Route exact path='/drum_machine/:id' render={() => <DrumContainer />} />
         <Route exact path='/drum_machine' render={() => <DrumContainer />} />
-        <Route exact path='/' render={() => <DrumMachine />} />
+        <Route exact path='/' render={() => <Home />} />
         {token ? null : <Redirect exact from="/profile" to="/login" />}
         <Route exact path='/profile/:id' render={() => <YourProfileContainer />} />
         <Route exact path='/profile' render={() => <MyProfileContainer />} />

@@ -11,7 +11,6 @@ import BeatSaveForm from '../components/BeatSaveForm';
 import CommentsContainer from "./CommentsContainer";
 
 
-const beatURL = 'http://localhost:3000/api/v1/beats/'
 const commentURL = 'http://localhost:3000/api/v1/comments/'
 
 const MyProfileContainer = () => {

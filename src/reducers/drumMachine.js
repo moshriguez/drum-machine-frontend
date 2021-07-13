@@ -1,5 +1,5 @@
 const initialState = {
-    isLoading: true,
+    isLoading: false,
     selectedPad: 'pad1',
     tempo: 120,
     isPlaying: false,

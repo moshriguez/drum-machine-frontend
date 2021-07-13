@@ -69,19 +69,28 @@ const MyProfileContainer = () => {
     return (
         <div className="my-profile-container">
             <div className="profile-section">
-                <h2>User: {user.username}</h2>
-                <h3>Bio:</h3>
-                <p>{user.bio}</p>
-                <h3>Musical Influences:</h3>
-                <p>{user.musical_influences}</p>
-                <button 
-                className="btn edit"
-                onClick={handleShowEdit}
-                >Edit Account</button>
-                <button 
-                className="btn delete"
-                onClick={handleShowDelete}                
-                >Delete Account</button>
+                <div>
+                    <h3>User:</h3>
+                    <h1>{user.username}</h1>
+                </div>
+                <div>
+                    <h3>Bio:</h3>
+                    <p>{user.bio}</p>
+                </div>
+                <div>
+                    <h3>Musical Influences:</h3>
+                    <p>{user.musical_influences}</p>
+                </div>
+                <div className="btn-group">
+                    <button 
+                        className="btn edit"
+                        onClick={handleShowEdit}
+                    >Edit Account</button>
+                    <button 
+                        className="btn delete"
+                        onClick={handleShowDelete}                
+                    >Delete Account</button>
+                </div>
             </div>
             <div className="feed-section">
                 <h2>Most Recent Rhythms:</h2>

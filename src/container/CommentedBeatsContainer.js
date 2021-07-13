@@ -20,10 +20,10 @@ const CommentedBeatsContainer = (props) => {
         return uniqueCommentedBeats.map(beat => {
             return (
                 <div>
+                    <BeatCard key={beat.id} beat={beat} showUsername={true} />  
                     {comments.filter(comment => comment.beat_id === beat.id).map(comment => {
                         return <CommentCard key={comment.id} comment={comment} showUsername={false} />
                     })}
-                    <BeatCard key={beat.id} beat={beat} showUsername={true} />  
                 </div>
             )
             
@@ -32,7 +32,7 @@ const CommentedBeatsContainer = (props) => {
 
     return (
         <div className="comments-container" >
-            <h3>{username}'s Comments:</h3>
+            <h2>{username}'s Comments:</h2>
             {renderCommentedBeats()}
         </div>
     )

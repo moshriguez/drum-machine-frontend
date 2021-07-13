@@ -55,7 +55,7 @@ font-family: 'Bebas Neue', sans-serif;
 }
 
 .menu li {
-  width: 15%;
+  width: 18%;
   height: 100%;
 }
 
@@ -490,11 +490,18 @@ input[type=range]:focus::-webkit-slider-thumb {
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
-  background-color: rgb(170, 108, 170);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-.my-profile-container h2, .profile-section h3 {
-  margin: 0;
+.profile-section div {
+  padding-bottom: 10px;
+}
+
+.profile-section h1, .profile-section h3, .profile-section p {
+  display: inline;
+  margin-right: 5px;
 }
 
 .feed-section {
@@ -502,7 +509,14 @@ input[type=range]:focus::-webkit-slider-thumb {
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 4;
-  background-color: salmon;
+}
+
+.feed-section h2 {
+  margin-bottom: 10px;
+}
+
+.feed-section .comments-container {
+  width: 100%;
 }
 
 .beats-section {
@@ -512,42 +526,44 @@ input[type=range]:focus::-webkit-slider-thumb {
   grid-row-end: 4;
 }
 
-.beat-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr 96px;
-  grid-template-rows: 30px 1fr;
-  border: 1px solid gray;
-  margin-bottom: 7px;
-  box-shadow: 0 0 15px 2px rgba(63,227,63,0.7),inset 0 0 25px 2px rgba(0,0,0,0.5);
+.beats-section ul {
+  padding: 0;
 }
 
-.beat-card h4 {
+.beat-card {
+  display: grid;
+  grid-template-columns: 175px 1fr 105px;
+  grid-template-rows: 30px 1fr;
+  border: 1px solid #8080803b;
+  margin-bottom: 7px;
+  padding: 7px;
+  box-shadow: 2px 3px 5px 2px #0000001f;
+}
+
+.beat-card a:first-child {
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  margin: 0;
-  padding: 3px;
-  background-color: pink;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 1.15rem;
 }
+
 .beat-card p {
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 2;
   grid-row-end: 3;
   margin: 0;
-  padding: 3px;
+  padding-top: 3px;
   border-top: 1px solid lightgray;
-  background-color: lightpink;
 }
 .beat-card span {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
-  padding: 3px;
-  background-color: pink;
-
+  padding-top: 3px;
 }
 
 /* Modal */

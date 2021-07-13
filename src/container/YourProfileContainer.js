@@ -38,11 +38,18 @@ const MyProfileContainer = () => {
     return (
         <div className="my-profile-container">
             <div className="profile-section">
-                <h2>User: {username}</h2>
-                <h3>Bio:</h3>
-                <p>{bio}</p>
-                <h3>Musical Influences:</h3>
-                <p>{musical_influences}</p>
+                <div>
+                    <h3>User:</h3>
+                    <h1>{username}</h1>
+                </div>
+                <div>
+                    <h3>Bio:</h3>
+                    <p>{bio}</p>
+                </div>
+                <div>
+                    <h3>Musical Influences:</h3>
+                    <p>{musical_influences}</p>
+                </div>
             </div>
             <div className="feed-section">
                 <CommentedBeatsContainer />

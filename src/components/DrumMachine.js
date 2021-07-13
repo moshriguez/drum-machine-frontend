@@ -20,13 +20,15 @@ const DrumContainer = () => {
     const sampleID = useSelector(state => state.drumMachine[selectedPad].pad_id)
 
     useEffect(()=> {
-        // when the samples have loaded allow play
         const fileNameArray = [pad1.sample_file, pad2.sample_file, pad3.sample_file, pad4.sample_file, pad5.sample_file, pad6.sample_file, pad7.sample_file, pad8.sample_file, pad9.sample_file, pad10.sample_file]
-        loadSamples(fileNameArray)
-        .then(() => {
-            dispatch(loading(!isLoading))
-        })
-    }, [pad1.sample_file, pad2.sample_file, pad3.sample_file, pad4.sample_file, pad5.sample_file, pad6.sample_file, pad7.sample_file, pad8.sample_file, pad9.sample_file, pad10.sample_file])
+        // load samples once the drum machine's state has been updated
+        if (!isLoading) {
+            loadSamples(fileNameArray)
+            .then(() => {
+                dispatch(loading(true))
+            })
+        }
+    }, [pad1.sample_file, pad2.sample_file, pad3.sample_file, pad4.sample_file, pad5.sample_file, pad6.sample_file, pad7.sample_file, pad8.sample_file, pad9.sample_file, pad10.sample_file, isLoading])
 
     useEffect(() => {
         // load all available samples to store
@@ -64,6 +66,7 @@ const DrumContainer = () => {
     const handleChangeSample = (e) => {
         const selectedSample = samples.find(sample => sample.id === parseInt(e.target.value, 10))
         dispatch(setSample(selectedSample))
+        dispatch(loading(false))
     }
 
     const handlePlayBtnClick = (e) => {

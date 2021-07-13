@@ -12,19 +12,9 @@ async function setupSample(audioContext, fileName) {
     const response = await fetch(filePath)
     const arrayBuffer = await response.arrayBuffer();
     const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    // console.log(fileName, audioBuffer)
     return audioBuffer;
 }
-
-export let pad1Sample
-export let pad2Sample
-export let pad3Sample
-export let pad4Sample
-export let pad5Sample
-export let pad6Sample
-export let pad7Sample
-export let pad8Sample
-export let pad9Sample
-export let pad10Sample
 
 export async function loadSamples(fileNameArray) {
     setupSample(audioCtx, fileNameArray[0])
@@ -49,5 +39,15 @@ export async function loadSamples(fileNameArray) {
     .then(res => pad10Sample = res)
 }
 
+export let pad1Sample
+export let pad2Sample
+export let pad3Sample
+export let pad4Sample
+export let pad5Sample
+export let pad6Sample
+export let pad7Sample
+export let pad8Sample
+export let pad9Sample
+export let pad10Sample
 
 

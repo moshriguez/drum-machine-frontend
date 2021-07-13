@@ -68,10 +68,31 @@ export function setSequence(i) {
     }
 }
 
-export function loadBeat(beat) {
-    return {
-        type: 'LOAD_BEAT',
-        payload: beat
+export function loadBeat(id) {
+    return (dispatch) => {
+        dispatch(loading(true))
+        const beatURL = 'http://localhost:3000/api/v1/beats/'
+        const token = localStorage.getItem("jwt")
+        fetch(beatURL + id, {
+            method: "GET",
+            headers: {
+                "Content-Type": "appliction/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        .then(r => r.json())
+        .then(data => {
+            dispatch({type: 'LOAD_BEAT', payload: data.beat})
+            dispatch(loading(false))
+        })
+    }
+}
+
+export function reset() {
+    return (dispatch) => {
+        dispatch(loading(true))
+        dispatch({type: 'RESET'})
+        dispatch(loading(false))
     }
 }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 
 import { useDispatch, useSelector } from "react-redux";
-import { addCommentRedux, loadBeat } from "../actions/drumMachine";
+import { addCommentRedux, loadBeat, reset } from "../actions/drumMachine";
 
 import Modal from './Modal'
 import DrumMachine from '../components/DrumMachine';
@@ -32,17 +32,9 @@ const MyProfileContainer = () => {
 
     useEffect(() => {
         if (id) {
-            const token = localStorage.getItem("jwt")
-            fetch(beatURL + id, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "appliction/json",
-                    "Authorization": `Bearer ${token}`
-                }
-            }).then(r => r.json())
-            .then(data => dispatch(loadBeat(data.beat)))
+            dispatch(loadBeat(id))
         } else {
-            dispatch({type: 'RESET'})
+            dispatch(reset())
         }
     }, [id, dispatch])
 

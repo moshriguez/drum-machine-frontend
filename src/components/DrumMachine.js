@@ -239,7 +239,7 @@ const DrumContainer = () => {
                         onChange={(e) => handleChangeTempo(e)} 
                     />
                 </div>
-                <div className="play-btn" onClick={(e) => handlePlayBtnClick(e)}>
+                <div role="button" className="play-btn" onClick={(e) => handlePlayBtnClick(e)}>
                     {isPlaying ? <p>STOP</p> : <p>PLAY</p>}
                 </div>
             </div>

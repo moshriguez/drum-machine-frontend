@@ -71,10 +71,14 @@ const MyProfileContainer = () => {
 
     return (
         <div className="drum-container">
-            <h2>{name}</h2>
-            {id ? <p>by: {creator.username}</p> : null}
-            <p>{description}</p>
-            <button className="btn save" onClick={handleShowSaveBeat} >Save Beat</button>
+            <div className="beat-header">
+                <header>
+                    <h1>{name}</h1>
+                    {id ? <p>by: {creator.username}</p> : null}
+                    <button className="btn save" onClick={handleShowSaveBeat} >Save Beat</button>
+                </header>
+                <p>{description}</p>
+            </div>
             <DrumMachine />
             {id ? <CommentsContainer handleShowComment={handleShowComment}/> : null}
             {/* Comment Form Modal */}

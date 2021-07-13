@@ -4,7 +4,6 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { BrowserRouter } from 'react-router-dom'
-import './index.css';
 import App from './App';
 import rootReducer from "./reducers";
 

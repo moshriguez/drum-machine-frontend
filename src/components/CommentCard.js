@@ -6,7 +6,7 @@ const CommentCard = ({ comment, showUsername }) => {
     return (
         <div className="comment-card">
             <p>{comment.content}</p>
-            {showUsername ? <Link to={'/profile/' + comment.user_id}>{comment.username}</Link> : null}
+            {showUsername ? <Link to={'/profile/' + comment.user_id}>-{comment.username}</Link> : null}
         </div>
     )
 }

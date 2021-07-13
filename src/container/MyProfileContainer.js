@@ -32,7 +32,7 @@ const MyProfileContainer = () => {
     }
 
     // Update account information
-    const editAccount = (userBio) => {
+    const editAccount = (userForm) => {
 		const config = {
 			method: "PATCH",
 			headers: {
@@ -40,7 +40,7 @@ const MyProfileContainer = () => {
 				Accept: "application/json",
 				Authorization: `Bearer ${token}`
 			},
-			body: JSON.stringify({bio: userBio})
+			body: JSON.stringify(userForm)
 		}
 
 		fetch(userURL + user.id, config).then(r => r.json()).then(data => {

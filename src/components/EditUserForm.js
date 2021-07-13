@@ -4,28 +4,37 @@ import { useSelector } from "react-redux";
 const EditUserForm = (props) => {
     const user = useSelector(state => state.user)
     // Controlled form for edit user
-    const [userBio, setUserBio] = useState("")
+    const [userForm, setUserForm] = useState({ bio: "", musical_influences: "" });
+    const handleChange = (e) => {
+      setUserForm({ ...userForm, [e.target.name]: e.target.value });
+    };
+  
 
-    const handleChangeBio = (e) => {
-        setUserBio(e.target.value)
-    }
+    // const handleChangeBio = (e) => {
+    //     setUserBio(e.target.value)
+    // }
 
     // Adds user's current info to edit form
 	useEffect(() => {
-		setUserBio(user.bio)
+        setUserForm({bio: user.bio, musical_influences: user.musical_influences})
 	}, [user])
 
     const handleSubmit = () => {
-        props.editAccount(userBio)
+        props.editAccount(userForm)
     }
 
     return (
         <>
             <label>Edit User Bio</label>
             <textarea
-            placeholder="Tell us about yourself..."
-            value={userBio}
-            onChange={handleChangeBio}
+            name="bio"
+            value={userForm.bio}
+            onChange={handleChange}
+            ></textarea>
+            <textarea
+            name="musical_influences"
+            value={userForm.musical_influences}
+            onChange={handleChange}
             ></textarea>
             <div className="btn-group">
                 <button className="btn update" onClick={handleSubmit} >Update</button>

@@ -36,7 +36,8 @@ const Signup = () => {
       body: JSON.stringify({
         username: userForm.username,
         password: userForm.password,
-        bio: 'Tell us about yourself...'
+        bio: 'Tell us about yourself...',
+        musical_influences: 'What kind of music do you like?'
       }),
     };
     fetch(userUrl, config)

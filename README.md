@@ -9,6 +9,7 @@ User:
     Username
     Password_digest
     Bio
+    Musical_influences
 Beat:
     Name
     Description
@@ -26,6 +27,8 @@ Beat-Pad:
     Pad_id
     Sequence
     Volume
+    Panning
+    Pitch
 
 ## User Stories:
 Users will be able to:
@@ -62,6 +65,7 @@ Users will be able to:
 [x] Add panning for each instrument
 [x] Add pitch for each instrument
 [x] Add musical influences to User model/profile
+[x] Users can change the samples of instruments
 [] Users can upload their own sample for each instrument
 [] Ability to program beats longer than one measure
 [] Ability to program beats in other time signatures

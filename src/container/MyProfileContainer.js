@@ -20,6 +20,7 @@ const MyProfileContainer = () => {
 
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
+    //* MODAL CONTROL */
     const [showEdit, setShowEdit] = useState(false)
     const [showDelete, setShowDelete] = useState(false)
     const handleShowEdit = () => setShowEdit(!showEdit)

@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { setPad, setTempo, playing, setVolume, setPitch, setPanning, loading, setTimerID, setBeatNumber, setSequence, setSample } from "../actions/drumMachine";
 import { grabSamples } from "../actions/samples";
 import { audioCtx, pad1Sample, pad2Sample, pad3Sample, pad4Sample, pad5Sample, pad6Sample, pad7Sample, pad8Sample, pad9Sample, pad10Sample, loadSamples } from "../loadSamples";
+
+import Modal from "../container/Modal";
+import AddSampleForm from "./AddSampleForm";
 
 const lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
 const scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
@@ -19,6 +22,11 @@ const DrumContainer = () => {
     const panning = useSelector(state => state.drumMachine[selectedPad].panning)
     const sampleID = useSelector(state => state.drumMachine[selectedPad].pad_id)
 
+    // ** MODAL CONTROL **
+    const [showAddSample, setShowAddSample] = useState(false)
+    const handleShowAddSample = () => setShowAddSample(!showAddSample)
+    
+
     useEffect(()=> {
         const fileNameArray = [pad1.sample_file, pad2.sample_file, pad3.sample_file, pad4.sample_file, pad5.sample_file, pad6.sample_file, pad7.sample_file, pad8.sample_file, pad9.sample_file, pad10.sample_file]
         // load samples once the drum machine's state has been updated
@@ -31,7 +39,7 @@ const DrumContainer = () => {
     }, [pad1.sample_file, pad2.sample_file, pad3.sample_file, pad4.sample_file, pad5.sample_file, pad6.sample_file, pad7.sample_file, pad8.sample_file, pad9.sample_file, pad10.sample_file, isLoading])
 
     useEffect(() => {
-        // load all available samples to store
+        // load all available samples to store for sample dropdown
         fetch(sampleURL)
         .then(r => r.json())
         .then(data => dispatch(grabSamples(data.samples)))
@@ -177,6 +185,7 @@ const DrumContainer = () => {
         return sampleSource;
     }
 
+    // **  RENDER FUNCTIONS **
     // renders sequence pads and adds class based on whether pad is selected and what beat were on
     const renderSequencePads = () => {
         const musicalCounting = '1e&a2e&a3e&a4e&a'.split('')
@@ -220,8 +229,6 @@ const DrumContainer = () => {
     }
 
     return (
-        // TODO: add loading element; display while samples are being buffered
-
         <div className="drum-machine">
             <div className="global-controls">
                 <div className="tempo-control">
@@ -280,6 +287,9 @@ const DrumContainer = () => {
                 
             </div>
             <div className="drum-controls">
+                <div className="add-sample-btn">
+                    <button className="retro-button yellow-button" onClick={handleShowAddSample} >ADD<br/>SAMPLE</button>
+                </div>
                 <div className="sample-selector digital-display">
                     <select name="samples" id="samples" value={sampleID} onChange={(e) => handleChangeSample(e)}>
                         {renderSampleDropdown()}
@@ -333,6 +343,12 @@ const DrumContainer = () => {
             <div className="pads-container">
                 {renderSequencePads()}
             </div>
+            {showAddSample ?
+            <Modal>
+                <AddSampleForm close={handleShowAddSample}/>
+            </Modal> :
+            null}
+
         </div>
     )
 }

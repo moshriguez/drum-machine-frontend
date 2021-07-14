@@ -13,6 +13,7 @@
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  background-color: #dfe2ec;
 }
 
 h1, h2, h4, h3 {
@@ -35,6 +36,10 @@ button {
   font-family: 'Oxanium', sans-serif;
   cursor: pointer;
 }
+
+.drum-container, .my-profile-container {
+  background-color: rgba(255, 255, 255, 0.84);
+}
 /* 
 font-family: 'Bebas Neue', sans-serif;
 */
@@ -55,7 +60,7 @@ font-family: 'Bebas Neue', sans-serif;
 }
 
 .menu li {
-  width: 18%;
+  width: 175px;
   height: 100%;
 }
 
@@ -102,6 +107,7 @@ header p {
   padding: 3px 20px;
   box-shadow: 2px 3px 5px 2px #0000001f;
   margin: 5px 0;
+  background-color: white;
 }
 
 .comment-card p {
@@ -484,7 +490,7 @@ select#samples {
   cursor: pointer;
   width: 150px;
   height: 35px;
-  margin-top: 6px;
+  margin-top: 3px;
 }
 
 .sample-selector::after {
@@ -576,6 +582,7 @@ select#samples {
   margin-bottom: 7px;
   padding: 7px;
   box-shadow: 2px 3px 5px 2px #0000001f;
+  background-color: white;
 }
 
 .beat-card a:first-child {

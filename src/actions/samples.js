@@ -4,3 +4,10 @@ export function grabSamples(samplesArray) {
         payload: samplesArray
     }
 }
+
+export function addSample(sampleObj) {
+    return {
+        type: 'ADD_SAMPLE',
+        payload: sampleObj
+    }
+}

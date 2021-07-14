@@ -7,7 +7,7 @@ export let audioCtx = new AudioContext()
 // fetch the audio file and decode the data  
 async function setupSample(audioContext, fileName) {
     console.log('Loading sample: ', fileName)
-    const storageRef = storage.ref()
+    const storageRef = storage.ref('samples')
     const filePath = await storageRef.child(fileName).getDownloadURL()
     const response = await fetch(filePath)
     const arrayBuffer = await response.arrayBuffer();

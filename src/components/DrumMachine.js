@@ -280,16 +280,16 @@ const DrumContainer = () => {
                 
             </div>
             <div className="drum-controls">
-                <div className="sample-selector">
+                <div className="sample-selector digital-display">
                     <select name="samples" id="samples" value={sampleID} onChange={(e) => handleChangeSample(e)}>
                         {renderSampleDropdown()}
                     </select>
                 </div>
-                <div className="selected-drum-show">
+                {/* <div className="selected-drum-show">
                     <div className="digital-display">
                         <p>{drumMachine[selectedPad].sample_name}</p>
                     </div>
-                </div>
+                </div> */}
                 <div className="pitch-control">
                     <label htmlFor="pitch">PITCH</label>
                     <input 

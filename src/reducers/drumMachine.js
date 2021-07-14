@@ -15,7 +15,7 @@ const initialState = {
         sample_name: 'Kick1',
         sample_file: 'SB15_Drm_bd.wav',
         id: 0,
-        pad_id: 5,
+        pad_id: 1,
         panning: 0,
         pitch: 1
     },
@@ -25,17 +25,17 @@ const initialState = {
         sample_name: 'Kick2',
         sample_file: 'kick13.wav',
         id: 0,
-        pad_id: 6,
+        pad_id: 2,
         panning: 0,
         pitch: 1
     },
     pad3: {
         volume: 1,
         sequence: '0000001001000000',
-        sample_name: 'Snare',
+        sample_name: 'Snare1',
         sample_file: 'tracks_15 #006.wav',
         id: 0,
-        pad_id: 7,
+        pad_id: 4,
         panning: 0,
         pitch: 1
     },
@@ -45,7 +45,7 @@ const initialState = {
         sample_name: 'Clap',
         sample_file: 'lil j clap 6.wav',
         id: 0,
-        pad_id: 8,
+        pad_id: 6,
         panning: 0,
         pitch: 1
     },
@@ -55,7 +55,7 @@ const initialState = {
         sample_name: 'Rim',
         sample_file: 'mobb-snare1-qbh.wav',
         id: 0,
-        pad_id: 9,
+        pad_id: 7,
         panning: 0,
         pitch: 1
     },
@@ -65,7 +65,7 @@ const initialState = {
         sample_name: 'HH1',
         sample_file: 'tracks_19 #004.wav',
         id: 0,
-        pad_id: 10,
+        pad_id: 11,
         panning: 0,
         pitch: 1
     },
@@ -75,27 +75,27 @@ const initialState = {
         sample_name: 'HH2',
         sample_file: 'tight ass hat 3.wav',
         id: 0,
-        pad_id: 11,
+        pad_id: 12,
         panning: 0,
         pitch: 1
     },
     pad8: {
         volume: 1,
         sequence: '0000000000001000',
-        sample_name: 'HH Open',
+        sample_name: 'HH Open1',
         sample_file: 'tracks_61 #008.wav',
         id: 0,
-        pad_id: 12,
+        pad_id: 13,
         panning: 0,
         pitch: 1
     },
     pad9: {
         volume: 1,
         sequence: '0100010001000100',
-        sample_name: 'Ride',
+        sample_name: 'Ride1',
         sample_file: 'c22 CshRd R02   x.wav',
         id: 0,
-        pad_id: 13,
+        pad_id: 15,
         panning: 0,
         pitch: 1
     },
@@ -105,7 +105,7 @@ const initialState = {
         sample_name: 'Shaker',
         sample_file: 'JBlaze_shaker5.wav',
         id: 0,
-        pad_id: 14,
+        pad_id: 19,
         panning: 0,
         pitch: 1
     },

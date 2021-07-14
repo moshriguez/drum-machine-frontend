@@ -2,7 +2,14 @@ import React, { useRef, useState } from "react";
 
 import { storage } from "../firebase/firebase";
 
+import { useDispatch, useSelector } from "react-redux";
+
+
+const padURL = 'http://localhost:3000/api/v1/pads/'
+
 const AddSampleForm = (props) => {
+    const dispatch = useDispatch()
+
     // Controlled form for adding a sample
     const [sampleForm, setSampleForm] = useState({ name: "", type: "" });
     const handleChange = (e) => {
@@ -42,8 +49,30 @@ const AddSampleForm = (props) => {
             () => {
                 // create new Pad (sample model) on the backend
                     // needs to happen first so we can reference the pad_id in the dispatch
+                handleFetch()
                 // dispatch new sample to selected pad
             })
+    }
+
+    const handleFetch = () => {
+        const token = localStorage.getItem("jwt")
+        const newPad = {
+            name: sampleForm.name,
+            sample_type: sampleForm.type,
+            sample_file: selectedFile.name
+        }
+        const configObj = {
+            method: 'POST',
+            headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				Authorization: `Bearer ${token}`
+			},
+            body: JSON.stringify(newPad) 
+        }
+        fetch(padURL, configObj)
+        .then(r => r.json())
+        .then(data => console.log(data))
     }
 
     return (

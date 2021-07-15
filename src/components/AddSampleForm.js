@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { storage } from "../firebase/firebase";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loading, setSample } from "../actions/drumMachine";
 import { addSample } from "../actions/samples";
 
@@ -10,6 +10,7 @@ const padURL = 'http://localhost:3000/api/v1/pads/'
 
 const AddSampleForm = (props) => {
     const dispatch = useDispatch()
+    const samples = useSelector(state => state.samples)
 
     // Controlled form for adding a sample
     const [sampleForm, setSampleForm] = useState({ name: "", type: "" });
@@ -24,40 +25,73 @@ const AddSampleForm = (props) => {
     const [message, setMessages] = useState('');
 
     const handleFileInput = (e) => {
-        setErrors([])
         const file = e.target.files[0]
         const fileTypeRegex = /audio\/.+/
         const newErrors = []
         if (file) {
-            // console.log(file.type)
             if (file.size > 1048576) {
                 newErrors.push('File size cannot exceed more than 1MB')
+                setSelectedFile(null)
             }
             if (!fileTypeRegex.test(file.type)) {
                 newErrors.push('File must be an audio file.')
+                setSelectedFile(null)
             } else {
                 setSelectedFile(file)
             }
         }
         setErrors(newErrors)
     }
+
+    // checks for errors on the front end
+    const frontendErrorCheck = () => {
+        const newErrors = [];
+        if (sampleForm.name.length === 0) {
+            newErrors.push('Name cannot be blank.')
+        }
+        if (samples.find(samp => samp.name === sampleForm.name)) {
+            newErrors.push('Please choose another name. We would like to avoid duplicate names for samples')
+        }
+        if (sampleForm.type === '') {
+            newErrors.push('Please choose a type.')
+        }
+        if (selectedFile === null) {
+            newErrors.push('Please choose a file.')
+        }
+        setErrors(newErrors)
+        //returns true for 0 errors
+        return !newErrors.length
+    }
+
     
     const handleSubmit = () => {
         // upload file to filebase storage
-        const uploadTask = storage.ref(`samples/${selectedFile.name}`).put(selectedFile)
-        uploadTask.on(
-            'state_changed',
-            snapshot => {},
-            error => { 
-                const newErrors = []
-                newErrors.push(error)
-                setErrors(newErrors)
-            },
-            () => {
-                handleFetch()
-            })
-    }
-
+        
+        if (frontendErrorCheck() && !errors.length) {
+            // console.log('if there are errors, I should not run.')
+            // console.log(errors)
+            const uploadTask = storage.ref(`samples/${selectedFile.name}`).put(selectedFile)
+            uploadTask.on(
+                'state_changed',
+                snapshot => {},
+                error => { 
+                    const newErrors = []
+                    newErrors.push(error)
+                    setErrors(newErrors)
+                },
+                () => {
+                    handleFetch()
+                    // storage
+                    // .ref('samples')
+                    // .child(selectedFile.name)
+                    // .getDownloadURL()
+                    // .then( url => {
+                        //     console.log(url)
+                        // })
+                    })
+                }
+            }
+            
     const handleFetch = () => {
         const token = localStorage.getItem("jwt")
         const newPad = {
@@ -91,6 +125,8 @@ const AddSampleForm = (props) => {
             }
         })
     }
+    
+    // add a pad to check sample before uploading
 
     return (
         <>

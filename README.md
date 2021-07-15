@@ -66,7 +66,7 @@ Users will be able to:
 [x] Add pitch for each instrument
 [x] Add musical influences to User model/profile
 [x] Users can change the samples of instruments
-[] Users can upload their own sample for each instrument
+[x] Users can upload their own sample for each instrument
 [] Ability to program beats longer than one measure
 [] Ability to program beats in other time signatures
 [] User is warned before navigating away from an unsaved beat

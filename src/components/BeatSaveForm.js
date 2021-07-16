@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router-dom'
 
 import { useDispatch, useSelector } from "react-redux";
 import { saveBeat, updateBeat } from "../actions/user";
+import { loadBeat } from "../actions/drumMachine";
 
 const BeatSaveForm = (props) => {
     const dispatch = useDispatch();
@@ -80,8 +81,14 @@ const BeatSaveForm = (props) => {
           } else if (data.message) {
               console.log(data)
               setMessages(data.message)
-              {id ? dispatch(updateBeat(data.beat)) : dispatch(saveBeat(data.beat))}
-            history.replace('/drum_machine/' + data.beat.id)
+              if (id) {
+                dispatch(updateBeat(data.beat))
+                dispatch(loadBeat(id))
+              } else {
+                dispatch(saveBeat(data.beat))  
+              }
+            //   {id ? dispatch(updateBeat(data.beat)) : dispatch(saveBeat(data.beat))}
+              history.replace('/drum_machine/' + data.beat.id)
 
               setTimeout(() => props.handleShowSaveBeat(), 1000)
           }

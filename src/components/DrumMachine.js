@@ -36,7 +36,8 @@ const DrumContainer = () => {
                 dispatch(loading(true))
             })
         }
-    }, [pad1.sample_file, pad2.sample_file, pad3.sample_file, pad4.sample_file, pad5.sample_file, pad6.sample_file, pad7.sample_file, pad8.sample_file, pad9.sample_file, pad10.sample_file, isLoading])
+        return () => clearInterval(timerID)
+    }, [pad1.sample_file, pad2.sample_file, pad3.sample_file, pad4.sample_file, pad5.sample_file, pad6.sample_file, pad7.sample_file, pad8.sample_file, pad9.sample_file, pad10.sample_file, isLoading, timerID])
 
     useEffect(() => {
         // load all available samples to store for sample dropdown

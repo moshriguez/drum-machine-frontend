@@ -291,7 +291,7 @@ const DrumContainer = () => {
             </div>
             <div className="drum-controls">
                 <div className="add-sample-btn">
-                    <button className="retro-button yellow-button" onClick={handleShowAddSample} >ADD<br/>SAMPLE</button>
+                    <button className="retro-button blue-button" onClick={handleShowAddSample} >ADD<br/>SAMPLE</button>
                 </div>
                 <div className="sample-selector digital-display">
                     <select name="samples" id="samples" value={sampleID} onChange={(e) => handleChangeSample(e)}>

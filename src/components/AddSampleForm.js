@@ -143,82 +143,109 @@ const AddSampleForm = (props) => {
                         value={sampleForm.name}
                         onChange={handleChange}
                     ></input>
-                    <p>Type</p>
-                    <label>
+                    <label>Type</label>
+                    <div className="radio-container">
                         <input
                             type="radio"
                             name="type"
                             value="kick"
+                            id="kick"
                             checked={sampleForm.type === 'kick'}
                             onChange={handleChange}
                         />
-                        kick
-                    </label>
-                    <label>
+                        <label htmlFor="kick">
+                            <span className="radio-span">kick</span>
+                        </label>
+                    </div>
+                    <div className="radio-container">
                         <input
                             type="radio"
                             name="type"
                             value="snare"
+                            id="snare"
                             checked={sampleForm.type === 'snare'}
                             onChange={handleChange}
                         />
-                        snare
-                    </label>
-                    <label>
+                        <label htmlFor="snare">
+                            <span className="radio-span">snare</span>
+                        </label>
+                    </div>
+                    <div className="radio-container">
                         <input
                             type="radio"
                             name="type"
                             value="clap"
+                            id="clap"
                             checked={sampleForm.type === 'clap'}
                             onChange={handleChange}
                         />
-                        clap
-                    </label>
-                    <label>
+                        <label htmlFor="clap">
+                            <span className="radio-span">clap</span>
+                        </label>
+                    </div>
+                    <div className="radio-container">
                         <input
                             type="radio"
                             name="type"
-                            value="hi-hat"
-                            checked={sampleForm.type === 'hi-hat'}
+                            value="hi-hats"
+                            id="hi-hats"
+                            checked={sampleForm.type === 'hi-hats'}
                             onChange={handleChange}
                         />
-                        hi-hat
-                    </label>
-                    <label>
+                        <label htmlFor="hi-hats">
+                            <span className="radio-span">hi-hats</span>
+                        </label>
+                    </div>
+                    <div className="radio-container">
                         <input
                             type="radio"
                             name="type"
                             value="cymbal"
+                            id="cymbal"
                             checked={sampleForm.type === 'cymbal'}
                             onChange={handleChange}
                         />
-                        cymbal
-                    </label>
-                    <label>
+                        <label htmlFor="cymbal">
+                            <span className="radio-span">cymbal</span>
+                        </label>
+                    </div>
+                    <div className="radio-container">
                         <input
                             type="radio"
                             name="type"
                             value="percussion"
+                            id="percussion"
                             checked={sampleForm.type === 'percussion'}
                             onChange={handleChange}
                         />
-                        percussion
-                    </label>
-                    <label>
+                        <label htmlFor="percussion">
+                            <span className="radio-span">percussion</span>
+                        </label>
+                    </div>
+                    <div className="radio-container">
                         <input
                             type="radio"
                             name="type"
                             value="misc"
+                            id="misc"
                             checked={sampleForm.type === 'misc'}
                             onChange={handleChange}
                         />
-                        misc
-                    </label>
+                        <label htmlFor="misc">
+                            <span className="radio-span">misc</span>
+                        </label>
+                    </div>
                     <div className="file-uploader">
                         <input 
                             type="file" 
+                            id="choose-file" 
                             onChange={handleFileInput}
                         />
+                        <label htmlFor="choose-file">
+                            <span className="file-span">
+                                {selectedFile ? selectedFile.name : 'No file chosen'}
+                            </span>
+                        </label>
                     </div>
                     {errors.length ? (
                     <div className="error-container">

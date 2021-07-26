@@ -49,30 +49,30 @@ User -------------< Beat --< Beat-Pad >-- Pad
    ---< Comments >---
 
 - User:
-    username
-    password_digest
-    bio
-    musical_influences
+    - username
+    - password_digest
+    - bio
+    - musical_influences
 - Beat:
-    name
-    description
-    tempo
-    user_id
+    - name
+    - description
+    - tempo
+    - user_id
 - Comment:
-    user_id
-    beat_id
-    content
+    - user_id
+    - beat_id
+    - content
 - Pad:
-    name
-    type
-    sample_file
+    - name
+    - type
+    - sample_file
 - Beat-Pad:
-    beat_id
-    pad_id
-    sequence
-    volume
-    panning
-    pitch
+    - beat_id
+    - pad_id
+    - sequence
+    - volume
+    - panning
+    - pitch
 
 ## User Stories:
 Users will be able to:
@@ -111,17 +111,17 @@ Users will be able to:
 - [x] Add musical influences to User model/profile
 - [x] Users can change the samples of instruments
 - [x] Users can upload their own sample for each instrument
-- [] Ability to program beats longer than one measure
-- [] Ability to program beats in other time signatures
-- [] User is warned before navigating away from an unsaved beat
-- [] Add reverb or delay to each instrument
-- [] User’s feed includes commenting activity
-- [] Users can follow other users
-    - [] User’s profile will display a list of user’s followers and the users they follow
-    - [] User’s feed includes following activity
-- [] Users have an avatar or profile pic
-- [] Responsive to different screen sizes
-- [] Add a short recording of the beat to sample in feed
-    - [] Make recording of beat and save in firebase
-    - [] Add reference to recording in beat model
-- [] Ability to make changes to beat while it plays and beat is updated in real time
+- [ ] Ability to program beats longer than one measure
+- [ ] Ability to program beats in other time signatures
+- [ ] User is warned before navigating away from an unsaved beat
+- [ ] Add reverb or delay to each instrument
+- [ ] User’s feed includes commenting activity
+- [ ] Users can follow other users
+    - [ ] User’s profile will display a list of user’s followers and the users they follow
+    - [ ] User’s feed includes following activity
+- [ ] Users have an avatar or profile pic
+- [ ] Responsive to different screen sizes
+- [ ] Add a short recording of the beat to sample in feed
+    - [ ] Make recording of beat and save in firebase
+    - [ ] Add reference to recording in beat model
+- [ ] Ability to make changes to beat while it plays and beat is updated in real time

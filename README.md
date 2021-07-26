@@ -40,8 +40,7 @@ $ yarn start
 ```
 
 ## Video Demo
-<a href="https://www.loom.com/share/92620bab5dea457da1b08882d2987169?sharedAppSource=personal_library" target="_blank"><img src="https://www.loom.com/share/92620bab5dea457da1b08882d2987169?sharedAppSource=personal_library/0.jpg" 
-alt="Beat Machine Walkthrough Video" width="240" height="180" border="10" /></a>
+<a href="https://www.loom.com/share/92620bab5dea457da1b08882d2987169?sharedAppSource=personal_library" target="_blank">Beat Machine Walkthrough Video</a>
 
 ## Acknowledgements
 Inspiration for the drum machine engine came from MDN's tutorial: https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Advanced_techniques

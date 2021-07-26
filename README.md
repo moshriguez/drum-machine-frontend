@@ -44,9 +44,7 @@ alt="Beat Machine Walkthrough Video" width="240" height="180" border="10" /></a>
 Inspiration for the drum machine engine came from MDN's tutorial: https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Advanced_techniques
 
 ## Models
-User -------------< Beat --< Beat-Pad >-- Pad
-   |                |
-   ---< Comments >---
+![Model Relationships](./public/model-relationships.png)
 
 - User:
     - username

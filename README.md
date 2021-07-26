@@ -25,7 +25,9 @@ Project is created with:
 - Active Model Serializers 0.10.12
 
 ## Launch
-To launch this app, you will also need to open the backend part of this project, found here: https://github.com/moshriguez/drum-machine-backend. Open the backend project, cd into its directory and run:
+To launch this app, you will also need to open the backend part of this project, found here: https://github.com/moshriguez/drum-machine-backend. 
+
+Open the backend project, cd into its directory and run:
 
 ```
 $ bundle install

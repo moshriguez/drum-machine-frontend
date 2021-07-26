@@ -18,8 +18,11 @@ Project is created with:
 - React-Router 5.2.0
 - Firebase 8.7.0
 - Web Audio API
-- JWT
-- Ruby on Rails
+- JWT 2.2
+- bcrypt 3.1.7 
+- Ruby 2.6.1
+- Rails 6.1.4
+- Active Model Serializers 0.10.12
 
 ## Launch
 To launch this app, you will also need to open the backend part of this project, found here: https://github.com/moshriguez/drum-machine-backend. Open the backend project, cd into its directory and run:
